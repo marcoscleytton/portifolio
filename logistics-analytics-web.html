@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics & Supply Chain Analytics - Web Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body {
+            background-color: #fafafa;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .kpi-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .kpi-card {
+            text-align: center;
+            border-top: 3px solid;
+        }
+        .table-header {
+            background-color: rgba(220, 38, 38, 0.05);
+            color: #dc2626;
+            text-align: left;
+            padding: 10px;
+            font-size: 0.85rem;
+            border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+        }
+        .table-row {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: #333;
+            font-size: 0.9rem;
+        }
+        .table-row td {
+            padding: 10px;
+        }
+    </style>
+    <!-- Translation Support -->
+    <script src="lang.js"></script>
+</head>
+<body>
+
+    <div class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-6 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold" style="color: #dc2626;" data-i18n="logistics_web_title">Logistics & Supply Chain Analytics</h1>
+                <p class="text-sm text-gray-500" data-i18n="logistics_web_subtitle">Performance Macro • Rentabilidade • Riscos</p>
+            </div>
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex gap-4">
+                <span class="text-xs text-gray-500"><span data-i18n="global_filtering_by">Filtrando por:</span> <strong class="text-gray-700">Global (2011-2014)</strong></span>
+            </div>
+        </div>
+
+        <!-- KPIs Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card kpi-card" style="border-top-color: #dc2626;">
+                <div class="kpi-title" data-i18n="logistics_web_kpi1">Receita Total</div>
+                <div class="kpi-value" data-currency-brl="12600000" data-currency-short>R$ 12.6 Mi</div>
+                <div class="text-xs text-gray-500 mt-1 font-semibold" data-i18n="logistics_web_kpi1_sub">Trajetória de Crescimento Exponencial</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #9333ea;">
+                <div class="kpi-title" data-i18n="logistics_web_kpi2">Margem de Lucro</div>
+                <div class="kpi-value">11.60%</div>
+                <div class="text-xs text-green-600 mt-1 font-semibold" data-i18n="logistics_web_kpi2_sub">Estabilidade Comprovada</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #2563eb;">
+                <div class="kpi-title" data-i18n="logistics_web_kpi3">Tempo Médio Envio</div>
+                <div class="kpi-value">3.96 <span data-i18n="global_days">dias</span></div>
+                <div class="text-xs text-blue-600 mt-1 font-semibold" data-i18n="logistics_web_kpi3_sub">Benchmark Logístico</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #16a34a;">
+                <div class="kpi-title" data-i18n="logistics_web_kpi4">Qtd. Vendas (Volume)</div>
+                <div class="kpi-value" data-i18n="logistics_web_kpi4_val">178 Mil</div>
+                <div class="text-xs text-gray-500 mt-1 font-semibold" data-i18n="logistics_web_kpi4_sub">Agilidade em Alto Volume</div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Line Chart: Evolução -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #dc2626;" data-i18n="logistics_web_chart1">Evolução de Vendas Anuais (2011-2014)</h2>
+                <div class="relative h-64">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Doughnut Chart: Categoria -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #9333ea;" data-i18n="logistics_web_chart2">Receita por Categoria de Produto</h2>
+                <div class="relative h-64">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Bar Chart: Regiões -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #2563eb;" data-i18n="logistics_web_chart3">Dominância Regional (APAC em Destaque)</h2>
+                <div class="relative h-72">
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Table: Bottom 10 Produtos (Riscos) -->
+            <div class="card overflow-hidden flex flex-col">
+                <h2 class="text-lg font-semibold mb-4" style="color: #dc2626;" data-i18n="logistics_web_chart4">Alerta de Prejuízo (Detratores)</h2>
+                <p class="text-xs text-gray-500 mb-2" data-i18n="logistics_web_detractors_note">Custos operacionais e logísticos superam margem.</p>
+                <div class="overflow-y-auto flex-1 border border-gray-100 rounded-lg">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="table-header" data-i18n="logistics_web_th_product">Produto / Subcategoria</th>
+                                <th class="table-header" data-i18n="logistics_web_th_cost_type">Tipo de Custo Elevado</th>
+                                <th class="table-header text-right" data-i18n="logistics_web_th_margin">Margem Líquida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="font-semibold text-gray-800" data-i18n="logistics_prod_1">Mesas e Equip. Pesados</td>
+                                <td data-i18n="logistics_cost_1">Frete Extra</td>
+                                <td class="font-semibold text-red-600 text-right">-12.5%</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold text-gray-800" data-i18n="logistics_prod_2">Impressoras 3D Específicas</td>
+                                <td data-i18n="logistics_cost_2">Custo Operacional</td>
+                                <td class="font-semibold text-red-600 text-right">-8.2%</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold text-gray-800" data-i18n="logistics_prod_3">Scanners de Grande Porte</td>
+                                <td data-i18n="logistics_cost_3">Frete + Descontos</td>
+                                <td class="font-semibold text-red-600 text-right">-5.1%</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold text-gray-800" data-i18n="logistics_prod_4">Cadeiras Executivas</td>
+                                <td data-i18n="logistics_cost_4">Frete Volumoso</td>
+                                <td class="font-semibold text-orange-500 text-right">-1.4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights e Recomendações -->
+        <div class="card" style="margin-top: 24px; border-left: 4px solid #dc2626;">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2" style="color: #dc2626;" data-i18n="logistics_web_insight_title">
+                <i class="fas fa-brain"></i>
+                Conclusões Estratégicas
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Insights Column -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 text-gray-800" data-i18n="logistics_web_discovery_title">Painéis Integrados:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 mt-1 font-bold">✓</span>
+                            <span class="text-sm text-gray-700" data-i18n="logistics_web_insight_1"><strong>Mercado e Consumidor:</strong> "Consumer" representa a maior fatia do faturamento. Operação B2C massiva e pulverizada.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1 font-bold">✓</span>
+                            <span class="text-sm text-gray-700" data-i18n="logistics_web_insight_2"><strong>Estrelas vs. Detratores:</strong> Equipamentos de alta tecnologia (Copiadoras/Smartphones) sustentam lucro. Mesas e Scanners grandes geram gargalos no frete.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-purple-500 mt-1 font-bold">✓</span>
+                            <span class="text-sm text-gray-700" data-i18n="logistics_web_insight_3"><strong>Concentração de Valor:</strong> Aplicada a regra de Pareto aos 10 principais clientes – necessidade de proteger o Customer Lifetime Value (CLV).</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Recomendações Column -->
+                <div class="bg-red-50 p-4 rounded-lg" style="border: 1px dashed rgba(220, 38, 38, 0.3);">
+                    <h3 class="font-semibold text-lg mb-3" style="color: #dc2626;" data-i18n="logistics_web_action_title">Próximos Desafios:</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm bg-red-600">1</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800" data-i18n="logistics_web_recom_1_title">Otimização do Mix (Bottom 10)</h4>
+                                <p class="text-xs text-gray-600 mt-1" data-i18n="logistics_web_recom_1_desc">Revisão para itens onde o frete é ofensor: considerar estoques locais ou ajuste no preço de envio.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm bg-red-600">2</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800" data-i18n="logistics_web_recom_2_title">Foco na APAC</h4>
+                                <p class="text-xs text-gray-600 mt-1" data-i18n="logistics_web_recom_2_desc">Consolidar investimentos na Ásia-Pacífico, que apresenta a melhor relação entre volume e margem.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm bg-red-600">3</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800" data-i18n="logistics_web_recom_3_title">Gestão de Grandes Contas</h4>
+                                <p class="text-xs text-gray-600 mt-1" data-i18n="logistics_web_recom_3_desc">Atendimento diferenciado para os clientes de topo identificados, garantindo a recorrência do lucro de alta margem.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        Chart.defaults.color = '#666';
+        Chart.defaults.font.family = "'Inter', sans-serif";
+
+        let salesChart, categoryChart, regionChart;
+
+        function initCharts() {
+            const lang = localStorage.getItem('portfolio_lang') || 'pt';
+
+            const labelsSales = {
+                pt: 'Vendas Totais (Mi)',
+                en: 'Total Sales (Mi)',
+                es: 'Ventas Totales (Mi)'
+            };
+
+            const cfgL = (typeof CURRENCY_CFG !== 'undefined' ? CURRENCY_CFG : {pt:{symbol:'R$',rate:1},en:{symbol:'$',rate:0.18},es:{symbol:'\u20ac',rate:0.16}})[lang] || {symbol:'R$',rate:1};
+            // Sales values are in BRL Millions; convert proportionally
+            const salesBrl = [1.2, 1.8, 2.5, 3.8]; // in Mi BRL
+            const salesConverted = salesBrl.map(v => +(v * cfgL.rate).toFixed(3));
+
+            const ctxSales = document.getElementById('salesChart').getContext('2d');
+            if (salesChart) salesChart.destroy();
+            salesChart = new Chart(ctxSales, {
+                type: 'line',
+                data: {
+                    labels: ['2011', '2012', '2013', '2014'],
+                    datasets: [{
+                        label: labelsSales[lang] || labelsSales.pt,
+                        data: salesConverted,
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#dc2626',
+                        pointBorderColor: '#fff',
+                        pointRadius: 5,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (ctx) => ` ${cfgL.symbol} ${ctx.raw.toFixed(2)} Mi` } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [5, 5] }, ticks: { callback: v => cfgL.symbol + ' ' + v.toFixed(2) } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            const labelsCat = {
+                pt: ['Tecnologia', 'Móveis', 'Mat. Escritório'],
+                en: ['Technology', 'Furniture', 'Office Supplies'],
+                es: ['Tecnología', 'Muebles', 'Mat. Oficina']
+            };
+
+            const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            categoryChart = new Chart(ctxCategory, {
+                type: 'doughnut',
+                data: {
+                    labels: labelsCat[lang] || labelsCat.pt,
+                    datasets: [{
+                        data: [38, 32, 30],
+                        backgroundColor: ['#9333ea', '#ec4899', '#f43f5e'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'right' }
+                    }
+                }
+            });
+
+            const labelsReg = {
+                pt: ['APAC', 'União Europeia', 'EUA', 'LATAM', 'África'],
+                en: ['APAC', 'European Union', 'USA', 'LATAM', 'Africa'],
+                es: ['APAC', 'Unión Europea', 'EE. UU.', 'LATAM', 'África']
+            };
+            const labelRegSet = {
+                pt: 'Volume Geográfico',
+                en: 'Geographic Volume',
+                es: 'Volumen Geográfico'
+            };
+
+            const ctxRegion = document.getElementById('regionChart').getContext('2d');
+            if (regionChart) regionChart.destroy();
+            regionChart = new Chart(ctxRegion, {
+                type: 'bar',
+                data: {
+                    labels: labelsReg[lang] || labelsReg.pt,
+                    datasets: [{
+                        label: labelRegSet[lang] || labelRegSet.pt,
+                        data: [35, 28, 20, 10, 7],
+                        backgroundColor: '#2563eb',
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { borderDash: [5, 5] } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCharts);
+
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'setLang') {
+                setTimeout(initCharts, 100);
+            }
+        });
+    </script>
+</body>
+</html>

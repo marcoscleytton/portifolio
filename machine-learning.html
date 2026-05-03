@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning - Marcos C. Lisboa</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Orange Background Shape -->
+    <div class="bg-shape-orange"></div>
+
+    <!-- Background Layers -->
+    <div class="mesh-gradient"></div>
+    <div class="tech-grid"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="mobile-menu-icon">
+            <i class='bx bx-menu'></i>
+        </div>
+        <ul class="nav-links desktop-only">
+            <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+            <li><a href="sobremim.html" data-i18n="nav_about">Sobre Mim</a></li>
+            <li class="dropdown-wrapper">
+                <a href="index.html#portfolio"><span data-i18n="nav_portfolio">Portfólio</span> <i
+                        class='bx bx-chevron-down'></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="dashboard.html" data-i18n="drop_dashboard">Dashboard</a></li>
+                    <li><a href="machine-learning.html" data-i18n="drop_ml">Machine Learning</a></li>
+                    <li><a href="deep-learning.html" data-i18n="drop_dl">Deep Learning</a></li>
+                    <li><a href="genai.html" data-i18n="drop_genai">GenAI</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <button id="btn-pt" class="lang-btn active" onclick="setLang('pt')">PT</button>
+                <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+                <button id="btn-es" class="lang-btn" onclick="setLang('es')">ES</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <section class="projects" style="margin-top: 60px;">
+            <!-- Premium Background for Projects -->
+            <div class="projects-bg-container">
+                <div class="projects-mesh"></div>
+                <div class="projects-grid-pattern"></div>
+                <div class="projects-scanline"></div>
+                <canvas id="projects-canvas"></canvas>
+                <div class="projects-aurora">
+
+                    <div class="projects-blob projects-blob-1"></div>
+                    <div class="projects-blob projects-blob-2"></div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="projects-header">
+
+                    <h2 class="section-title" data-i18n="page_title_ml" style="font-size: 3.5rem;">Projetos de Machine
+                        Learning</h2>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+
+                    <!-- MODERN CARD: FRAUD DETECTION -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #ff5700, #ff8c00);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="wave wave3"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-shield-quarter'></i>
+                            </div>
+                        </div>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue"
+                                    style="color: #ff5700; background: rgba(255, 87, 0, 0.1);">Python</span>
+                                <span class="card-modern-tag-blue"
+                                    style="color: #ff5700; background: rgba(255, 87, 0, 0.1);">Scikit-learn</span>
+                            </div>
+                            <p class="card-modern-desc" data-i18n="proj_fraud_ml_desc">
+                                Desenvolvimento de modelo preditivo para detecção de fraudes utilizando RUS, tuning de
+                                hiperparâmetros e ajuste de threshold.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle' style="color: #ff5700;"></i> <span
+                                        data-i18n="proj_fraud_ml_results">84% de Recall • AUC 0.97</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #ff5700;"></i> <span
+                                        data-i18n="proj_fraud_ml_pipeline_step2">Dados Desbalanceados: Comparação entre
+                                        RUS e SMOTE.</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #ff5700;"></i> <span
+                                        data-i18n="proj_fraud_ml_impact_title">Impacto: Redução de perda
+                                        financeira.</span></li>
+                            </ul>
+                            <div class="card-modern-tech" style="margin-bottom:20px;">
+                                <span><i class='bx bxl-python' style="color: #ff5700;"></i> Python</span>
+                                <span><i class='bx bx-brain' style="color: #ff5700;"></i> Scikit-learn</span>
+                                <span><i class='bx bx-data' style="color: #ff5700;"></i> Pandas</span>
+                            </div>
+                            <div class="card-modern-footer">
+                                <button onclick="window.location.href='ml-fraud-detection.html'" class="card-btn-dark"
+                                    style="background: #ff5700; border:none; cursor:pointer;">
+                                    <i class='bx bx-plus-circle'></i> <span data-i18n="card_btn_details">Ver
+                                        Detalhes</span>
+                                </button>
+                                <a href="https://github.com/marcoscleytton/fraude-ml" target="_blank"
+                                    class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODERN CARD: TIME SERIES -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="wave wave3"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-line-chart'></i>
+                            </div>
+                        </div>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_pred">Predição de Séries Temporais</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">Forecasting</span>
+                                <span class="card-modern-tag-blue">Stats</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Modelagem preditiva para análise de tendências históricas e previsão de demanda futura.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle' style="color: #2563eb;"></i> <span>Análise de
+                                        Sazonalidade</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #2563eb;"></i> <span>Modelos
+                                        ARIMA/Prophet</span></li>
+                            </ul>
+                            <div class="card-modern-tech" style="margin-bottom:20px;">
+                                <span><i class='bx bxl-python'></i> Python</span>
+                                <span><i class='bx bx-stats'></i> Statsmodels</span>
+                            </div>
+                            <div class="card-modern-footer">
+                                <button onclick="#" class="card-btn-dark"
+                                    style="background: #2563eb; border:none; cursor:pointer;">
+                                    <i class='bx bx-plus-circle'></i> <span data-i18n="card_btn_details">Ver
+                                        Detalhes</span>
+                                </button>
+                                <a href="#" target="_blank" class="card-btn-light"><i class='bx bxl-github'></i>
+                                    GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODERN CARD: RECOMMENDATION -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="wave wave3"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-purchase-tag-alt'></i>
+                            </div>
+                        </div>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_recom">Sistema de Recomendação</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue"
+                                    style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">NLP</span>
+                                <span class="card-modern-tag-blue"
+                                    style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">Collaborative</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Algoritmos de filtragem colaborativa e baseada em conteúdo para personalização de
+                                experiência.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle' style="color: #8b5cf6;"></i> <span>Matrix
+                                        Factorization</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #8b5cf6;"></i> <span>Cold Start
+                                        Mitigation</span></li>
+                            </ul>
+                            <div class="card-modern-tech" style="margin-bottom:20px;">
+                                <span><i class='bx bxl-python'></i> Python</span>
+                                <span><i class='bx bx-brain'></i> Scikit-learn</span>
+                            </div>
+                            <div class="card-modern-footer">
+                                <button onclick="#" class="card-btn-dark"
+                                    style="background: #8b5cf6; border:none; cursor:pointer;">
+                                    <i class='bx bx-plus-circle'></i> <span data-i18n="card_btn_details">Ver
+                                        Detalhes</span>
+                                </button>
+                                <a href="#" target="_blank" class="card-btn-light"><i class='bx bxl-github'></i>
+                                    GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Close inner container -->
+        </section>
+
+    </main>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class='bx bx-x'></i>
+        </button>
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+                <li><a href="sobremim.html" data-i18n="nav_about">Sobre Mim</a></li>
+                <li><a href="index.html#portfolio" data-i18n="nav_portfolio">Portfólio</a></li>
+                <li class="mobile-dropdown">
+                    <span class="mobile-dropdown-title">Categorias <i class='bx bx-chevron-down'></i></span>
+                    <ul class="mobile-dropdown-items">
+                        <li><a href="dashboard.html" data-i18n="drop_dashboard">Dashboard</a></li>
+                        <li><a href="machine-learning.html" data-i18n="drop_ml">Machine Learning</a></li>
+                        <li><a href="deep-learning.html" data-i18n="drop_dl">Deep Learning</a></li>
+                        <li><a href="genai.html" data-i18n="drop_genai">GenAI</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="mobile-lang-switcher">
+                <button onclick="setLang('pt')" class="lang-btn">PT</button>
+                <button onclick="setLang('en')" class="lang-btn">EN</button>
+                <button onclick="setLang('es')" class="lang-btn">ES</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <h3 data-i18n="footer_social">Redes Sociais</h3>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/marcoscleytton/" target="_blank" aria-label="LinkedIn">
+                    <i class='bx bxl-linkedin-square'></i>
+                </a>
+                <a href="https://github.com/marcoscleytton" target="_blank" aria-label="GitHub">
+                    <i class='bx bxl-github'></i>
+                </a>
+            </div>
+            <a href="mailto:marcoscleytton@gmail.com?subject=Contato Portfólio&body=Olá Marcos, vi seu portfólio e gostaria de conversar."
+                class="email-link">
+                <i class='bx bx-envelope'></i> <span data-i18n="footer_email">Fale comigo</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="lang.js"></script>
+    <script src="projects-animation.js"></script>
+
+    <script>
+        /* ---- Scroll Effects (Parallax & Progress) ---- */
+        const progressBar = document.getElementById('scroll-progress');
+        const meshGradient = document.querySelector('.mesh-gradient');
+        const techGrid = document.querySelector('.tech-grid');
+
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const b = document.body;
+            const scrollPercent = (h.scrollTop || b.scrollTop) / ((h.scrollHeight || b.scrollHeight) - h.clientHeight) * 100;
+
+            // 1. Update Progress Bar
+            if (progressBar) progressBar.style.width = scrollPercent + '%';
+
+            // 2. Parallax Background Layers
+            const offset = window.pageYOffset;
+            if (meshGradient) meshGradient.style.transform = `translateY(${offset * 0.15}px)`;
+            if (techGrid) techGrid.style.transform = `translateY(${offset * 0.05}px)`;
+        });
+
+        /* ---- Particle Network (Data Science Feel) ---- */
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const connectionDist = 150;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', () => { resize(); initParticles(); });
+
+            function initParticles() {
+                const count = Math.min(window.innerWidth / 20, 100);
+                particles = Array.from({ length: count }, () => ({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 2 + 1,
+                    dx: (Math.random() - 0.5) * 0.4,
+                    dy: (Math.random() - 0.5) * 0.4,
+                }));
+            }
+            initParticles();
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 87, 0, 0.4)`;
+                    ctx.fill();
+
+                    p.x += p.dx;
+                    p.y += p.dy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+                    // Draw Connections
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < connectionDist) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(255, 87, 0, ${0.15 * (1 - dist / connectionDist)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        }
+
+        /* ---- Scroll Reveal ---- */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        /* ---- Mobile Menu Logic ---- */
+        const mobileMenu = document.getElementById('mobileMenu');
+        const openBtn = document.querySelector('.mobile-menu-icon');
+        const closeBtn = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        function toggleMenu(show) {
+            if (show) {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        if (openBtn) openBtn.addEventListener('click', () => toggleMenu(true));
+        if (closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+</body>
+
+</html>
