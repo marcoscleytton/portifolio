@@ -240,6 +240,7 @@ const translations = {
         logistics_cost_3: "Frete + Descontos",
         logistics_cost_4: "Frete Volumoso",
 
+<<<<<<< HEAD
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning em People Analytics",
@@ -271,6 +272,10 @@ const translations = {
         proj_attrition_ml_insight_5: "Distância da empresa impacta attrition",
 
         // Fraud ML Project
+=======
+        // Fraud ML Project
+        proj_fraud_ml_title: "💳 Detecção de Fraudes",
+>>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         proj_fraud_ml_subtitle: "Machine Learning em Transações Financeiras",
         proj_fraud_ml_desc: "Desenvolvimento de modelo preditivo para detecção de fraudes em cartões de crédito, utilizando técnicas de balanceamento (RUS), tuning de hiperparâmetros e otimização de threshold para impacto de negócio.",
         proj_fraud_ml_results: "84% de Detecção • AUC 0.97",
@@ -548,6 +553,7 @@ const translations = {
         logistics_cost_3: "Freight + Discounts",
         logistics_cost_4: "Bulky Freight",
 
+<<<<<<< HEAD
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning in People Analytics",
@@ -578,6 +584,8 @@ const translations = {
         proj_attrition_ml_insight_4: "Employees with overtime have a higher risk of leaving",
         proj_attrition_ml_insight_5: "Distance from company impacts attrition",
 
+=======
+>>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         // Fraud ML Project
         proj_fraud_ml_title: "💳 Fraud Detection",
         proj_fraud_ml_subtitle: "Machine Learning in Financial Transactions",
@@ -857,6 +865,7 @@ const translations = {
         logistics_cost_3: "Flete + Descuentos",
         logistics_cost_4: "Flete Voluminoso",
 
+<<<<<<< HEAD
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning en People Analytics",
@@ -887,6 +896,8 @@ const translations = {
         proj_attrition_ml_insight_4: "Los empleados con horas extras tienen mayor riesgo de salida",
         proj_attrition_ml_insight_5: "La distancia a la empresa impacta en la rotación",
 
+=======
+>>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         // Fraud ML Project
         proj_fraud_ml_title: "💳 Detección de Fraudes",
         proj_fraud_ml_subtitle: "Machine Learning en Transacciones Financieras",
