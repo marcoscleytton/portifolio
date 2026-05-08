@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos C. Lisboa - Portfolio</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Orange Background Shape -->
+    <div class="bg-shape-orange"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="mobile-menu-icon">
+            <i class='bx bx-menu'></i>
+        </div>
+        <ul class="nav-links desktop-only">
+            <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+            <li><a href="sobremim.html" data-i18n="nav_about">Sobre Mim</a></li>
+            <li class="dropdown-wrapper">
+                <a href="index.html#portfolio"><span data-i18n="nav_portfolio">Portfólio</span> <i
+                        class='bx bx-chevron-down'></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="dashboard.html" data-i18n="drop_dashboard">Dashboard</a></li>
+                    <li><a href="machine-learning.html" data-i18n="drop_ml">Machine Learning</a></li>
+                    <li><a href="deep-learning.html" data-i18n="drop_dl">Deep Learning</a></li>
+                    <li><a href="genai.html" data-i18n="drop_genai">GenAI</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="nav-right">
+            <!-- Botões de Idioma -->
+            <div class="lang-switcher">
+                <button id="btn-pt" class="lang-btn active" onclick="setLang('pt')">PT</button>
+                <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+                <button id="btn-es" class="lang-btn" onclick="setLang('es')">ES</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Background Layers -->
+    <div class="mesh-gradient"></div>
+    <div class="tech-grid"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Hero Section (Sticky Layer) -->
+    <header class="hero-container">
+        <div class="container">
+            <section class="hero" id="about">
+                <div class="hero-left">
+                    <div class="hero-eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        <span class="eyebrow-text" data-i18n="hero_title_1">Olá, eu sou</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="hero-name" data-i18n="hero_title_2">Marcos C. Lisboa</span>
+                    </h1>
+                    <div class="hero-role">
+                        <span class="role-prefix">—</span>
+                        <span id="typed-role"></span><span class="typed-cursor">|</span>
+                    </div>
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        Os dados são a espada do século XXI, e quem conseguir manejá-los será o Samurai.
+                    </p>
+                </div>
+                <div class="hero-right">
+                    <div class="experience-badge">
+                        <span class="badge-icon">🚀</span>
+                        <span class="text" data-i18n="exp_badge">Do insight à produção</span>
+                    </div>
+                    <div class="availability-pill">
+                        <span class="avail-dot"></span>
+                        Open to work
+                    </div>
+                    <div class="image-wrapper">
+                        <div class="ring ring-1"></div>
+                        <div class="ring ring-2"></div>
+                        <img src="assets/perfil.png?v=2" alt="Marcos C. Lisboa" class="profile-img">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </header>
+
+    <!-- Sliding Content Page -->
+    <main class="main-page-reveal" id="about-page">
+        <div class="page-handle"></div>
+
+        <!-- Espaço para a Stack imersiva -->
+
+        <!-- Tech Stack Network (Immersive Premium Section) -->
+        <div class="stack-section reveal" id="stack-network">
+            <!-- Animated Aurora Backgrounds -->
+            <div class="stack-aurora">
+                <div class="aurora-blob item-1"></div>
+                <div class="aurora-blob item-2"></div>
+                <div class="aurora-blob item-3"></div>
+            </div>
+
+            <div class="stack-grid-pattern"></div>
+            <div class="stack-scanline"></div>
+
+            <div class="container stack-inner">
+                <div class="stack-header">
+                    <h2 class="stack-super-title" data-i18n="stack_title">Tech Ecosystem</h2>
+                    <p class="stack-subtitle" data-i18n="stack_subtitle">Ferramentas que impulsionam o impacto de dados
+                    </p>
+                </div>
+
+                <div class="stack-grid">
+                    <!-- Area 1: Analytics -->
+                    <div class="stack-glass-card card-analytics">
+                        <div class="card-icon"><i class='bx bx-data'></i></div>
+                        <h3 class="card-title">Analytics & Eng</h3>
+                        <div class="tools-cluster">
+                            <span class="stack-btn"><img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                    class="stack-icon" alt="Python" /> Python</span>
+                            <span class="stack-btn"><i class='bx bxs-data stack-icon' style="color:#336791"></i>
+                                SQL</span>
+                            <span class="stack-btn"><i class='bx bx-layer stack-icon' style="color:#FF694B"></i>
+                                dbt</span>
+                            <span class="stack-btn"><img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg"
+                                    class="stack-icon" alt="Airflow" /> Airflow</span>
+                            <span class="stack-btn"><img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                    class="stack-icon" alt="Docker" /> Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Area 2: Big Data -->
+                    <div class="stack-glass-card card-bigdata">
+                        <div class="card-icon"><i class='bx bx-network-chart'></i></div>
+                        <h3 class="card-title">Big Data Infrastructure</h3>
+                        <div class="tools-cluster">
+                            <span class="stack-btn"><img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg"
+                                    class="stack-icon" alt="Hadoop" /> Hadoop</span>
+                            <span class="stack-btn"><img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg"
+                                    class="stack-icon" alt="Spark" /> Spark</span>
+                            <span class="stack-btn"><img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-plain.svg"
+                                    class="stack-icon" alt="Hive" /> Hive</span>
+                        </div>
+                    </div>
+
+                    <!-- Area 3: AI -->
+                    <div class="stack-glass-card card-ai">
+                        <div class="card-icon"><i class='bx bx-brain'></i></div>
+                        <h3 class="card-title">Intelligence & AI</h3>
+                        <div class="tools-cluster">
+                            <span class="stack-btn"><i class='bx bx-scatter-chart stack-icon'></i> ML</span>
+                            <span class="stack-btn"><i class='bx bx-hive stack-icon'></i> Deep Learning</span>
+                            <span class="stack-btn"><i class='bx bx-bulb stack-icon'></i> GenAI</span>
+                            <span class="stack-btn"><i class='bx bx-message-dots stack-icon'></i> LLMs</span>
+                        </div>
+                    </div>
+
+                    <!-- Area 4: Cloud -->
+                    <div class="stack-glass-card card-cloud">
+                        <div class="card-icon"><i class='bx bx-cloud'></i></div>
+                        <h3 class="card-title">Cloud Ecosystem</h3>
+                        <div class="tools-cluster">
+                            <span class="stack-btn"><i class='bx bxl-google-cloud stack-icon' style="color:#E37400"></i>
+                                GCP</span>
+                            <span class="stack-btn"><i class='bx bxl-aws stack-icon' style="color:#FF9900"></i>
+                                AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Latest Projects (Full Width Background) -->
+        <section class="projects" id="portfolio">
+            <!-- Premium Background for Projects -->
+            <div class="projects-bg-container">
+                <div class="projects-mesh"></div>
+                <div class="projects-grid-pattern"></div>
+                <div class="projects-scanline"></div>
+                <canvas id="projects-canvas"></canvas>
+                <div class="projects-aurora">
+
+                    <div class="projects-blob projects-blob-1"></div>
+                    <div class="projects-blob projects-blob-2"></div>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="projects-header">
+                    <h2 class="section-title" data-i18n="proj_title">Últimos Projetos</h2>
+                    <div class="projects-controls">
+                        <a href="#" class="view-all" data-i18n="proj_all">Todos os projetos</a>
+                        <button class="filter-btn"><i class='bx bx-slider-alt'></i></button>
+                    </div>
+                    <div class="projects-grid">
+                        <!-- Project 1: Trade Marketing Dashboard -->
+                        <div class="project-card reveal" onclick="window.location.href='dashboard.html'"
+                            style="cursor:pointer;">
+                            <div class="project-image-box color-gray">
+                                <img src="assets/trademania01.png" alt="Trade Marketing"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="project-number">01</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Dashboard Power BI</span>
+                                <h3 class="project-name" data-i18n="dash_trade_title">📈 Trade Marketing Analytics</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Health Analytics Dashboard -->
+                        <div class="project-card reveal" onclick="window.location.href='dashboard.html'"
+                            style="cursor:pointer; transition-delay: 0.1s">
+                            <div class="project-image-box color-peach">
+                                <img src="assets/health-pbi-1.png" alt="Health Data"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="project-number">02</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Dashboard Power BI</span>
+                                <h3 class="project-name" data-i18n="dash_health_title">🩺 Health Data Analytics</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Logistics Dashboard -->
+                        <div class="project-card reveal" onclick="window.location.href='dashboard.html'"
+                            style="cursor:pointer; transition-delay: 0.2s">
+                            <div class="project-image-box color-bg">
+                                <img src="assets/logistics-pbi-1.png" alt="Logistics"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="project-number">03</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Dashboard Power BI</span>
+                                <h3 class="project-name" data-i18n="dash_logistics_title">🌍 Logistics & Supply Chain
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Fraud Detection ML -->
+                        <div class="project-card reveal" onclick="window.location.href='ml-fraud-detection.html'"
+                            style="cursor:pointer; transition-delay: 0.3s">
+                            <div class="project-image-box color-bg">
+                                <img src="assets/fraude-ml.jpg" alt="Fraud Detection"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="project-number">04</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Machine Learning</span>
+                                <h3 class="project-name" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: Employee Attrition -->
+                        <div class="project-card reveal" onclick="window.location.href='ml-employee-attrition.html'"
+                            style="cursor:pointer; transition-delay: 0.4s">
+                            <div class="project-image-box color-gray"
+                                style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+                                <h2 class="logo-placeholder" style="color: white;"><i class='bx bx-user-minus'></i></h2>
+                                <div class="project-number">05</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Machine Learning</span>
+                                <h3 class="project-name" data-i18n="proj_attrition_ml_title">👥 Employee Attrition</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: Deep Learning -->
+                        <div class="project-card reveal" onclick="window.location.href='deep-learning.html'"
+                            style="cursor:pointer; transition-delay: 0.5s">
+                            <div class="project-image-box color-peach">
+                                <h2 class="logo-placeholder">DL</h2>
+                                <div class="project-number">06</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Deep Learning</span>
+                                <h3 class="project-name" data-i18n="proj_med">Classificação de Imagens Médicas</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 7: GenAI -->
+                        <div class="project-card reveal" onclick="window.location.href='genai.html'"
+                            style="cursor:pointer; transition-delay: 0.6s">
+                            <div class="project-image-box color-bg">
+                                <h2 class="logo-placeholder">AI</h2>
+                                <div class="project-number">07</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Generative AI</span>
+                                <h3 class="project-name" data-i18n="proj_assist">Assistente Virtual Corporativo</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <h3 data-i18n="footer_social">Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/marcoscleytton/" target="_blank" aria-label="LinkedIn">
+                        <i class='bx bxl-linkedin-square'></i>
+                    </a>
+                    <a href="https://github.com/marcoscleytton" target="_blank" aria-label="GitHub">
+                        <i class='bx bxl-github'></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=5511994053818&text&type=phone_number&app_absent=0"
+                        target="_blank" aria-label="WhatsApp">
+                        <i class='bx bxl-whatsapp'></i>
+                    </a>
+                </div>
+                <a href="mailto:marcoscleytton@gmail.com?subject=Contato%20Portfólio&body=Olá%20Marcos,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar."
+                    class="email-link">
+                    <i class='bx bx-envelope'></i> <span data-i18n="footer_email">Fale comigo</span>
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class='bx bx-x'></i>
+        </button>
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" data-i18n="nav_home">Início</a></li>
+                <li><a href="sobremim.html" data-i18n="nav_about">Sobre Mim</a></li>
+                <li><a href="index.html#portfolio" data-i18n="nav_portfolio">Portfólio</a></li>
+                <li class="mobile-dropdown">
+                    <span class="mobile-dropdown-title">Categorias <i class='bx bx-chevron-down'></i></span>
+                    <ul class="mobile-dropdown-items">
+                        <li><a href="dashboard.html" data-i18n="drop_dashboard">Dashboard</a></li>
+                        <li><a href="machine-learning.html" data-i18n="drop_ml">Machine Learning</a></li>
+                        <li><a href="deep-learning.html" data-i18n="drop_dl">Deep Learning</a></li>
+                        <li><a href="genai.html" data-i18n="drop_genai">GenAI</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="mobile-lang-switcher">
+                <button class="lang-btn" onclick="setLang('pt')">PT</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('es')">ES</button>
+            </div>
+            <a href="https://api.whatsapp.com/send/?phone=5511994053818&text&type=phone_number&app_absent=0"
+                target="_blank" class="btn btn-orange mobile-contact-btn">
+                <i class='bx bxl-whatsapp'></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Script de Tradução -->
+    <script src="lang.js"></script>
+    <script src="projects-animation.js"></script>
+
+
+
+    <!-- Hero Animations -->
+    <script>
+        /* ---- Typed Role ---- */
+        let roles = translations[localStorage.getItem('portfolio_lang') || 'pt'].hero_roles.split(', ');
+        let roleIdx = 0, charIdx = 0, deleting = false;
+        const typedEl = document.getElementById('typed-role');
+
+        function typeRole() {
+            const current = roles[roleIdx];
+            if (!current) return; // Guard
+
+            if (!deleting) {
+                typedEl.textContent = current.slice(0, ++charIdx);
+                if (charIdx === current.length) { deleting = true; setTimeout(typeRole, 1800); return; }
+            } else {
+                typedEl.textContent = current.slice(0, --charIdx);
+                if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+            }
+            setTimeout(typeRole, deleting ? 55 : 90);
+        }
+
+        // Listen for language changes to update roles array
+        window.addEventListener('langChanged', (e) => {
+            roles = translations[e.detail.lang].hero_roles.split(', ');
+            roleIdx = 0;
+            charIdx = 0;
+            deleting = false;
+        });
+
+        typeRole();
+
+        /* ---- Counter Animation ---- */
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(el => {
+                const target = +el.dataset.target;
+                let count = 0;
+                const step = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    count = Math.min(count + step, target);
+                    el.textContent = count;
+                    if (count >= target) clearInterval(timer);
+                }, 40);
+            });
+        }
+        /* ---- Scroll Effects (Parallax & Progress) ---- */
+        const progressBar = document.getElementById('scroll-progress');
+        const meshGradient = document.querySelector('.mesh-gradient');
+        const techGrid = document.querySelector('.tech-grid');
+
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const b = document.body;
+            const scrollPercent = (h.scrollTop || b.scrollTop) / ((h.scrollHeight || b.scrollHeight) - h.clientHeight) * 100;
+
+            // 1. Update Progress Bar
+            progressBar.style.width = scrollPercent + '%';
+
+            // 2. Parallax Background Layers
+            const offset = window.pageYOffset;
+            if (meshGradient) meshGradient.style.transform = `translateY(${offset * 0.15}px)`;
+            if (techGrid) techGrid.style.transform = `translateY(${offset * 0.05}px)`;
+        });
+
+        /* ---- Scroll Reveal (Stats & Projects) ---- */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('hero-stats')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        /* ---- Particle Network (Data Science Feel) ---- */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const connectionDist = 150;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+
+        function initParticles() {
+            const count = Math.min(window.innerWidth / 20, 100);
+            particles = Array.from({ length: count }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1,
+                dx: (Math.random() - 0.5) * 0.4,
+                dy: (Math.random() - 0.5) * 0.4,
+            }));
+        }
+        initParticles();
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 87, 0, 0.4)`;
+                ctx.fill();
+
+                p.x += p.dx;
+                p.y += p.dy;
+
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+                // Draw Connections
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < connectionDist) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 87, 0, ${0.15 * (1 - dist / connectionDist)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        /* ---- Mobile Menu Logic ---- */
+        const mobileMenu = document.getElementById('mobileMenu');
+        const openBtn = document.querySelector('.mobile-menu-icon');
+        const closeBtn = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        function toggleMenu(show) {
+            if (show) {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Lock scroll
+            } else {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Unlock scroll
+            }
+        }
+
+        openBtn.addEventListener('click', () => toggleMenu(true));
+        closeBtn.addEventListener('click', () => toggleMenu(false));
+
+        // Close menu when a link is clicked (e.g., for anchor links)
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=5511994053818&text=Olá,%20visitei%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20oportunidades%20profissionais.&type=phone_number&app_absent=0"
+        target="_blank" class="whatsapp-float" aria-label="Fale comigo no WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data Analytics - Web Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body {
+            background-color: #f4e9e6;
+            /* Exata cor do fundo do Power BI de saúde */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #2b5561;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            box-shadow: none;
+            padding: 20px;
+            border: 1px solid rgba(201, 107, 90, 0.2);
+            /* Borda levemente alaranjada como no mockup */
+        }
+
+        .kpi-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #a05c3c;
+            margin-bottom: 5px;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2b5561;
+        }
+
+        .kpi-card {
+            text-align: center;
+            background: transparent;
+            border: 1px solid rgba(122, 193, 181, 0.3);
+            border-top: 3px solid;
+            box-shadow: none;
+        }
+
+        .table-header {
+            background-color: rgba(201, 107, 90, 0.1);
+            color: #a05c3c;
+            text-align: left;
+            padding: 10px;
+            font-size: 0.85rem;
+            border-bottom: 2px solid rgba(201, 107, 90, 0.2);
+        }
+
+        .table-row {
+            border-bottom: 1px solid rgba(43, 85, 97, 0.1);
+            color: #2b5561;
+            font-size: 0.9rem;
+        }
+
+        .table-row td {
+            padding: 10px;
+        }
+    </style>
+    <!-- Translation Support -->
+    <script src="lang.js"></script>
+</head>
+
+<body>
+
+    <div class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-6 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold" style="color: #c96b5a;" data-i18n="health_web_title">Health Data
+                    Analytics</h1>
+                <p class="text-sm" style="color: #7b9c9f;" data-i18n="health_web_subtitle">Visão Operadora • Gestão de
+                    Autorizações de Sinistros</p>
+            </div>
+            <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex gap-4">
+                <span class="text-xs text-gray-500"><span data-i18n="global_filtering_by">Filtrando por:</span> <strong
+                        class="text-gray-700" data-i18n="health_web_jan_may">Jan-Mai 2024</strong></span>
+            </div>
+        </div>
+
+        <!-- KPIs Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card kpi-card" style="border-top-color: #7ac1b5;">
+                <div class="kpi-title" data-i18n="health_web_kpi1">Taxa de Aprovação</div>
+                <div class="kpi-value">95%</div>
+                <div class="text-xs text-green-600 mt-1 font-semibold" data-i18n="health_web_kpi1_sub">Desvio mínimo de
+                    aprovações</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #e9a19c;">
+                <div class="kpi-title" data-i18n="health_web_kpi2">Valor Total Autorizado</div>
+                <div class="kpi-value" data-currency-brl="108600" data-currency-short>R$ 108,6k</div>
+                <div class="text-xs text-gray-500 mt-1 font-semibold" data-i18n="health_web_kpi2_sub">Distribuído em 22
+                    sinistros</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #c96b5a;">
+                <div class="kpi-title" data-i18n="health_web_kpi3">Custo Médio Cirúrgico</div>
+                <div class="kpi-value" data-currency-brl="30000" data-currency-short>R$ 30 Mil</div>
+                <div class="text-xs text-red-500 mt-1 font-semibold" data-i18n="health_web_kpi3_sub">Atenção Crítica:
+                    Principal Ofensor</div>
+            </div>
+            <div class="card kpi-card" style="border-top-color: #2b5561;">
+                <div class="kpi-title" data-i18n="health_web_kpi4">Economia/Redução</div>
+                <div class="kpi-value" data-currency-brl="150">R$ 150</div>
+                <div class="text-xs text-gray-500 mt-1 font-semibold" data-i18n="health_web_kpi4_sub">Em 3 sinistros
+                    reduzidos (~27%)</div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Line Chart: Evolução Mensal -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #c96b5a;" data-i18n="health_web_chart1">Valor
+                    Autorizado por Mês</h2>
+                <div class="relative h-64">
+                    <canvas id="authorizedChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Doughnut Chart: Planos -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #c96b5a;" data-i18n="health_web_chart2">
+                    Distribuição do Custo por Plano</h2>
+                <div class="relative h-64">
+                    <canvas id="plansChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Bar Chart: Procedimentos -->
+            <div class="card">
+                <h2 class="text-lg font-semibold mb-4" style="color: #c96b5a;" data-i18n="health_web_chart3">Gastos por
+                    Categoria de Procedimento</h2>
+                <div class="relative h-72">
+                    <canvas id="proceduresChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Table: Top Users -->
+            <div class="card overflow-hidden flex flex-col">
+                <h2 class="text-lg font-semibold mb-4" style="color: #c96b5a;" data-i18n="health_web_chart4">
+                    Detalhamento de Custos por Usuário</h2>
+                <div class="overflow-y-auto flex-1 border border-gray-100 rounded-lg">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="table-header" data-i18n="health_web_th_user">Nome do Usuário</th>
+                                <th class="table-header" data-i18n="health_web_th_state">UF</th>
+                                <th class="table-header" data-i18n="health_web_th_authorized">Valor Autorizado</th>
+                                <th class="table-header" data-i18n="health_web_th_reduced">Valor Reduzido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="font-semibold" style="color: #2b5561;">Carlos Souza</td>
+                                <td>SP</td>
+                                <td class="font-semibold text-red-600" data-currency-brl="32500">R$ 32.500,00</td>
+                                <td data-currency-brl="0" data-currency-decimals="0">R$ 0</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold" style="color: #2b5561;">Fernanda Lima</td>
+                                <td>SP</td>
+                                <td class="font-semibold text-orange-600" data-currency-brl="7200">R$ 7.200,00</td>
+                                <td data-currency-brl="200">R$ 200</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold" style="color: #2b5561;">João Silva</td>
+                                <td>SP</td>
+                                <td data-currency-brl="4500">R$ 4.500,00</td>
+                                <td data-currency-brl="0" data-currency-decimals="0">R$ 0</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold" style="color: #2b5561;">Ana Costa</td>
+                                <td>RJ</td>
+                                <td data-currency-brl="1800">R$ 1.800,00</td>
+                                <td data-currency-brl="200">R$ 200</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="font-semibold" style="color: #2b5561;">Beatriz Martins</td>
+                                <td>MG</td>
+                                <td data-currency-brl="850">R$ 850,00</td>
+                                <td data-currency-brl="0" data-currency-decimals="0">R$ 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Hidden canvas to satisfy Chart.js script and avoid TypeError -->
+                    <canvas id="userChart" style="display:none;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights e Recomendações -->
+        <div class="card" style="margin-top: 24px; border-left: 4px solid #c96b5a;">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2" style="color: #c96b5a;"
+                data-i18n="health_web_insight_title">
+                <i class="fas fa-brain"></i>
+                Insights & Ações Estratégicas
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Insights Column -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-3" style="color: #2b5561;" data-i18n="health_web_discovery">
+                        Principais Descobertas:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1 font-bold">✓</span>
+                            <span class="text-sm font-medium" data-i18n="health_web_insight_1"><strong>Tendências
+                                    Gasto:</strong> Boa taxa de aprovação, mas atentar as pequenas reduções de custos e
+                                investigar o motivo. Melhorando o processo.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-yellow-500 mt-1 font-bold">!</span>
+                            <span class="text-sm font-medium" data-i18n="health_web_insight_2"><strong>Procedimentos e
+                                    Prestadores:</strong> "Procedimentos Cirúrgicos" são os maiores ofensores. Monitorar
+                                de perto Hospital Santa Cruz e Clínica Checkup.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 mt-1 font-bold">!</span>
+                            <span class="text-sm font-medium" data-i18n="health_web_insight_3"><strong>Avaliação de
+                                    Usuários Críticos:</strong> O beneficiário 'Carlos Souza' representa o maior custo
+                                isolado. Casos complexos exigem acompanhamento de saúde dedicado.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Recomendações Column -->
+                <div class="bg-red-50 p-4 rounded-lg bg-opacity-40"
+                    style="background: rgba(201, 107, 90, 0.05); border: 1px dashed rgba(201, 107, 90, 0.3);">
+                    <h3 class="font-semibold text-lg mb-3" style="color: #c96b5a;" data-i18n="health_web_action">Plano
+                        de Ação Recomendado:</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm"
+                                style="background:#c96b5a;">1</div>
+                            <div>
+                                <h4 class="font-bold text-sm" style="color: #2b5561;"
+                                    data-i18n="health_web_recom_1_title">Auditoria Focada em Cirurgias</h4>
+                                <p class="text-xs opacity-80 mt-1 font-medium" data-i18n="health_web_recom_1_desc">
+                                    Concentrar a auditoria técnica de saúde sobre os pedidos de cirurgia dos maiores
+                                    prestadores.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm"
+                                style="background:#c96b5a;">2</div>
+                            <div>
+                                <h4 class="font-bold text-sm" style="color: #2b5561;"
+                                    data-i18n="health_web_recom_2_title">Gestão de Casos Críticos</h4>
+                                <p class="text-xs opacity-80 mt-1 font-medium" data-i18n="health_web_recom_2_desc">Criar
+                                    comitê para usuários em uso contínuo/complexo como o paciente 'Carlos Souza'.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm"
+                                style="background:#c96b5a;">3</div>
+                            <div>
+                                <h4 class="font-bold text-sm" style="color: #2b5561;"
+                                    data-i18n="health_web_recom_3_title">Análise de Negativas/Reduções</h4>
+                                <p class="text-xs opacity-80 mt-1 font-medium" data-i18n="health_web_recom_3_desc">
+                                    Revisar padrões de glosas e buscar conciliação pró-ativa com clínicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        // Cores baseadas nos prints de PBI do usuário
+        const colorTeal = '#7ac1b5';      // Verde piscina
+        const colorCoral = '#c96b5a';     // Laranja avermelhado
+        const colorRose = '#e9a19c';      // Rosa salmão claro
+        const colorDarkTeal = '#2b5561';  // Azul/Verde escuro corporativo
+        const colorBeige = '#e0be98';     // Bege esverdeado claro
+
+        let authorizedChart, plansChart, proceduresChart, userChart;
+
+        function initCharts() {
+            const lang = localStorage.getItem('portfolio_lang') || 'pt';
+
+            // 1. Gráfico de Linha (Evolução)
+            const labelsAuth = {
+                pt: ['Jan 2024', 'Fev 2024', 'Mar 2024', 'Abr 2024', 'Mai 2024'],
+                en: ['Jan 2024', 'Feb 2024', 'Mar 2024', 'Apr 2024', 'May 2024'],
+                es: ['Ene 2024', 'Feb 2024', 'Mar 2024', 'Abr 2024', 'May 2024']
+            };
+            const labelAuthSet = {
+                pt: 'Valor Autorizado',
+                en: 'Authorized Value',
+                es: 'Valor Autorizado'
+            };
+
+            const ctxAuth = document.getElementById('authorizedChart').getContext('2d');
+            if (authorizedChart) authorizedChart.destroy();
+            authorizedChart = new Chart(ctxAuth, {
+                type: 'line',
+                data: {
+                    labels: labelsAuth[lang] || labelsAuth.pt,
+                    datasets: [{
+                        label: labelAuthSet[lang] || labelAuthSet.pt,
+                        data: [42, 33, 24, 7, 3],
+                        borderColor: '#a05c3c',
+                        backgroundColor: 'rgba(233, 161, 156, 0.4)',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#a05c3c',
+                        pointBorderColor: '#fff',
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { borderDash: [5, 5] },
+                            ticks: {
+                                callback: function (value) {
+                                    var l = localStorage.getItem('portfolio_lang') || 'pt';
+                                    return (typeof fmtCurrency !== 'undefined') ? fmtCurrency(value * 1000, l, { short: true }) : ('R$ ' + value + 'k');
+                                }
+                            }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // 2. Gráfico Donut (Planos)
+            const labelsPlan = {
+                pt: ['Semi Privado', 'Enfermaria', 'Privado'],
+                en: ['Semi Private', 'Ward', 'Private'],
+                es: ['Semi Privado', 'Enfermería', 'Privado']
+            };
+
+            const ctxPlans = document.getElementById('plansChart').getContext('2d');
+            if (plansChart) plansChart.destroy();
+            plansChart = new Chart(ctxPlans, {
+                type: 'doughnut',
+                data: {
+                    labels: labelsPlan[lang] || labelsPlan.pt,
+                    datasets: [{
+                        data: [45, 43.5, 11.5],
+                        backgroundColor: [colorRose, '#a05c3c', colorBeige],
+                        borderWidth: 1,
+                        borderColor: '#333'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 12, padding: 15, usePointStyle: true, pointStyle: 'circle' } },
+                        tooltip: { callbacks: { label: function (context) { return ' ' + context.label + ': ' + context.raw + '%'; } } }
+                    }
+                }
+            });
+
+            // 3. Gráfico de Barras Vertical (Procedimentos)
+            const labelsProc = {
+                pt: ['Cirúrgicos', 'Imagem', 'Internação', 'Consultas', 'Lab/Outros'],
+                en: ['Surgical', 'Imaging', 'Inpatient', 'Consultations', 'Lab/Others'],
+                es: ['Quirúrgico', 'Imagen', 'Internación', 'Consultas', 'Lab/Otros']
+            };
+            const labelProcSet = {
+                pt: 'Custo Total (R$ Mil)',
+                en: 'Total Cost ($k)',
+                es: 'Costo Total (R$ Mil)'
+            };
+
+            const ctxProcedures = document.getElementById('proceduresChart').getContext('2d');
+            if (proceduresChart) proceduresChart.destroy();
+            proceduresChart = new Chart(ctxProcedures, {
+                type: 'bar',
+                data: {
+                    labels: labelsProc[lang] || labelsProc.pt,
+                    datasets: [{
+                        label: labelProcSet[lang] || labelProcSet.pt,
+                        data: [60, 22, 11, 10, 5],
+                        backgroundColor: colorRose,
+                        borderRadius: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { display: false },
+                        x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // 4. Gráfico de Rosca (Usuário)
+            const labelsUser = {
+                pt: ['Outros Beneficiários', 'Carlos Souza'],
+                en: ['Other Beneficiaries', 'Carlos Souza'],
+                es: ['Otros Beneficiarios', 'Carlos Souza']
+            };
+
+            const ctxUser = document.getElementById('userChart').getContext('2d');
+            if (userChart) userChart.destroy();
+            userChart = new Chart(ctxUser, {
+                type: 'doughnut',
+                data: {
+                    labels: labelsUser[lang] || labelsUser.pt,
+                    datasets: [{
+                        data: [57, 43],
+                        backgroundColor: ['#efefef', colorRose],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCharts);
+
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'setLang') {
+                setTimeout(initCharts, 100);
+            }
+        });
+    </script>
+</body>
+
+</html>
