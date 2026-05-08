@@ -270,29 +270,18 @@
                             </div>
                         </div>
 
-<<<<<<< HEAD
                         <!-- Project 5: Employee Attrition -->
                         <div class="project-card reveal" onclick="window.location.href='ml-employee-attrition.html'"
                             style="cursor:pointer; transition-delay: 0.4s">
                             <div class="project-image-box color-gray"
                                 style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
                                 <h2 class="logo-placeholder" style="color: white;"><i class='bx bx-user-minus'></i></h2>
-=======
-                        <!-- Project 5: Time Series Prediction -->
-                        <div class="project-card reveal" onclick="window.location.href='machine-learning.html'"
-                            style="cursor:pointer; transition-delay: 0.4s">
-                            <div class="project-image-box color-gray">
-                                <h2 class="logo-placeholder">ML</h2>
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
+                                <div class="project-number">05</div>
                                 <div class="project-number">05</div>
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Machine Learning</span>
-<<<<<<< HEAD
                                 <h3 class="project-name" data-i18n="proj_attrition_ml_title">👥 Employee Attrition</h3>
-=======
-                                <h3 class="project-name" data-i18n="proj_pred">Predição de Séries Temporais</h3>
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
                             </div>
                         </div>
 
@@ -305,7 +294,8 @@
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Deep Learning</span>
-                                <h3 class="project-name" data-i18n="proj_med">Classificação de Imagens Médicas</h3>
+                                <h3 class="project-name" data-i18n="proj_med">Classificação de Imagens Médicas
+                                </h3>
                             </div>
                         </div>
 
@@ -318,16 +308,13 @@
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Generative AI</span>
-                                <h3 class="project-name" data-i18n="proj_assist">Assistente Virtual Corporativo</h3>
+                                <h3 class="project-name" data-i18n="proj_assist">Assistente Virtual Corporativo
+                                </h3>
                             </div>
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
         </section>
-=======
-            </section>
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
 
         <!-- Footer -->
         <footer class="footer">
@@ -397,19 +384,10 @@
         let roles = translations[localStorage.getItem('portfolio_lang') || 'pt'].hero_roles.split(', ');
         let roleIdx = 0, charIdx = 0, deleting = false;
         const typedEl = document.getElementById('typed-role');
-<<<<<<< HEAD
-
         function typeRole() {
             const current = roles[roleIdx];
             if (!current) return; // Guard
 
-=======
-        
-        function typeRole() {
-            const current = roles[roleIdx];
-            if (!current) return; // Guard
-            
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
             if (!deleting) {
                 typedEl.textContent = current.slice(0, ++charIdx);
                 if (charIdx === current.length) { deleting = true; setTimeout(typeRole, 1800); return; }
@@ -419,11 +397,7 @@
             }
             setTimeout(typeRole, deleting ? 55 : 90);
         }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         // Listen for language changes to update roles array
         window.addEventListener('langChanged', (e) => {
             roles = translations[e.detail.lang].hero_roles.split(', ');

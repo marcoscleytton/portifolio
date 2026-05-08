@@ -122,10 +122,10 @@ function initProjectsAnimation() {
             // Find a close neighbor
             const neighbors = particles.filter(p => {
                 if (p === p1) return false;
-                const dist = Math.sqrt((p1.x - p.x)**2 + (p1.y - p.y)**2);
+                const dist = Math.sqrt((p1.x - p.x) ** 2 + (p1.y - p.y) ** 2);
                 return dist < CONNECTION_DIST;
             });
-            
+
             if (neighbors.length > 0) {
                 const p2 = neighbors[Math.floor(Math.random() * neighbors.length)];
                 packets.push(new Packet(p1, p2));

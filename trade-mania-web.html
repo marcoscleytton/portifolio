@@ -55,7 +55,8 @@
                     <i class="fas fa-boxes text-amber-600"></i>
                     <span data-i18n="trade_web_title">Painel de Disponibilidade & Ruptura</span>
                 </h1>
-                <p class="text-gray-500 text-sm" data-i18n="trade_web_subtitle">Análise de cobertura de PDVs, evolução de rupturas e preços médios</p>
+                <p class="text-gray-500 text-sm" data-i18n="trade_web_subtitle">Análise de cobertura de PDVs, evolução
+                    de rupturas e preços médios</p>
             </div>
             <div class="flex flex-wrap gap-2">
                 <div class="bg-white rounded-full px-3 py-1 text-xs shadow-sm"><i class="far fa-calendar-alt mr-1"></i>
@@ -68,9 +69,11 @@
         <!-- KPI Row (cards principais) -->
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
             <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi1">Disponibilidade Geral</p>
+                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi1">Disponibilidade
+                    Geral</p>
                 <div class="kpi-value text-red-600">43,6%</div>
-                <p class="text-xs text-gray-400 mt-1"><i class="fas fa-arrow-down text-red-400"></i> <span data-i18n="trade_web_kpi1_sub">abaixo do ideal</span></p>
+                <p class="text-xs text-gray-400 mt-1"><i class="fas fa-arrow-down text-red-400"></i> <span
+                        data-i18n="trade_web_kpi1_sub">abaixo do ideal</span></p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
                 <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi2">Ruptura Média</p>
@@ -78,7 +81,8 @@
                 <p class="text-xs text-gray-400" data-i18n="trade_web_kpi2_sub">média por visita</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi3">Visitas Realizadas</p>
+                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi3">Visitas Realizadas
+                </p>
                 <div class="kpi-value text-blue-600">86</div>
                 <p class="text-xs text-gray-400" data-i18n="trade_web_kpi3_sub">total no período</p>
             </div>
@@ -88,12 +92,15 @@
                 <p class="text-xs text-gray-400" data-i18n="trade_web_kpi4_sub">cobertura total</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi5">Preço Médio Geral</p>
+                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi5">Preço Médio Geral
+                </p>
                 <div class="kpi-value text-green-700" data-currency-brl="6.34">R$ 6,34</div>
-                <p class="text-xs text-gray-400"><span data-i18n="trade_web_kpi5_sub">variação:</span> <span data-currency-brl="1.55">R$ 1,55</span> ~ <span data-currency-brl="24.79">R$ 24,79</span></p>
+                <p class="text-xs text-gray-400"><span data-i18n="trade_web_kpi5_sub">variação:</span> <span
+                        data-currency-brl="1.55">R$ 1,55</span> ~ <span data-currency-brl="24.79">R$ 24,79</span></p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi6">Total de Produtos</p>
+                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi6">Total de Produtos
+                </p>
                 <div class="kpi-value text-purple-700">2.765</div>
                 <p class="text-xs text-gray-400" data-i18n="trade_web_kpi6_sub">checados nas visitas</p>
             </div>
@@ -103,25 +110,29 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             <!-- Evolução de produtos indisponíveis (série mensal) -->
             <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-line text-red-500 mr-2"></i><span data-i18n="trade_web_chart1">Produtos Indisponíveis (evolução)</span></h2>
+                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-line text-red-500 mr-2"></i><span
+                        data-i18n="trade_web_chart1">Produtos Indisponíveis (evolução)</span></h2>
                 <div class="flex-grow relative w-full h-[250px]">
                     <canvas id="ruptureTrendChart"></canvas>
                 </div>
-                <p class="text-xs text-gray-400 mt-4 text-center" data-i18n="trade_web_chart_desc1">Queda gradual após pico em agosto → setembro/outubro com melhora</p>
+                <p class="text-xs text-gray-400 mt-4 text-center" data-i18n="trade_web_chart_desc1">Queda gradual após
+                    pico em agosto → setembro/outubro com melhora</p>
             </div>
             <!-- Top categorias com maior ruptura (unidades) -->
             <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
-                <h2 class="font-semibold text-gray-700 mb-4"><i
-                        class="fas fa-chart-bar text-amber-600 mr-2"></i><span data-i18n="trade_web_chart2">Rupturas por Categoria (unidades)</span></h2>
+                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-bar text-amber-600 mr-2"></i><span
+                        data-i18n="trade_web_chart2">Rupturas por Categoria (unidades)</span></h2>
                 <div class="flex-grow relative w-full h-[250px]">
                     <canvas id="ruptureCategoryChart"></canvas>
                 </div>
-                <p class="text-xs text-gray-400 mt-4" data-i18n="trade_web_chart_desc2">Chocolate 60% e Barra lideram indisponibilidades</p>
+                <p class="text-xs text-gray-400 mt-4" data-i18n="trade_web_chart_desc2">Chocolate 60% e Barra lideram
+                    indisponibilidades</p>
             </div>
             <!-- Preço médio por UF (donut ou barra) -->
             <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
                 <h2 class="font-semibold text-gray-700 mb-4"><i
-                        class="fas fa-map-marker-alt text-blue-600 mr-2"></i><span data-i18n="trade_web_chart3">Preço Médio por UF</span></h2>
+                        class="fas fa-map-marker-alt text-blue-600 mr-2"></i><span data-i18n="trade_web_chart3">Preço
+                        Médio por UF</span></h2>
                 <div class="flex-grow relative w-full h-[250px] flex justify-center items-center">
                     <canvas id="priceByUfChart"></canvas>
                 </div>
@@ -137,32 +148,43 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <!-- PDVs com maiores preços médios (top 5) -->
             <div class="bg-white rounded-2xl shadow-sm p-6">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-store text-emerald-700 mr-2"></i><span data-i18n="trade_web_top_pdv">PDVs com maior preço médio</span></h2>
+                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-store text-emerald-700 mr-2"></i><span
+                        data-i18n="trade_web_top_pdv">PDVs com maior preço médio</span></h2>
                 <div class="space-y-3">
                     <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
                             class="font-medium text-gray-800">Supermercado 26</span><span
                             class="text-lg font-bold text-rose-600" data-currency-brl="10.50">R$ 10,50</span></div>
                     <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 24</span><span class="font-semibold text-gray-700" data-currency-brl="10.10">R$ 10,10</span></div>
+                            class="text-gray-700">Supermercado 24</span><span class="font-semibold text-gray-700"
+                            data-currency-brl="10.10">R$ 10,10</span></div>
                     <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 48</span><span class="font-semibold text-gray-700" data-currency-brl="8.40">R$ 8,40</span></div>
+                            class="text-gray-700">Supermercado 48</span><span class="font-semibold text-gray-700"
+                            data-currency-brl="8.40">R$ 8,40</span></div>
                     <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 9</span><span class="font-semibold text-gray-700" data-currency-brl="7.95">R$ 7,95</span></div>
-                    <div class="flex justify-between items-center pb-1"><span class="text-gray-700">Supermercado 7</span><span class="font-semibold text-gray-700" data-currency-brl="7.60">R$ 7,60</span></div>
+                            class="text-gray-700">Supermercado 9</span><span class="font-semibold text-gray-700"
+                            data-currency-brl="7.95">R$ 7,95</span></div>
+                    <div class="flex justify-between items-center pb-1"><span class="text-gray-700">Supermercado
+                            7</span><span class="font-semibold text-gray-700" data-currency-brl="7.60">R$ 7,60</span>
+                    </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100" data-i18n="trade_web_chart_desc3"><i class="fas fa-chart-line text-gray-400"></i> Variação de até 70% acima da média geral</p>
+                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100"
+                    data-i18n="trade_web_chart_desc3"><i class="fas fa-chart-line text-gray-400"></i> Variação de até
+                    70% acima da média geral</p>
             </div>
             <!-- Performance por Promotor (ruptura %) -->
             <div class="bg-white rounded-2xl shadow-sm p-6">
-                <h2 class="font-semibold text-gray-700 mb-4"><i
-                        class="fas fa-user-tie text-indigo-600 mr-2"></i><span data-i18n="trade_web_performance_title">Promotores com maior índice de ruptura</span></h2>
+                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-user-tie text-indigo-600 mr-2"></i><span
+                        data-i18n="trade_web_performance_title">Promotores com maior índice de ruptura</span></h2>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="p-3 text-left font-semibold text-gray-600 rounded-l-lg" data-i18n="trade_web_th_promoter">Promotor</th>
-                                <th class="p-3 text-right font-semibold text-gray-600" data-i18n="trade_web_th_stockout">Ruptura (%)</th>
-                                <th class="p-3 text-right font-semibold text-gray-600 rounded-r-lg" data-i18n="trade_web_th_status">Status</th>
+                                <th class="p-3 text-left font-semibold text-gray-600 rounded-l-lg"
+                                    data-i18n="trade_web_th_promoter">Promotor</th>
+                                <th class="p-3 text-right font-semibold text-gray-600"
+                                    data-i18n="trade_web_th_stockout">Ruptura (%)</th>
+                                <th class="p-3 text-right font-semibold text-gray-600 rounded-r-lg"
+                                    data-i18n="trade_web_th_status">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -170,34 +192,40 @@
                                 <td class="p-3 text-gray-800">Maria Julia Melo</td>
                                 <td class="p-3 text-right font-bold text-red-600">1,00%</td>
                                 <td class="p-3 text-right"><span
-                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold" data-i18n="trade_web_status_critical">crítico</span>
+                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold"
+                                        data-i18n="trade_web_status_critical">crítico</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100">
                                 <td class="p-3 text-gray-800">Ryan Cardoso</td>
                                 <td class="p-3 text-right font-semibold text-amber-600">0,92%</td>
                                 <td class="p-3 text-right"><span
-                                        class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold" data-i18n="trade_web_status_alert">alerta</span>
+                                        class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold"
+                                        data-i18n="trade_web_status_alert">alerta</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100">
                                 <td class="p-3 text-gray-800">Alícia Aragão</td>
                                 <td class="p-3 text-right font-semibold text-amber-600">0,87%</td>
                                 <td class="p-3 text-right"><span
-                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold" data-i18n="trade_web_status_warning">atenção</span>
+                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold"
+                                        data-i18n="trade_web_status_warning">atenção</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="p-3 text-gray-800">Demais (média)</td>
                                 <td class="p-3 text-right font-medium text-gray-600">0,43%</td>
                                 <td class="p-3 text-right"><span
-                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold" data-i18n="trade_web_status_ok">ok</span>
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"
+                                        data-i18n="trade_web_status_ok">ok</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100" data-i18n="trade_web_training_tip">📌 Treinamento focado nos 3 promotores pode reduzir ruptura geral em até 0,2 p.p.</p>
+                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100"
+                    data-i18n="trade_web_training_tip">📌 Treinamento focado nos 3 promotores pode reduzir ruptura geral
+                    em até 0,2 p.p.</p>
             </div>
         </div>
 
@@ -205,8 +233,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             <!-- Ruptura por PDV (top 10) extraído da imagem -->
             <div class="bg-white rounded-2xl shadow-sm p-6 col-span-1 lg:col-span-2">
-                <h2 class="font-semibold text-gray-700 mb-4"><i
-                        class="fas fa-chart-simple text-cyan-600 mr-2"></i><span data-i18n="trade_web_pdv_sample_title">Ruptura por PDV (%) – Amostra</span></h2>
+                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-simple text-cyan-600 mr-2"></i><span
+                        data-i18n="trade_web_pdv_sample_title">Ruptura por PDV (%) – Amostra</span></h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm mt-4">
                     <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
                             class="text-gray-700">Supermercado 8</span><span class="font-bold text-red-500">92%</span>
@@ -232,7 +260,8 @@
                     <div class="flex justify-between p-2 bg-gray-50 rounded"><span class="text-gray-700">Supermercado
                             10</span><span class="font-bold text-green-600">20%</span></div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4" data-i18n="trade_web_sample_note">*Dados baseados nas capturas de tela – ruptura superior a 50% indica falha crítica de abastecimento.</p>
+                <p class="text-xs text-gray-500 mt-4" data-i18n="trade_web_sample_note">*Dados baseados nas capturas de
+                    tela – ruptura superior a 50% indica falha crítica de abastecimento.</p>
             </div>
             <!-- Cards de insights estratégicos -->
             <div class="space-y-4">
@@ -240,18 +269,22 @@
                     class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-4 border-l-8 border-amber-400 insight-badge">
                     <i class="fas fa-lightbulb text-amber-500 mr-2"></i>
                     <span class="font-bold text-amber-800">Insight 1</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_0">Disponibilidade geral em <strong>43,6%</strong> – muito abaixo do ideal. Aumentar para ≥70% pode gerar +30% em vendas nos PDVs.</p>
+                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_0">Disponibilidade geral em
+                        <strong>43,6%</strong> – muito abaixo do ideal. Aumentar para ≥70% pode gerar +30% em vendas nos
+                        PDVs.</p>
                 </div>
                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border-l-8 border-blue-400">
                     <i class="fas fa-chart-line text-blue-500 mr-2"></i>
                     <span class="font-bold text-blue-800">Insight 2</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_1">Rupturas caíram de 125 (ago) para 96 (out) – tendência
+                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_1">Rupturas caíram de 125 (ago)
+                        para 96 (out) – tendência
                         positiva, mas ainda alta em chocolates (60% e barra).</p>
                 </div>
                 <div class="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-4 border-l-8 border-green-400">
                     <i class="fas fa-dollar-sign text-green-600 mr-2"></i>
                     <span class="font-bold text-green-800">Insight 3</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_2">Variação de preço entre estados: RJ (R$6,60) &gt; MG (R$6,35)
+                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_2">Variação de preço entre
+                        estados: RJ (R$6,60) &gt; MG (R$6,35)
                         &gt; SP (R$6,11). Rever política de preços para equalizar competitividade.</p>
                 </div>
             </div>
@@ -261,19 +294,24 @@
         <div class="bg-white rounded-xl p-5 shadow-sm mt-2">
             <div class="flex flex-wrap justify-between items-center">
                 <div><i class="fas fa-clipboard-list text-2xl text-indigo-500 mr-3"></i><span
-                        class="font-bold text-gray-800" data-i18n="trade_web_recom_title">Recomendações Estratégicas</span></div>
+                        class="font-bold text-gray-800" data-i18n="trade_web_recom_title">Recomendações
+                        Estratégicas</span></div>
                 <div class="flex gap-3 flex-wrap text-sm">
-                    <span class="bg-red-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_1"><i class="fas fa-chart-simple"></i> Meta
+                    <span class="bg-red-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_1"><i
+                            class="fas fa-chart-simple"></i> Meta
                         disponibilidade &gt;70%</span>
-                    <span class="bg-yellow-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_2"><i class="fas fa-chalkboard-user"></i> Treinar
+                    <span class="bg-yellow-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_2"><i
+                            class="fas fa-chalkboard-user"></i> Treinar
                         promotores críticos</span>
-                    <span class="bg-blue-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_3"><i class="fas fa-tags"></i> Revisar preços por
+                    <span class="bg-blue-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_3"><i
+                            class="fas fa-tags"></i> Revisar preços por
                         UF</span>
                 </div>
             </div>
             <div class="mt-3 text-gray-600 text-sm border-t pt-3">
-                🚀 <strong data-i18n="trade_web_next_steps">Próximos passos:</strong> <span data-i18n="trade_web_next_desc">Foco em chocolate 60% e barras (80% das rupturas). Auditoria nos
-                PDVs com &gt;70% de ruptura. Equalizar preço médio entre RJ e SP para reduzir canibalização.</span>
+                🚀 <strong data-i18n="trade_web_next_steps">Próximos passos:</strong> <span
+                    data-i18n="trade_web_next_desc">Foco em chocolate 60% e barras (80% das rupturas). Auditoria nos
+                    PDVs com &gt;70% de ruptura. Equalizar preço médio entre RJ e SP para reduzir canibalização.</span>
             </div>
         </div>
     </div>
@@ -283,7 +321,7 @@
 
         function initCharts() {
             const lang = localStorage.getItem('portfolio_lang') || 'pt';
-            
+
             const labelsTrend = {
                 pt: ['Jun/22', 'Jul/22', 'Ago/22', 'Set/22', 'Out/22'],
                 en: ['Jun/22', 'Jul/22', 'Aug/22', 'Sep/22', 'Oct/22'],
@@ -321,9 +359,9 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    plugins: { 
-                        legend: { position: 'top' }, 
-                        tooltip: { callbacks: { label: (ctx) => `${ctx.raw} ${tooltipTrend[lang]||'unidades'}` } } 
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: { callbacks: { label: (ctx) => `${ctx.raw} ${tooltipTrend[lang] || 'unidades'}` } }
                     }
                 }
             });
@@ -363,7 +401,7 @@
             // UF Price Chart — convert BRL values to selected currency
             const ufBrl = [6.60, 6.35, 6.11];
             const ufLabels = ['RJ', 'MG', 'SP'];
-            const cfg = (typeof CURRENCY_CFG !== 'undefined' ? CURRENCY_CFG : {pt:{symbol:'R$',rate:1},en:{symbol:'$',rate:0.18},es:{symbol:'\u20ac',rate:0.16}})[lang] || {symbol:'R$',rate:1};
+            const cfg = (typeof CURRENCY_CFG !== 'undefined' ? CURRENCY_CFG : { pt: { symbol: 'R$', rate: 1 }, en: { symbol: '$', rate: 0.18 }, es: { symbol: '\u20ac', rate: 0.16 } })[lang] || { symbol: 'R$', rate: 1 };
             const ufConverted = ufBrl.map(v => +(v * cfg.rate).toFixed(2));
             const labelsUf = ufLabels.map((l, i) => `${l} (${cfg.symbol}${ufConverted[i].toFixed(2)})`);
 

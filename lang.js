@@ -37,7 +37,7 @@ const translations = {
         proj_nlp: "Processamento de Linguagem Natural",
         proj_rag: "Sistema RAG p/ Documentos",
         proj_assist: "Assistente Virtual Corporativo",
-        
+
         // Dashboards
         dash_trade_title: "📈 Trade Marketing Analytics",
         dash_trade_subtitle: "Varejo & E-commerce | Trade Mania",
@@ -240,7 +240,7 @@ const translations = {
         logistics_cost_3: "Frete + Descontos",
         logistics_cost_4: "Frete Volumoso",
 
-<<<<<<< HEAD
+
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning em People Analytics",
@@ -272,10 +272,7 @@ const translations = {
         proj_attrition_ml_insight_5: "Distância da empresa impacta attrition",
 
         // Fraud ML Project
-=======
-        // Fraud ML Project
         proj_fraud_ml_title: "💳 Detecção de Fraudes",
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         proj_fraud_ml_subtitle: "Machine Learning em Transações Financeiras",
         proj_fraud_ml_desc: "Desenvolvimento de modelo preditivo para detecção de fraudes em cartões de crédito, utilizando técnicas de balanceamento (RUS), tuning de hiperparâmetros e otimização de threshold para impacto de negócio.",
         proj_fraud_ml_results: "84% de Detecção • AUC 0.97",
@@ -553,7 +550,7 @@ const translations = {
         logistics_cost_3: "Freight + Discounts",
         logistics_cost_4: "Bulky Freight",
 
-<<<<<<< HEAD
+
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning in People Analytics",
@@ -583,9 +580,6 @@ const translations = {
         proj_attrition_ml_insight_3: "Work-life balance reduces churn",
         proj_attrition_ml_insight_4: "Employees with overtime have a higher risk of leaving",
         proj_attrition_ml_insight_5: "Distance from company impacts attrition",
-
-=======
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         // Fraud ML Project
         proj_fraud_ml_title: "💳 Fraud Detection",
         proj_fraud_ml_subtitle: "Machine Learning in Financial Transactions",
@@ -865,7 +859,7 @@ const translations = {
         logistics_cost_3: "Flete + Descuentos",
         logistics_cost_4: "Flete Voluminoso",
 
-<<<<<<< HEAD
+
         // Employee Attrition ML Project
         proj_attrition_ml_title: "👥 Employee Attrition",
         proj_attrition_ml_subtitle: "Machine Learning en People Analytics",
@@ -895,9 +889,6 @@ const translations = {
         proj_attrition_ml_insight_3: "El equilibrio entre vida personal y trabajo reduce la rotación",
         proj_attrition_ml_insight_4: "Los empleados con horas extras tienen mayor riesgo de salida",
         proj_attrition_ml_insight_5: "La distancia a la empresa impacta en la rotación",
-
-=======
->>>>>>> a2ecfdb4dc7772d659325fb48d5dd7b3209286bf
         // Fraud ML Project
         proj_fraud_ml_title: "💳 Detección de Fraudes",
         proj_fraud_ml_subtitle: "Machine Learning en Transacciones Financieras",
@@ -936,9 +927,9 @@ const translations = {
 
 // ---- Currency Conversion System ----
 const CURRENCY_CFG = {
-    pt: { symbol: 'R$', rate: 1,    locale: 'pt-BR' },
-    en: { symbol: '$',  rate: 0.18, locale: 'en-US' },
-    es: { symbol: '€',  rate: 0.16, locale: 'es-ES' }
+    pt: { symbol: 'R$', rate: 1, locale: 'pt-BR' },
+    en: { symbol: '$', rate: 0.18, locale: 'en-US' },
+    es: { symbol: '€', rate: 0.16, locale: 'es-ES' }
 };
 
 /**
@@ -948,19 +939,19 @@ const CURRENCY_CFG = {
  * @param {object} [opts]    { short: bool, decimals: number }
  */
 function fmtCurrency(brlValue, lang, opts) {
-    const cfg  = CURRENCY_CFG[lang] || CURRENCY_CFG.pt;
-    const val  = brlValue * cfg.rate;
+    const cfg = CURRENCY_CFG[lang] || CURRENCY_CFG.pt;
+    const val = brlValue * cfg.rate;
     const shrt = opts && opts.short;
     const decs = (opts && opts.decimals != null) ? opts.decimals : 2;
     if (shrt && Math.abs(val) >= 1000000) return cfg.symbol + ' ' + (val / 1000000).toFixed(2) + ' Mi';
-    if (shrt && Math.abs(val) >= 1000)    return cfg.symbol + ' ' + (val / 1000).toFixed(1) + 'k';
+    if (shrt && Math.abs(val) >= 1000) return cfg.symbol + ' ' + (val / 1000).toFixed(1) + 'k';
     return cfg.symbol + ' ' + val.toLocaleString(cfg.locale, { minimumFractionDigits: decs, maximumFractionDigits: decs });
 }
 
 /** Updates all [data-currency-brl] elements on the page */
 function updateCurrencies(lang) {
-    document.querySelectorAll('[data-currency-brl]').forEach(function(el) {
-        var brl  = parseFloat(el.getAttribute('data-currency-brl'));
+    document.querySelectorAll('[data-currency-brl]').forEach(function (el) {
+        var brl = parseFloat(el.getAttribute('data-currency-brl'));
         var shrt = el.hasAttribute('data-currency-short');
         var decs = el.hasAttribute('data-currency-decimals') ? parseInt(el.getAttribute('data-currency-decimals')) : 2;
         el.textContent = fmtCurrency(brl, lang, { short: shrt, decimals: decs });
@@ -990,7 +981,7 @@ function setLang(lang) {
 
     // 4. Salvar a preferência no cache do navegador
     localStorage.setItem('portfolio_lang', lang);
-    
+
     // 5. Notificar iframes se existirem
     const iframes = document.querySelectorAll('iframe');
     iframes.forEach(iframe => {
@@ -1010,7 +1001,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Verificar se há um parâmetro 'lang' na URL (comum para iframes)
     const urlParams = new URLSearchParams(window.location.search);
     const langParam = urlParams.get('lang');
-    
+
     const savedLang = langParam || localStorage.getItem('portfolio_lang') || 'pt';
     setLang(savedLang);
 });
