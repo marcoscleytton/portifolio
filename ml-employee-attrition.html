@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Attrition | Executive Case - Marcos C. Lisboa</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,26 +46,67 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a0f18 0%, #050508 100%);
+            background: #010408;
             overflow: hidden;
         }
 
         .mesh-glow {
             position: absolute;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
+            width: 100%;
+            height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, var(--primary-glow) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, var(--secondary-glow) 0%, transparent 40%);
-            filter: blur(60px);
-            animation: meshMove 20s infinite alternate ease-in-out;
+                radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 40%);
+            filter: blur(80px);
+            animation: auroraMove 30s infinite alternate ease-in-out;
         }
 
-        @keyframes meshMove {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(5%, 5%) rotate(5deg); }
+        @keyframes auroraMove {
+            0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+            50% { transform: scale(1.1) translate(2%, 2%) rotate(2deg); }
+            100% { transform: scale(1) translate(-2%, -1%) rotate(-2deg); }
+        }
+
+        /* Cyber Grid Overlay */
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 1000px;
+            transform: rotateX(20deg);
+            transform-origin: top;
+            mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+            pointer-events: none;
+        }
+
+        .data-stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                rgba(37, 99, 235, 0.02) 2px,
+                transparent 4px
+            );
+            background-size: 100% 4px;
+            animation: streamMove 20s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes streamMove {
+            from { background-position: 0 0; }
+            to { background-position: 0 100%; }
         }
 
         .scanner-line {
@@ -381,6 +430,8 @@
     <!-- Background -->
     <div class="premium-bg">
         <div class="mesh-glow"></div>
+        <div class="cyber-grid"></div>
+        <div class="data-stream"></div>
         <div class="scanner-line"></div>
     </div>
 
@@ -531,11 +582,11 @@
                     <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h3>
                     <p class="text-xs text-white/40" data-i18n="proj_attrition_ml_other_desc1">Desenvolvimento de modelo preditivo para detecção de fraudes.</p>
                 </a>
-                <!-- Project 2: Recommendation -->
-                <a href="machine-learning.html" class="mini-card">
-                    <i class='bx bx-purchase-tag-alt'></i>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_recom">Sistema de Recomendação</h3>
-                    <p class="text-xs text-white/40" data-i18n="proj_fraud_ml_other_desc2">Filtragem colaborativa para personalização de experiência.</p>
+                <!-- Project 2: Credit Risk -->
+                <a href="ml-risco-credito.html" class="mini-card">
+                    <i class='bx bx-shield-plus'></i>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h3>
+                    <p class="text-xs text-white/40" data-i18n="proj_credit_risk_ml_subtitle">Machine Learning em Score de Crédito</p>
                 </a>
                 <!-- Project 3: Dashboard Redirect -->
                 <a href="dashboard.html" class="mini-card">

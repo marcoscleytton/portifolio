@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboards - Marcos C. Lisboa</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +78,11 @@
 
                     <div class="projects-blob projects-blob-1"></div>
                     <div class="projects-blob projects-blob-2"></div>
+                </div>
+                <!-- Kinetic 3D Text Background -->
+                <div class="kinetic-bg">
+                    <div class="kinetic-text kinetic-item-1">DASH</div>
+                    <div class="kinetic-text kinetic-item-2">BOARD</div>
                 </div>
             </div>
 
@@ -435,7 +448,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);
@@ -470,17 +483,15 @@
             <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
             <div class="modal-body">
                 <div class="viewer-header">
-                    <h2 class="viewer-title">📈 Trade Marketing Analytics</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">Varejo & E-commerce | Trade Mania</p>
+                    <h2 class="viewer-title" data-i18n="dash_trade_title">📈 Analytics Overview</h2>
+                    <p class="text-slate-500 font-medium text-sm" data-i18n="dash_trade_subtitle">Enterprise Intelligence & Strategic Monitoring</p>
 
                     <div class="viewer-tabs">
                         <button class="viewer-tab-btn active" onclick="showTab(event, 'web')">
-                            <i class='bx bx-code-alt'></i> Dashboard Web
+                            <i class='bx bx-desktop'></i> <span data-i18n="viewer_tab_web">Dashboard Executive</span>
                         </button>
                         <button class="viewer-tab-btn" onclick="showTab(event, 'pbi')">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"
-                                alt="Power BI" style="width: 18px; height: 18px; border-radius: 2px;">
-                            Mockup Power BI
+                            <i class='bx bxs-file-blank'></i> <span data-i18n="viewer_tab_pbi">BI Mockup Detail</span>
                         </button>
                     </div>
                 </div>
@@ -488,27 +499,18 @@
                 <!-- Web Dashboard View -->
                 <div id="tab-web" class="viewer-content active">
                     <iframe data-src="trade-mania-web.html" id="dashIframe" class="dash-iframe"
-                        title="Trade Analytics Web Dashboard"></iframe>
+                        title="Executive Dashboard Interface"></iframe>
                 </div>
 
                 <!-- Power BI View -->
                 <div id="tab-pbi" class="viewer-content">
-                    <div class="pbi-sub-tabs"
-                        style="display:flex; justify-content:center; gap:10px; margin:30px 0 10px;">
-                        <button class="pbi-tab-btn"
-                            style="padding:8px 20px; border-radius:8px; border:2px solid #1e3a5f; background:#1e3a5f; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s;"
-                            onclick="showPbiTab(event, 'pbi-painel1')">Painel 1</button>
-                        <button class="pbi-tab-btn"
-                            style="padding:8px 20px; border-radius:8px; border:2px solid #ddd; background:#fff; color:var(--text-dark); font-weight:bold; cursor:pointer; transition:0.3s;"
-                            onclick="showPbiTab(event, 'pbi-painel2')">Painel 2</button>
-                    </div>
-                    <div class="pbi-gallery" style="padding-top: 10px;">
-                        <img id="pbi-painel1" class="pbi-image" src="assets/trademania01.png" alt="Painel 1"
-                            style="display:block;"
-                            onerror="this.src='https://via.placeholder.com/1200x650?text=Imagem+trademania01.png+n%C3%A3o+encontrada'">
-                        <img id="pbi-painel2" class="pbi-image" src="assets/trademania02.png" alt="Painel 2"
-                            style="display:none;"
-                            onerror="this.src='https://via.placeholder.com/1200x650?text=Imagem+trademania02.png+n%C3%A3o+encontrada'">
+                    <div class="pbi-gallery">
+                        <div class="flex gap-4 mb-4">
+                             <button class="pbi-tab-btn bg-slate-900 text-white px-6 py-2 rounded-xl text-xs font-bold" onclick="showPbiTab(event, 'pbi-painel1')">Overview</button>
+                             <button class="pbi-tab-btn bg-white text-slate-900 border border-slate-200 px-6 py-2 rounded-xl text-xs font-bold" onclick="showPbiTab(event, 'pbi-painel2')">Deep Dive</button>
+                        </div>
+                        <img id="pbi-painel1" src="assets/trademania01.png" alt="BI Layer 1" class="pbi-image">
+                        <img id="pbi-painel2" src="assets/trademania02.png" alt="BI Layer 2" class="pbi-image" style="display:none;">
                     </div>
                 </div>
             </div>
@@ -595,26 +597,8 @@
             });
         }
 
-        /* ---- Mobile Menu Logic ---- */
-        const mobileNavOverlay = document.getElementById('mobileMenu');
-        const mobileOpenBtn = document.querySelector('.mobile-menu-icon');
-        const mobileCloseBtn = document.getElementById('closeMenu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-
-        function toggleMenu(show) {
-            if (show) {
-                mobileNavOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                mobileNavOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        if (mobileOpenBtn) mobileOpenBtn.addEventListener('click', () => toggleMenu(true));
-        if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', () => toggleMenu(false));
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => toggleMenu(false));
-        });
+        // Mobile Menu Logic is already handled above in cleaner way
+        // Removing redundant block to avoid conflicts
 
         function showTab(e, tabId) {
             document.querySelectorAll('.viewer-tab-btn').forEach(btn => btn.classList.remove('active'));

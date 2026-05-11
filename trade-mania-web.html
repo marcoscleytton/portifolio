@@ -4,424 +4,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Dashboard de Disponibilidade e Ruptura | Trade Analytics</title>
+    <title>Executive Trade Analytics | High Performance</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Tailwind + Font Awesome + Google Fonts + Chart.js -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --brand-primary: #f97316;
+            --brand-secondary: #1e293b;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
         body {
-            background: #f0f2f5;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            overflow-x: hidden;
         }
 
-        .card-hover {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+            border-color: rgba(249, 115, 22, 0.3);
         }
 
-        .insight-badge {
-            border-left: 4px solid;
-            background: #fefce8;
+        .executive-sidebar {
+            width: 280px;
+            background: #0f172a;
+            color: #f8fafc;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 50;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .kpi-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
         }
 
         .kpi-value {
-            font-size: 2rem;
+            font-size: 1.875rem;
             font-weight: 800;
-            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
-        @media (max-width: 768px) {
-            .kpi-value {
-                font-size: 1.6rem;
-            }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .executive-sidebar { display: none; }
+            .main-content { margin-left: 0; }
         }
     </style>
     <!-- Translation Support -->
     <script src="lang.js"></script>
 </head>
 
-<body class="p-4 md:p-6">
+<body class="antialiased">
 
-    <div class="max-w-[1600px] mx-auto">
-        <!-- Cabeçalho -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-3">
-            <div>
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                    <i class="fas fa-boxes text-amber-600"></i>
-                    <span data-i18n="trade_web_title">Painel de Disponibilidade & Ruptura</span>
-                </h1>
-                <p class="text-gray-500 text-sm" data-i18n="trade_web_subtitle">Análise de cobertura de PDVs, evolução
-                    de rupturas e preços médios</p>
+    <!-- Sidebar -->
+    <div class="executive-sidebar hidden lg:flex flex-col p-8">
+        <div class="flex items-center gap-3 mb-12">
+            <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+                <i class="fas fa-chart-pie text-white text-xl"></i>
             </div>
-            <div class="flex flex-wrap gap-2">
-                <div class="bg-white rounded-full px-3 py-1 text-xs shadow-sm"><i class="far fa-calendar-alt mr-1"></i>
-                    jun-out/2022</div>
-                <div class="bg-white rounded-full px-3 py-1 text-xs shadow-sm"><i class="fas fa-store mr-1"></i> 48 PDVs
-                </div>
-            </div>
+            <span class="text-xl font-bold tracking-tight">Executive BI</span>
         </div>
 
-        <!-- KPI Row (cards principais) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi1">Disponibilidade
-                    Geral</p>
-                <div class="kpi-value text-red-600">43,6%</div>
-                <p class="text-xs text-gray-400 mt-1"><i class="fas fa-arrow-down text-red-400"></i> <span
-                        data-i18n="trade_web_kpi1_sub">abaixo do ideal</span></p>
+        <nav class="space-y-6 flex-1">
+            <div class="space-y-2">
+                <p class="text-[10px] uppercase font-bold text-slate-500 px-4 mb-4" data-i18n="dash_side_ops">Operations</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-orange-500/10 text-orange-500 rounded-xl font-medium">
+                    <i class="fas fa-th-large w-5"></i> <span data-i18n="dash_side_dash">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-store w-5"></i> <span data-i18n="dash_side_pdv">PDV Network</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-users w-5"></i> <span data-i18n="dash_side_team">Field Team</span>
+                </a>
             </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi2">Ruptura Média</p>
-                <div class="kpi-value text-amber-600">0,56%</div>
-                <p class="text-xs text-gray-400" data-i18n="trade_web_kpi2_sub">média por visita</p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi3">Visitas Realizadas
-                </p>
-                <div class="kpi-value text-blue-600">86</div>
-                <p class="text-xs text-gray-400" data-i18n="trade_web_kpi3_sub">total no período</p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi4">PDVs Visitados</p>
-                <div class="kpi-value text-indigo-600">48</div>
-                <p class="text-xs text-gray-400" data-i18n="trade_web_kpi4_sub">cobertura total</p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi5">Preço Médio Geral
-                </p>
-                <div class="kpi-value text-green-700" data-currency-brl="6.34">R$ 6,34</div>
-                <p class="text-xs text-gray-400"><span data-i18n="trade_web_kpi5_sub">variação:</span> <span
-                        data-currency-brl="1.55">R$ 1,55</span> ~ <span data-currency-brl="24.79">R$ 24,79</span></p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm card-hover">
-                <p class="text-gray-500 text-xs uppercase tracking-wide" data-i18n="trade_web_kpi6">Total de Produtos
-                </p>
-                <div class="kpi-value text-purple-700">2.765</div>
-                <p class="text-xs text-gray-400" data-i18n="trade_web_kpi6_sub">checados nas visitas</p>
-            </div>
-        </div>
 
-        <!-- Linha principal: gráficos + insights textuais -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-            <!-- Evolução de produtos indisponíveis (série mensal) -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-line text-red-500 mr-2"></i><span
-                        data-i18n="trade_web_chart1">Produtos Indisponíveis (evolução)</span></h2>
-                <div class="flex-grow relative w-full h-[250px]">
-                    <canvas id="ruptureTrendChart"></canvas>
-                </div>
-                <p class="text-xs text-gray-400 mt-4 text-center" data-i18n="trade_web_chart_desc1">Queda gradual após
-                    pico em agosto → setembro/outubro com melhora</p>
+            <div class="space-y-2 pt-6">
+                <p class="text-[10px] uppercase font-bold text-slate-500 px-4 mb-4" data-i18n="dash_side_strategy">Strategy</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-bullseye w-5"></i> <span data-i18n="dash_side_market">Market Share</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-file-invoice-dollar w-5"></i> <span data-i18n="dash_side_roi">ROI Reports</span>
+                </a>
             </div>
-            <!-- Top categorias com maior ruptura (unidades) -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-bar text-amber-600 mr-2"></i><span
-                        data-i18n="trade_web_chart2">Rupturas por Categoria (unidades)</span></h2>
-                <div class="flex-grow relative w-full h-[250px]">
-                    <canvas id="ruptureCategoryChart"></canvas>
-                </div>
-                <p class="text-xs text-gray-400 mt-4" data-i18n="trade_web_chart_desc2">Chocolate 60% e Barra lideram
-                    indisponibilidades</p>
-            </div>
-            <!-- Preço médio por UF (donut ou barra) -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 card-hover flex flex-col">
-                <h2 class="font-semibold text-gray-700 mb-4"><i
-                        class="fas fa-map-marker-alt text-blue-600 mr-2"></i><span data-i18n="trade_web_chart3">Preço
-                        Médio por UF</span></h2>
-                <div class="flex-grow relative w-full h-[250px] flex justify-center items-center">
-                    <canvas id="priceByUfChart"></canvas>
-                </div>
-                <div class="flex justify-between text-xs mt-4 pt-4 border-t border-gray-100">
-                    <span>📌 RJ: <span data-currency-brl="6.60">R$ 6,60</span></span>
-                    <span>📌 MG: <span data-currency-brl="6.35">R$ 6,35</span></span>
-                    <span>📌 SP: <span data-currency-brl="6.11">R$ 6,11</span></span>
-                </div>
-            </div>
-        </div>
+        </nav>
 
-        <!-- Segunda linha: PDVs maiores preços + Tabela de promotores -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <!-- PDVs com maiores preços médios (top 5) -->
-            <div class="bg-white rounded-2xl shadow-sm p-6">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-store text-emerald-700 mr-2"></i><span
-                        data-i18n="trade_web_top_pdv">PDVs com maior preço médio</span></h2>
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="font-medium text-gray-800">Supermercado 26</span><span
-                            class="text-lg font-bold text-rose-600" data-currency-brl="10.50">R$ 10,50</span></div>
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 24</span><span class="font-semibold text-gray-700"
-                            data-currency-brl="10.10">R$ 10,10</span></div>
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 48</span><span class="font-semibold text-gray-700"
-                            data-currency-brl="8.40">R$ 8,40</span></div>
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3"><span
-                            class="text-gray-700">Supermercado 9</span><span class="font-semibold text-gray-700"
-                            data-currency-brl="7.95">R$ 7,95</span></div>
-                    <div class="flex justify-between items-center pb-1"><span class="text-gray-700">Supermercado
-                            7</span><span class="font-semibold text-gray-700" data-currency-brl="7.60">R$ 7,60</span>
-                    </div>
+        <div class="mt-auto pt-8 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
+                    <i class="fas fa-user text-slate-400"></i>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100"
-                    data-i18n="trade_web_chart_desc3"><i class="fas fa-chart-line text-gray-400"></i> Variação de até
-                    70% acima da média geral</p>
-            </div>
-            <!-- Performance por Promotor (ruptura %) -->
-            <div class="bg-white rounded-2xl shadow-sm p-6">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-user-tie text-indigo-600 mr-2"></i><span
-                        data-i18n="trade_web_performance_title">Promotores com maior índice de ruptura</span></h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-sm">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="p-3 text-left font-semibold text-gray-600 rounded-l-lg"
-                                    data-i18n="trade_web_th_promoter">Promotor</th>
-                                <th class="p-3 text-right font-semibold text-gray-600"
-                                    data-i18n="trade_web_th_stockout">Ruptura (%)</th>
-                                <th class="p-3 text-right font-semibold text-gray-600 rounded-r-lg"
-                                    data-i18n="trade_web_th_status">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 text-gray-800">Maria Julia Melo</td>
-                                <td class="p-3 text-right font-bold text-red-600">1,00%</td>
-                                <td class="p-3 text-right"><span
-                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold"
-                                        data-i18n="trade_web_status_critical">crítico</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 text-gray-800">Ryan Cardoso</td>
-                                <td class="p-3 text-right font-semibold text-amber-600">0,92%</td>
-                                <td class="p-3 text-right"><span
-                                        class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold"
-                                        data-i18n="trade_web_status_alert">alerta</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 text-gray-800">Alícia Aragão</td>
-                                <td class="p-3 text-right font-semibold text-amber-600">0,87%</td>
-                                <td class="p-3 text-right"><span
-                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold"
-                                        data-i18n="trade_web_status_warning">atenção</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 text-gray-800">Demais (média)</td>
-                                <td class="p-3 text-right font-medium text-gray-600">0,43%</td>
-                                <td class="p-3 text-right"><span
-                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"
-                                        data-i18n="trade_web_status_ok">ok</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <p class="text-sm font-bold">Marcos C. Lisboa</p>
+                    <p class="text-xs text-slate-500">Executive Viewer</p>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 bg-gray-50 p-2 rounded-lg border border-gray-100"
-                    data-i18n="trade_web_training_tip">📌 Treinamento focado nos 3 promotores pode reduzir ruptura geral
-                    em até 0,2 p.p.</p>
-            </div>
-        </div>
-
-        <!-- Terceira linha: Tabela de PDVs por % ruptura + insights em cards -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-            <!-- Ruptura por PDV (top 10) extraído da imagem -->
-            <div class="bg-white rounded-2xl shadow-sm p-6 col-span-1 lg:col-span-2">
-                <h2 class="font-semibold text-gray-700 mb-4"><i class="fas fa-chart-simple text-cyan-600 mr-2"></i><span
-                        data-i18n="trade_web_pdv_sample_title">Ruptura por PDV (%) – Amostra</span></h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm mt-4">
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 8</span><span class="font-bold text-red-500">92%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 7</span><span class="font-bold text-red-500">83%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 4</span><span class="font-bold text-red-500">71%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 6</span><span class="font-bold text-red-500">63%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 3</span><span class="font-bold text-amber-600">65%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 9</span><span class="font-bold text-amber-600">33%</span>
-                    </div>
-                    <div class="flex justify-between p-2 border-b border-gray-100 bg-gray-50 rounded"><span
-                            class="text-gray-700">Supermercado 5</span><span class="font-bold text-green-600">29%</span>
-                    </div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded"><span class="text-gray-700">Supermercado
-                            10</span><span class="font-bold text-green-600">20%</span></div>
-                </div>
-                <p class="text-xs text-gray-500 mt-4" data-i18n="trade_web_sample_note">*Dados baseados nas capturas de
-                    tela – ruptura superior a 50% indica falha crítica de abastecimento.</p>
-            </div>
-            <!-- Cards de insights estratégicos -->
-            <div class="space-y-4">
-                <div
-                    class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-4 border-l-8 border-amber-400 insight-badge">
-                    <i class="fas fa-lightbulb text-amber-500 mr-2"></i>
-                    <span class="font-bold text-amber-800">Insight 1</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_0">Disponibilidade geral em
-                        <strong>43,6%</strong> – muito abaixo do ideal. Aumentar para ≥70% pode gerar +30% em vendas nos
-                        PDVs.</p>
-                </div>
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border-l-8 border-blue-400">
-                    <i class="fas fa-chart-line text-blue-500 mr-2"></i>
-                    <span class="font-bold text-blue-800">Insight 2</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_1">Rupturas caíram de 125 (ago)
-                        para 96 (out) – tendência
-                        positiva, mas ainda alta em chocolates (60% e barra).</p>
-                </div>
-                <div class="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-4 border-l-8 border-green-400">
-                    <i class="fas fa-dollar-sign text-green-600 mr-2"></i>
-                    <span class="font-bold text-green-800">Insight 3</span>
-                    <p class="text-sm text-gray-700 mt-1" data-i18n="trade_web_insight_2">Variação de preço entre
-                        estados: RJ (R$6,60) &gt; MG (R$6,35)
-                        &gt; SP (R$6,11). Rever política de preços para equalizar competitividade.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Rodapé com recomendações finais (próximos passos) -->
-        <div class="bg-white rounded-xl p-5 shadow-sm mt-2">
-            <div class="flex flex-wrap justify-between items-center">
-                <div><i class="fas fa-clipboard-list text-2xl text-indigo-500 mr-3"></i><span
-                        class="font-bold text-gray-800" data-i18n="trade_web_recom_title">Recomendações
-                        Estratégicas</span></div>
-                <div class="flex gap-3 flex-wrap text-sm">
-                    <span class="bg-red-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_1"><i
-                            class="fas fa-chart-simple"></i> Meta
-                        disponibilidade &gt;70%</span>
-                    <span class="bg-yellow-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_2"><i
-                            class="fas fa-chalkboard-user"></i> Treinar
-                        promotores críticos</span>
-                    <span class="bg-blue-100 px-3 py-1 rounded-full" data-i18n="trade_web_recom_3"><i
-                            class="fas fa-tags"></i> Revisar preços por
-                        UF</span>
-                </div>
-            </div>
-            <div class="mt-3 text-gray-600 text-sm border-t pt-3">
-                🚀 <strong data-i18n="trade_web_next_steps">Próximos passos:</strong> <span
-                    data-i18n="trade_web_next_desc">Foco em chocolate 60% e barras (80% das rupturas). Auditoria nos
-                    PDVs com &gt;70% de ruptura. Equalizar preço médio entre RJ e SP para reduzir canibalização.</span>
             </div>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex justify-between items-center">
+            <div class="flex flex-col">
+                <h1 class="text-lg font-extrabold text-slate-900 leading-tight" data-i18n="trade_web_title">Trade Marketing Performance</h1>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="trade_web_subtitle">Real-time availability and stockout intelligence</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-lg text-[10px] font-bold text-slate-600">
+                    <i class="far fa-calendar"></i> JUN - OUT 2022
+                </div>
+                <button class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-slate-800 transition-colors">
+                    <i class="fas fa-download mr-2"></i> Export
+                </button>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-[1400px] mx-auto space-y-8">
+            
+            <!-- KPI Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                <!-- KPI 1 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-rose-500/10 text-rose-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded-md">-12.4% vs LY</span>
+                    </div>
+                    <p class="kpi-title" data-i18n="trade_web_kpi1">General Availability</p>
+                    <h3 class="kpi-value mt-1">43.6%</h3>
+                </div>
+
+                <!-- KPI 2 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-md">+2.1% trend</span>
+                    </div>
+                    <p class="kpi-title" data-i18n="trade_web_kpi2">Average Stockout</p>
+                    <h3 class="kpi-value mt-1">0.56%</h3>
+                </div>
+
+                <!-- KPI 3 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">86 Visits Done</span>
+                    </div>
+                    <p class="kpi-title" data-i18n="trade_web_kpi3">Visit Efficiency</p>
+                    <h3 class="kpi-value mt-1">94.2%</h3>
+                </div>
+
+                <!-- KPI 4 -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">Avg Price</span>
+                    </div>
+                    <p class="kpi-title" data-i18n="trade_web_kpi5">Market Value</p>
+                    <h3 class="kpi-value mt-1" data-currency-brl="6.34">R$ 6,34</h3>
+                </div>
+            </div>
+
+            <!-- Charts & Insights -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <!-- Chart 1 -->
+                <div class="glass-card p-8 rounded-[2rem] xl:col-span-2">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900" data-i18n="trade_web_chart1">Rupture Trend Analysis</h3>
+                            <p class="text-xs text-slate-500 font-medium">Monthly evolution of unavailable SKUs</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <div class="flex items-center text-[10px] font-bold text-slate-600">
+                                <span class="status-dot bg-rose-500"></span> Stockout
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-[300px] w-full">
+                        <canvas id="ruptureTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Executive Insights -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-slate-900 text-white p-8 rounded-[2rem] shadow-xl relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl group-hover:bg-orange-500/30 transition-all"></div>
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-orange-500 mb-6 flex items-center gap-2">
+                            <i class="fas fa-lightbulb"></i> Executive Insights
+                        </h3>
+                        <div class="space-y-6 relative z-10">
+                            <div>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">Critical Action</p>
+                                <p class="text-sm leading-relaxed" data-i18n="trade_web_insight_0">Availability at 43.6% is severely impacting top-line. Reaching 70% will drive +30% revenue uplift.</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">Risk Assessment</p>
+                                <p class="text-sm leading-relaxed" data-i18n="trade_web_insight_1">Chocolate category holds 80% of current stockouts. Supply chain audit required for "CHO 60%".</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-[2rem] flex-1">
+                        <h3 class="text-sm font-bold text-slate-900 mb-4" data-i18n="trade_web_chart3">Pricing per Region</h3>
+                        <div class="h-[180px] flex justify-center items-center">
+                            <canvas id="priceByUfChart"></canvas>
+                        </div>
+                        <div class="mt-6 space-y-2">
+                            <div class="flex justify-between text-xs font-medium">
+                                <span class="text-slate-500">Rio de Janeiro</span>
+                                <span class="font-bold text-slate-900">R$ 6,60</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-1 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full w-[100%]"></div>
+                            </div>
+                            <div class="flex justify-between text-xs font-medium mt-4">
+                                <span class="text-slate-500">São Paulo</span>
+                                <span class="font-bold text-slate-900">R$ 6,11</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-1 rounded-full overflow-hidden">
+                                <div class="bg-orange-500 h-full w-[92%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Performance -->
+            <div class="glass-card rounded-[2.5rem] overflow-hidden">
+                <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                    <h3 class="text-lg font-bold" data-i18n="trade_web_performance_title">Field Team Performance</h3>
+                    <button class="text-orange-500 font-bold text-xs">View Full Audit</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-50/50">
+                            <tr>
+                                <th class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Promoter</th>
+                                <th class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Stockout Index</th>
+                                <th class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">KPI Status</th>
+                                <th class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50">
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">MJ</div>
+                                        <span class="text-sm font-bold">Maria Julia Melo</span>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-4 text-sm font-bold text-rose-600">1.00%</td>
+                                <td class="px-8 py-4">
+                                    <span class="px-3 py-1 bg-rose-50 text-rose-600 text-[10px] font-bold rounded-full">CRITICAL</span>
+                                </td>
+                                <td class="px-8 py-4 text-sm"><button class="text-slate-400 hover:text-slate-900"><i class="fas fa-ellipsis-h"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">RC</div>
+                                        <span class="text-sm font-bold">Ryan Cardoso</span>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-4 text-sm font-bold text-amber-600">0.92%</td>
+                                <td class="px-8 py-4">
+                                    <span class="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold rounded-full">WARNING</span>
+                                </td>
+                                <td class="px-8 py-4 text-sm"><button class="text-slate-400 hover:text-slate-900"><i class="fas fa-ellipsis-h"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">AA</div>
+                                        <span class="text-sm font-bold">Alícia Aragão</span>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-4 text-sm font-bold text-emerald-600">0.43%</td>
+                                <td class="px-8 py-4">
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full">OPTIMIZED</span>
+                                </td>
+                                <td class="px-8 py-4 text-sm"><button class="text-slate-400 hover:text-slate-900"><i class="fas fa-ellipsis-h"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
     <script>
-        let trendChart, categoryChart, ufChart;
+        let trendChart, ufChart;
 
         function initCharts() {
             const lang = localStorage.getItem('portfolio_lang') || 'pt';
 
-            const labelsTrend = {
-                pt: ['Jun/22', 'Jul/22', 'Ago/22', 'Set/22', 'Out/22'],
-                en: ['Jun/22', 'Jul/22', 'Aug/22', 'Sep/22', 'Oct/22'],
-                es: ['Jun/22', 'Jul/22', 'Ago/22', 'Sep/22', 'Oct/22']
-            };
-            const datasetLabelTrend = {
-                pt: 'Produtos Indisponíveis',
-                en: 'Unavailable Products',
-                es: 'Productos Indisponibles'
-            };
-            const tooltipTrend = {
-                pt: 'unidades',
-                en: 'units',
-                es: 'unidades'
-            };
-
+            // Rupture Trend Chart
             const ctxTrend = document.getElementById('ruptureTrendChart').getContext('2d');
             if (trendChart) trendChart.destroy();
+            
+            const gradient = ctxTrend.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(244, 63, 94, 0.2)');
+            gradient.addColorStop(1, 'rgba(244, 63, 94, 0)');
+
             trendChart = new Chart(ctxTrend, {
                 type: 'line',
                 data: {
-                    labels: labelsTrend[lang] || labelsTrend.pt,
+                    labels: ['Jun', 'Jul', 'Ago', 'Set', 'Out'],
                     datasets: [{
-                        label: datasetLabelTrend[lang] || datasetLabelTrend.pt,
+                        label: 'Stockout Units',
                         data: [100, 96, 125, 114, 129],
-                        borderColor: '#dc2626',
-                        backgroundColor: 'rgba(220,38,38,0.05)',
-                        tension: 0.3,
+                        borderColor: '#f43f5e',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#f43f5e',
+                        pointBorderWidth: 3,
+                        pointRadius: 6,
+                        tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#b91c1c',
-                        pointRadius: 4,
-                        pointHoverRadius: 6
+                        backgroundColor: gradient
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'top' },
-                        tooltip: { callbacks: { label: (ctx) => `${ctx.raw} ${tooltipTrend[lang] || 'unidades'}` } }
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9', drawBorder: false },
+                            ticks: { color: '#94a3b8', font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8', font: { size: 10, weight: 'bold' } }
+                        }
                     }
                 }
             });
 
-            const datasetLabelCat = {
-                pt: 'Unidades em ruptura',
-                en: 'Units in stockout',
-                es: 'Unidades en ruptura'
-            };
-            const yTitleCat = {
-                pt: 'Quantidade',
-                en: 'Quantity',
-                es: 'Cantidad'
-            };
-
-            const ctxCat = document.getElementById('ruptureCategoryChart').getContext('2d');
-            if (categoryChart) categoryChart.destroy();
-            categoryChart = new Chart(ctxCat, {
-                type: 'bar',
-                data: {
-                    labels: ['CHO 60%', 'BARRA', 'BALA', 'PRO', 'CHO 75%', 'WAFER', 'MIX', 'CREAM'],
-                    datasets: [{
-                        label: datasetLabelCat[lang] || datasetLabelCat.pt,
-                        data: [125, 103, 72, 65, 59, 48, 36, 35],
-                        backgroundColor: '#f59e0b',
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true, title: { display: true, text: yTitleCat[lang] || 'Quantidade' } } }
-                }
-            });
-
-            // UF Price Chart — convert BRL values to selected currency
-            const ufBrl = [6.60, 6.35, 6.11];
-            const ufLabels = ['RJ', 'MG', 'SP'];
-            const cfg = (typeof CURRENCY_CFG !== 'undefined' ? CURRENCY_CFG : { pt: { symbol: 'R$', rate: 1 }, en: { symbol: '$', rate: 0.18 }, es: { symbol: '\u20ac', rate: 0.16 } })[lang] || { symbol: 'R$', rate: 1 };
-            const ufConverted = ufBrl.map(v => +(v * cfg.rate).toFixed(2));
-            const labelsUf = ufLabels.map((l, i) => `${l} (${cfg.symbol}${ufConverted[i].toFixed(2)})`);
-
+            // UF Price Chart
             const ctxUf = document.getElementById('priceByUfChart').getContext('2d');
             if (ufChart) ufChart.destroy();
             ufChart = new Chart(ctxUf, {
                 type: 'doughnut',
                 data: {
-                    labels: labelsUf,
+                    labels: ['RJ', 'SP', 'MG'],
                     datasets: [{
-                        data: ufConverted,
-                        backgroundColor: ['#3b82f6', '#10b981', '#f97316'],
-                        borderWidth: 0
+                        data: [6.60, 6.11, 6.35],
+                        backgroundColor: ['#3b82f6', '#f97316', '#10b981'],
+                        hoverOffset: 10,
+                        borderWidth: 8,
+                        borderColor: '#ffffff'
                     }]
                 },
                 options: {
                     responsive: true,
+                    cutout: '80%',
                     plugins: {
-                        legend: { position: 'bottom' },
-                        tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${cfg.symbol}${ctx.raw.toFixed(2)}` } }
+                        legend: { display: false }
                     }
                 }
             });

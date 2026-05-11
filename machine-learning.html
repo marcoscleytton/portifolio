@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Machine Learning - Marcos C. Lisboa</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,14 +79,17 @@
                     <div class="projects-blob projects-blob-1"></div>
                     <div class="projects-blob projects-blob-2"></div>
                 </div>
+                <!-- Kinetic 3D Text Background -->
+                <div class="kinetic-bg">
+                    <div class="kinetic-text kinetic-item-1">PREDICT</div>
+                    <div class="kinetic-text kinetic-item-2">MODELS</div>
+                </div>
             </div>
 
-            <div class="container">
-                <div class="projects-header">
-
-                    <h2 class="section-title" data-i18n="page_title_ml" style="font-size: 3.5rem;">Projetos de Machine
-                        Learning</h2>
+            <div class="container">                <div class="projects-header text-center mb-16">
+                    <h2 class="section-title mb-4" data-i18n="page_title_ml" style="font-size: 3.5rem; display: block;">Machine Learning Solutions</h2>
                 </div>
+
 
                 <!-- Projects Grid -->
                 <div class="projects-grid">
@@ -179,7 +190,50 @@
                         </div>
                     </div>
 
-                    <!-- MODERN CARD: RECOMMENDATION -->
+                    <!-- MODERN CARD: CREDIT RISK -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #0096ff, #00d4ff);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="wave wave3"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-shield-plus'></i>
+                            </div>
+                        </div>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue"
+                                    style="color: #0096ff; background: rgba(0, 150, 255, 0.1);">XGBoost</span>
+                                <span class="card-modern-tag-blue"
+                                    style="color: #0096ff; background: rgba(0, 150, 255, 0.1);">Fintech</span>
+                            </div>
+                            <p class="card-modern-desc" data-i18n="proj_credit_risk_ml_desc">
+                                Modelo preditivo para estimar a propensão de inadimplência utilizando XGBoost e otimização de threshold para decisões estratégicas.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle' style="color: #0096ff;"></i> <span
+                                        data-i18n="proj_credit_risk_ml_results">Recall Otimizado • AUC 0.87</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #0096ff;"></i> <span
+                                        data-i18n="proj_credit_risk_ml_impact_kpi">Estratégico: Suporte à concessão de crédito.</span></li>
+                            </ul>
+                            <div class="card-modern-tech" style="margin-bottom:20px;">
+                                <span><i class='bx bxl-python' style="color: #0096ff;"></i> Python</span>
+                                <span><i class='bx bx-brain' style="color: #0096ff;"></i> XGBoost</span>
+                                <span><i class='bx bx-data' style="color: #0096ff;"></i> Pandas</span>
+                            </div>
+                            <div class="card-modern-footer">
+                                <button onclick="window.location.href='ml-risco-credito.html'"
+                                    class="card-btn-dark" style="background: #0096ff; border:none; cursor:pointer;">
+                                    <i class='bx bx-plus-circle'></i> <span data-i18n="card_btn_details">Ver
+                                        Detalhes</span>
+                                </button>
+                                <a href="https://github.com/marcoscleytton/Modelos-machine-learning/tree/main/modelo-risco-credito"
+                                    target="_blank" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-modern reveal">
                         <div class="card-modern-header" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
                             <div class="wave wave1"></div>
@@ -366,7 +420,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);

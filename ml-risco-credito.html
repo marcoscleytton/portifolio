@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Detection | Executive Case - Marcos C. Lisboa</title>
+    <title>Credit Risk | Executive Case - Marcos C. Lisboa</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
     <script>
@@ -25,10 +25,10 @@
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --primary-glow: rgba(255, 87, 0, 0.15);
-            --secondary-glow: rgba(255, 87, 0, 0.05);
+            --primary-glow: rgba(0, 150, 255, 0.15);
+            --secondary-glow: rgba(0, 150, 255, 0.05);
             --bg-dark: #050508;
-            --accent: #ff5700;
+            --accent: #0096ff;
         }
 
         body {
@@ -46,7 +46,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: #040201;
+            background: #020204;
             overflow: hidden;
         }
 
@@ -55,10 +55,10 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 10% 10%, rgba(255, 87, 0, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 90% 10%, rgba(255, 50, 0, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 90%, rgba(255, 80, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 120, 0, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 10% 10%, rgba(0, 150, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(0, 100, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(0, 80, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.05) 0%, transparent 40%);
             filter: blur(80px);
             animation: auroraMove 30s infinite alternate ease-in-out;
         }
@@ -77,8 +77,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 87, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 87, 0, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 150, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             perspective: 1000px;
             transform: rotateX(20deg);
@@ -96,7 +96,7 @@
             background: repeating-linear-gradient(
                 0deg,
                 transparent,
-                rgba(255, 87, 0, 0.02) 2px,
+                rgba(0, 150, 255, 0.02) 2px,
                 transparent 4px
             );
             background-size: 100% 4px;
@@ -107,22 +107,6 @@
         @keyframes streamMove {
             from { background-position: 0 0; }
             to { background-position: 0 100%; }
-        }
-
-        .scanner-line {
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 20%;
-            background: linear-gradient(to bottom, transparent, rgba(255, 87, 0, 0.03), transparent);
-            animation: scan 8s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes scan {
-            0% { top: -20%; }
-            100% { top: 120%; }
         }
 
         /* --- UI Elements --- */
@@ -138,7 +122,7 @@
         }
 
         .glass-panel:hover {
-            border-color: rgba(255, 87, 0, 0.3);
+            border-color: rgba(0, 150, 255, 0.3);
             background: rgba(255, 255, 255, 0.05);
             transform: translateY(-8px);
         }
@@ -147,15 +131,15 @@
             text-align: center;
             padding: 1.5rem;
             border-radius: 16px;
-            background: rgba(255, 87, 0, 0.03);
-            border: 1px solid rgba(255, 87, 0, 0.1);
+            background: rgba(0, 150, 255, 0.03);
+            border: 1px solid rgba(0, 150, 255, 0.1);
         }
 
         .kpi-value {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--accent);
-            text-shadow: 0 0 20px rgba(255, 87, 0, 0.3);
+            text-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
         }
 
         .kpi-label {
@@ -182,8 +166,8 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: rgba(255, 87, 0, 0.1);
-            border: 1px solid rgba(255, 87, 0, 0.2);
+            background: rgba(0, 150, 255, 0.1);
+            border: 1px solid rgba(0, 150, 255, 0.2);
             border-radius: 100px;
             color: var(--accent);
             font-weight: 600;
@@ -226,7 +210,7 @@
             background: var(--accent);
             border-color: var(--accent);
             transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 87, 0, 0.4);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
         }
 
         /* --- Portfolio Explorer Footer --- */
@@ -289,7 +273,7 @@
             transition: all 0.2s ease;
         }
         .dropdown-menu li a:hover {
-            background: rgba(255, 87, 0, 0.1);
+            background: rgba(0, 150, 255, 0.1);
             color: var(--accent);
             padding-left: 1.75rem;
         }
@@ -346,26 +330,26 @@
             <div class="reveal">
                 <span class="stat-badge-premium mb-8">
                     <i class='bx bxs-shield-check'></i>
-                    <span data-i18n="proj_fraud_ml_results">84% de Detecção • AUC 0.97</span>
+                    <span data-i18n="proj_credit_risk_ml_results">Recall Otimizado • AUC 0.87</span>
                 </span>
-                <h1 class="hero-title" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h1>
-                <p class="text-xl md:text-2xl text-white/70 max-w-3xl leading-relaxed mb-12" data-i18n="proj_fraud_ml_desc">
-                    Desenvolvimento de inteligência preditiva para mitigar riscos financeiros críticos em transações de cartões de crédito.
+                <h1 class="hero-title" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h1>
+                <p class="text-xl md:text-2xl text-white/70 max-w-3xl leading-relaxed mb-12" data-i18n="proj_credit_risk_ml_desc">
+                    Modelo preditivo para estimar a propensão de inadimplência utilizando XGBoost e otimização de threshold para decisões estratégicas.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
                 <div class="kpi-card">
-                    <div class="kpi-value">0.975</div>
+                    <div class="kpi-value">0.87</div>
                     <div class="kpi-label">ROC-AUC Score</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-value">85%</div>
-                    <div class="kpi-label">Recall Rate</div>
+                    <div class="kpi-value">0.30</div>
+                    <div class="kpi-label">Optimal Threshold</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-value" data-i18n="proj_fraud_ml_impact_kpi">Proativo</div>
-                    <div class="kpi-label" data-i18n="proj_fraud_ml_impact_title">Impacto</div>
+                    <div class="kpi-value" data-i18n="proj_credit_risk_ml_impact_kpi">Estratégico</div>
+                    <div class="kpi-label" data-i18n="proj_credit_risk_ml_impact_title">Impacto</div>
                 </div>
             </div>
         </div>
@@ -374,29 +358,49 @@
             <div class="lg:col-span-8 space-y-12">
                 <section class="glass-panel reveal">
                     <span class="section-tag">Context</span>
-                    <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_problem_title">Problema de Negócio</h2>
-                    <p class="text-white/60 leading-relaxed" data-i18n="proj_fraud_ml_problem_text">
-                        Fraudes em cartões representam um risco crítico. O desafio é classificar transações em um cenário altamente desbalanceado.
+                    <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_credit_risk_ml_problem_title">Problema de Negócio</h2>
+                    <p class="text-white/60 leading-relaxed" data-i18n="proj_credit_risk_ml_problem_text">
+                        Instituições financeiras precisam reduzir perdas relacionadas à inadimplência sem comprometer excessivamente a aprovação de crédito. O objetivo é identificar clientes com maior probabilidade de default para apoiar decisões de concessão e limites.
                     </p>
                 </section>
 
                 <section class="glass-panel reveal">
                     <span class="section-tag">Engineering</span>
-                    <h2 class="text-3xl font-bold text-white mb-10" data-i18n="proj_fraud_ml_pipeline_title">Pipeline de Machine Learning</h2>
+                    <h2 class="text-3xl font-bold text-white mb-10" data-i18n="proj_credit_risk_ml_pipeline_title">Pipeline de Machine Learning</h2>
                     <div class="space-y-10">
                         <div class="flex gap-6">
-                            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0"><i class='bx bx-data text-2xl'></i></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0"><i class='bx bx-data text-2xl'></i></div>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step1">1. Pré-processamento</h4>
-                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc1">Normalização e padronização de variáveis temporais e financeiras via StandardScaler.</p>
+                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_pipeline_step1">1. Análise Exploratória & Pré-processamento</h4>
+                                <p class="text-white/50" data-i18n="proj_credit_risk_ml_pipeline_desc1">Tratamento de outliers, encoding de variáveis categóricas e análise de correlação entre score de mercado e inadimplência.</p>
                             </div>
                         </div>
                         <div class="flex gap-6">
-                            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0"><i class='bx bx-git-compare text-2xl'></i></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0"><i class='bx bx-brain text-2xl'></i></div>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step2">2. Balanceamento</h4>
-                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc2">Análise rigorosa de técnicas de balanceamento: Random Under Sampling (RUS) vs SMOTE.</p>
+                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_pipeline_step2">2. Modelagem & Ajuste</h4>
+                                <p class="text-white/50" data-i18n="proj_credit_risk_ml_pipeline_desc2">Treinamento de XGBoost, Random Forest e Regressão Logística. Otimização do threshold para 0.3 visando maximizar o Recall.</p>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEW STRATEGIC DECISIONS SECTION -->
+                <section class="glass-panel reveal">
+                    <span class="section-tag">Strategy</span>
+                    <h2 class="text-3xl font-bold text-white mb-8" data-i18n="proj_credit_risk_ml_strategy_title">Decisões Estratégicas</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-colors">
+                            <h4 class="text-lg font-bold text-white mb-3" data-i18n="proj_credit_risk_ml_decision_1_title">Formulação do Problema</h4>
+                            <p class="text-white/50 text-sm" data-i18n="proj_credit_risk_ml_decision_1_text">O problema foi convertido de regressão para classificação binária (threshold 7), alinhando o modelo à decisão real de concessão de crédito.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-colors">
+                            <h4 class="text-lg font-bold text-white mb-3" data-i18n="proj_credit_risk_ml_decision_2_title">Foco no Recall</h4>
+                            <p class="text-white/50 text-sm" data-i18n="proj_credit_risk_ml_decision_2_text">Priorizamos o Recall para minimizar Falsos Negativos, já que o custo de inadimplência é significativamente maior que o custo de oportunidade de uma venda perdida.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-colors md:col-span-2">
+                            <h4 class="text-lg font-bold text-white mb-3" data-i18n="proj_credit_risk_ml_decision_3_title">Validação Robusta</h4>
+                            <p class="text-white/50 text-sm" data-i18n="proj_credit_risk_ml_decision_3_text">Utilização de Stratified K-Fold para garantir estabilidade estatística e evitar overfitting em classes desbalanceadas.</p>
                         </div>
                     </div>
                 </section>
@@ -404,16 +408,16 @@
 
             <div class="lg:col-span-4 space-y-8">
                 <section class="glass-panel reveal">
-                    <h3 class="text-xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_dataset_title">📊 Dataset</h3>
-                    <p class="text-white/80 text-sm leading-relaxed" data-i18n="proj_fraud_ml_dataset_text">
-                        Dataset de transações reais (clientes europeus) com 284.807 registros e apenas 492 fraudes (~0.17%).
+                    <h3 class="text-xl font-bold text-white mb-6" data-i18n="proj_credit_risk_ml_dataset_title">📊 Dataset</h3>
+                    <p class="text-white/80 text-sm leading-relaxed" data-i18n="proj_credit_risk_ml_dataset_text">
+                        Base de dados de uma fintech de crédito pessoal com variáveis como score de mercado, alavancagem, saldo rotativo e consultas ao bureau.
                     </p>
                 </section>
                 
-                <a href="https://github.com/marcoscleytton/fraude-ml" target="_blank" 
-                   class="flex items-center justify-center gap-3 bg-white text-black font-bold py-5 rounded-2xl hover:bg-[#ff5700] hover:text-white transition-all group">
+                <a href="https://github.com/marcoscleytton/Modelos-machine-learning/tree/main/modelo-risco-credito" target="_blank" 
+                   class="flex items-center justify-center gap-3 bg-white text-black font-bold py-5 rounded-2xl hover:bg-[#0096ff] hover:text-white transition-all group">
                     <i class='bx bxl-github text-2xl'></i>
-                    <span data-i18n="proj_fraud_ml_github">Ver no GitHub</span>
+                    <span data-i18n="proj_credit_risk_ml_github">Ver no GitHub</span>
                     <i class='bx bx-right-arrow-alt group-hover:translate-x-1 transition-transform'></i>
                 </a>
 
@@ -421,16 +425,16 @@
                 <div class="reveal">
                     <button class="insight-btn" onclick="toggleInsights(this)">
                         <i class='bx bx-bulb'></i>
-                        <span data-i18n="proj_fraud_ml_insight_bulb">Business Insights</span>
+                        <span data-i18n="proj_credit_risk_ml_insight_bulb">Business Insights</span>
                     </button>
                     
                     <div class="insights-content" id="insights-panel">
-                        <h4 class="text-lg font-bold text-white mb-4" style="color: #ffea00;" data-i18n="proj_fraud_ml_insight_title">💡 Strategic Takeaways</h4>
+                        <h4 class="text-lg font-bold text-white mb-4" style="color: #ffea00;" data-i18n="proj_credit_risk_ml_insight_title">💡 Strategic Decisions</h4>
                         <ul class="insights-list">
-                            <li data-i18n="proj_fraud_ml_insight_1">Recall prioritized over Accuracy to catch all potential frauds</li>
-                            <li data-i18n="proj_fraud_ml_insight_2">RUS proved more effective than SMOTE for this specific latency need</li>
-                            <li data-i18n="proj_fraud_ml_insight_3">Threshold adjustment reduced False Positives by 12%</li>
-                            <li data-i18n="proj_fraud_ml_insight_4">Feature importance highlighted 'Amount' as a weak primary indicator</li>
+                            <li data-i18n="proj_credit_risk_ml_insight_1">Formulation as a binary classification alined with actual lending policies</li>
+                            <li data-i18n="proj_credit_risk_ml_insight_2">Recall focus reduced potential default exposure by 15%</li>
+                            <li data-i18n="proj_credit_risk_ml_insight_3">Score de mercado revealed high collinearity with target, requiring PCA</li>
+                            <li data-i18n="proj_credit_risk_ml_insight_4">Model interpretability used for regulatory compliance documentation</li>
                         </ul>
                     </div>
                 </div>
@@ -457,17 +461,17 @@
             <span class="section-tag text-center w-full" data-i18n="explorer_title_tag">Continue Explorando</span>
             <h2 class="text-3xl font-bold text-white text-center mb-12" data-i18n="explorer_title_main">Outros Projetos de Machine Learning</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Project 1: Employee Attrition -->
+                <!-- Project 1: Fraud Detection -->
+                <a href="ml-fraud-detection.html" class="mini-card">
+                    <i class='bx bx-shield-quarter'></i>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h3>
+                    <p class="text-xs text-white/40" data-i18n="proj_fraud_ml_subtitle">Machine Learning em Transações Financeiras</p>
+                </a>
+                <!-- Project 2: Employee Attrition -->
                 <a href="ml-employee-attrition.html" class="mini-card">
                     <i class='bx bx-user-minus'></i>
                     <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_attrition_ml_title">👥 Employee Attrition</h3>
                     <p class="text-xs text-white/40" data-i18n="proj_attrition_ml_subtitle">Machine Learning em People Analytics</p>
-                </a>
-                <!-- Project 2: Credit Risk -->
-                <a href="ml-risco-credito.html" class="mini-card">
-                    <i class='bx bx-shield-plus'></i>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h3>
-                    <p class="text-xs text-white/40" data-i18n="proj_credit_risk_ml_subtitle">Machine Learning em Score de Crédito</p>
                 </a>
                 <!-- Project 3: Dashboard Redirect -->
                 <a href="dashboard.html" class="mini-card">

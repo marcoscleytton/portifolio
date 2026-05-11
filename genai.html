@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI - Marcos C. Lisboa</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,42 +79,104 @@
                     <div class="projects-blob projects-blob-1"></div>
                     <div class="projects-blob projects-blob-2"></div>
                 </div>
-            </div>
-
-            <div class="container">
-                <div class="projects-header">
-
-                    <h2 class="section-title" data-i18n="page_title_genai" style="font-size: 3.5rem;">Projetos de GenAI
-                    </h2>
+                <!-- Kinetic 3D Text Background -->
+                <div class="kinetic-bg">
+                    <div class="kinetic-text kinetic-item-1">GEN</div>
+                    <div class="kinetic-text kinetic-item-2">AI</div>
+                </div>
+            </div>            <div class="container">
+                <div class="projects-header text-center mb-16">
+                    <h2 class="section-title mb-4" data-i18n="page_title_genai" style="font-size: 3.5rem; display: block;">Generative AI & LLMs</h2>
                 </div>
 
                 <!-- Projects Grid -->
                 <div class="projects-grid">
-                    <!-- Data Insight Dashboard -->
-                    <div class="project-card">
-                        <div class="project-image-box color-gray">
-                            <img src="assets/project.png" alt="Analytics">
-                            <div class="project-number">01</div>
+                    
+                    <!-- MODERN CARD: RAG SYSTEM -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-search-alt-2'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name" data-i18n="proj_rag">Sistema RAG p/ Documentos</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_rag">RAG Document Intelligence</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">LangChain</span>
+                                <span class="card-modern-tag-blue">VectorDB</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Enterprise-grade Retrieval Augmented Generation system for instant querying of massive document repositories.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>Multi-vector retrieval optimization</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>Citing sources for factual accuracy</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark" onclick="window.location.href='genai-rag.html'"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Sales Analytics -->
-                    <div class="project-card mt-card-2">
-                        <div class="project-image-box color-peach">
-                            <h2 class="logo-placeholder">AI</h2>
-                            <div class="project-number">02</div>
+                    <!-- MODERN CARD: LLM FINE-TUNING -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #e11d48, #fb7185);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-chip'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name">LLM Fine-Tuning</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title">LLM Fine-Tuning (LoRA)</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">PyTorch</span>
+                                <span class="card-modern-tag-blue">HuggingFace</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Specialized model adaptation using Parameter-Efficient Fine-Tuning for specific industry jargon and tasks.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>Quantization (4-bit/8-bit) for low VRAM</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>Performance evaluation on custom benchmarks</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Web Analytics -->
-                    <div class="project-card mt-card-3">
-                        <div class="project-image-box color-bg">
-                            <img src="assets/project.png" alt="Analytics">
-                            <div class="project-number">03</div>
+                    <!-- MODERN CARD: AI ASSISTANT -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #7c3aed, #a78bfa);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-bot'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name" data-i18n="proj_assist">Assistente Virtual Corporativo</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_assist">Corporate AI Agent</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">OpenAI</span>
+                                <span class="card-modern-tag-blue">API</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Intelligent assistant integrated into business workflows to automate routine tasks and provide data insights.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>Natural language task orchestration</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>Secure API integration & context management</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
                 </div> <!-- Close inner container -->
         </section>
@@ -252,7 +322,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);

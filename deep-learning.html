@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Learning - Marcos C. Lisboa</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,44 +79,106 @@
                     <div class="projects-blob projects-blob-1"></div>
                     <div class="projects-blob projects-blob-2"></div>
                 </div>
-            </div>
-
-            <div class="container">
-                <div class="projects-header">
-
-                    <h2 class="section-title" data-i18n="page_title_dl" style="font-size: 3.5rem;">Projetos de Deep
-                        Learning
-                    </h2>
+                <!-- Kinetic 3D Text Background -->
+                <div class="kinetic-bg">
+                    <div class="kinetic-text kinetic-item-1">DEEP</div>
+                    <div class="kinetic-text kinetic-item-2">LEARN</div>
+                </div>
+            </div>            <div class="container">
+                <div class="projects-header text-center mb-16">
+                    <h2 class="section-title mb-4" data-i18n="page_title_dl" style="font-size: 3.5rem; display: block;">Neural Networks & Deep Systems</h2>
                 </div>
 
                 <!-- Projects Grid -->
                 <div class="projects-grid">
-                    <!-- Data Insight Dashboard -->
-                    <div class="project-card">
-                        <div class="project-image-box color-gray">
-                            <img src="assets/project.png" alt="Visão Computacional">
-                            <div class="project-number">01</div>
+                    
+                    <!-- MODERN CARD: COMPUTER VISION -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #4f46e5, #818cf8);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-camera-movie'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name" data-i18n="proj_yolo">Detecção de Objetos (YOLOv8)</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_yolo">YOLOv8 Object Detection</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">PyTorch</span>
+                                <span class="card-modern-tag-blue">Vision</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Real-time object detection and tracking system capable of processing high-resolution video streams at 45+ FPS.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>Custom dataset training for specific hardware</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>TensorRT optimization for production edge</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark" onclick="window.location.href='dl-yolov8.html'"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Sales Analytics -->
-                    <div class="project-card mt-card-2">
-                        <div class="project-image-box color-peach">
-                            <h2 class="logo-placeholder">DL</h2>
-                            <div class="project-number">02</div>
+                    <!-- MODERN CARD: MEDICAL IMAGING -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #db2777, #f472b6);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-plus-medical'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name" data-i18n="proj_med">Classificação de Imagens Médicas</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_med">Medical Image Analysis</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">CNN</span>
+                                <span class="card-modern-tag-blue">Healthcare</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Diagnostic support system using Convolutional Neural Networks to classify anomalies in radiological scans.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>98% validation accuracy on clinical data</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>Explainable AI (Grad-CAM) integration</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Web Analytics -->
-                    <div class="project-card mt-card-3">
-                        <div class="project-image-box color-bg">
-                            <img src="assets/project.png" alt="Analytics">
-                            <div class="project-number">03</div>
+                    <!-- MODERN CARD: NLP -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #0284c7, #38bdf8);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-message-square-dots'></i>
+                            </div>
                         </div>
-                        <h3 class="project-name" data-i18n="proj_nlp">Processamento de Linguagem Natural</h3>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="proj_nlp">Advanced NLP Transformer</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue">Transformers</span>
+                                <span class="card-modern-tag-blue">BERT</span>
+                            </div>
+                            <p class="card-modern-desc">
+                                Language understanding models for sentiment analysis and document classification using BERT-based architectures.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle'></i> <span>Multilingual support for global datasets</span></li>
+                                <li><i class='bx bx-check-circle'></i> <span>Low-latency inference for real-time apps</span></li>
+                            </ul>
+                            <div class="card-modern-footer">
+                                <button class="card-btn-dark"><i class='bx bx-plus-circle'></i> Details</button>
+                                <a href="#" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
                     </div>
+ </div>
                 </div> <!-- Close inner container -->
         </section>
 
@@ -253,7 +323,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);

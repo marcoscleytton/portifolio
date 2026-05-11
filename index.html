@@ -4,7 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcos C. Lisboa - Portfolio</title>
+    <title data-i18n="hero_title_2">Marcos C. Lisboa | Portfolio</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-93GZ8WCLKT');
+    </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +73,7 @@
                 <div class="hero-left">
                     <div class="hero-eyebrow">
                         <span class="eyebrow-dot"></span>
-                        <span class="eyebrow-text" data-i18n="hero_title_1">Olá, eu sou</span>
+                        <span class="hero-text" data-i18n="hero_title_1">Olá, eu sou</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="hero-name" data-i18n="hero_title_2">Marcos C. Lisboa</span>
@@ -83,10 +91,7 @@
                         <span class="badge-icon">🚀</span>
                         <span class="text" data-i18n="exp_badge">Do insight à produção</span>
                     </div>
-                    <div class="availability-pill">
-                        <span class="avail-dot"></span>
-                        Open to work
-                    </div>
+
                     <div class="image-wrapper">
                         <div class="ring ring-1"></div>
                         <div class="ring ring-2"></div>
@@ -202,6 +207,11 @@
                     <div class="projects-blob projects-blob-1"></div>
                     <div class="projects-blob projects-blob-2"></div>
                 </div>
+                <!-- Kinetic 3D Text Background -->
+                <div class="kinetic-bg">
+                    <div class="kinetic-text kinetic-item-1">DATA</div>
+                    <div class="kinetic-text kinetic-item-2">SCIENCE</div>
+                </div>
             </div>
 
             <div class="container">
@@ -277,7 +287,6 @@
                                 style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
                                 <h2 class="logo-placeholder" style="color: white;"><i class='bx bx-user-minus'></i></h2>
                                 <div class="project-number">05</div>
-                                <div class="project-number">05</div>
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Machine Learning</span>
@@ -285,12 +294,27 @@
                             </div>
                         </div>
 
-                        <!-- Project 6: Deep Learning -->
-                        <div class="project-card reveal" onclick="window.location.href='deep-learning.html'"
+                        <!-- Project 6: Credit Risk -->
+                        <div class="project-card reveal" onclick="window.location.href='ml-risco-credito.html'"
                             style="cursor:pointer; transition-delay: 0.5s">
+                            <div class="project-image-box color-gray"
+                                style="background: linear-gradient(135deg, #0096ff, #00d4ff);">
+                                <h2 class="logo-placeholder" style="color: white;"><i class='bx bx-shield-plus'></i>
+                                </h2>
+                                <div class="project-number">06</div>
+                            </div>
+                            <div class="project-info">
+                                <span class="project-category">Machine Learning</span>
+                                <h3 class="project-name" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h3>
+                            </div>
+                        </div>
+
+                        <!-- Project 7: Deep Learning -->
+                        <div class="project-card reveal" onclick="window.location.href='deep-learning.html'"
+                            style="cursor:pointer; transition-delay: 0.6s">
                             <div class="project-image-box color-peach">
                                 <h2 class="logo-placeholder">DL</h2>
-                                <div class="project-number">06</div>
+                                <div class="project-number">07</div>
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Deep Learning</span>
@@ -299,12 +323,12 @@
                             </div>
                         </div>
 
-                        <!-- Project 7: GenAI -->
+                        <!-- Project 8: GenAI -->
                         <div class="project-card reveal" onclick="window.location.href='genai.html'"
-                            style="cursor:pointer; transition-delay: 0.6s">
+                            style="cursor:pointer; transition-delay: 0.7s">
                             <div class="project-image-box color-bg">
                                 <h2 class="logo-placeholder">AI</h2>
-                                <div class="project-number">07</div>
+                                <div class="project-number">08</div>
                             </div>
                             <div class="project-info">
                                 <span class="project-category">Generative AI</span>
@@ -450,7 +474,7 @@
                     }
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);
