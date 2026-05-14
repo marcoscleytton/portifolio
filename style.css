@@ -2429,6 +2429,21 @@ button {
     border-color: #0f172a;
 }
 
+.badge-process {
+    background: rgba(255, 87, 0, 0.1);
+    color: var(--primary-orange);
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 87, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
 /* ====== DASHBOARD VIEWER ====== */
 .viewer-container {
     max-width: 1400px;
