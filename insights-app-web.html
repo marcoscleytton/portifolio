@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Performance Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; padding: 2rem; }
+        .insight-card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 2rem; }
+        h1 { font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        p { margin-bottom: 1rem; line-height: 1.6; }
+        ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: 600; color: #475569; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin: 1.5rem 0; }
+        .highlight-box strong { color: #1d4ed8; }
+        .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; background-color: #e0e7ff; color: #4338ca; margin-bottom: 1rem; }
+        .btn-floating-dashboard { position: fixed; top: 15px; left: 15px; z-index: 50; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease; cursor: pointer; }
+        .btn-floating-dashboard:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4); }
+    </style>
+</head>
+<body>
+    <!-- Botão Flutuante que aciona a aba Web do elemento pai (Modal) -->
+    <button class="btn-floating-dashboard" onclick="if(window.parent && window.parent.document.getElementById('webTabBtn')) { window.parent.document.getElementById('webTabBtn').click(); }">
+        <i class="fas fa-arrow-left"></i> Voltar para o Dashboard
+    </button>
+
+    <div class="max-w-4xl mx-auto insight-card">
+        <span class="badge"><i class="fas fa-chart-line mr-2"></i>Executive Insights</span>
+        <h1>Monitoramento de Usuários - Aplicativo</h1>
+        <p class="text-slate-600 text-lg">
+            Este relatório contém análises sobre o comportamento dos usuários em relação à instalação e utilização do aplicativo. O objetivo é acompanhar métricas de <strong>aquisição</strong>, <strong>engajamento</strong>, <strong>retenção</strong> e <strong>abandono</strong>, permitindo otimizações em campanhas de marketing e melhorias na experiência do usuário.
+        </p>
+
+        <h2>1. Monitoramento de Instalações via Anúncios</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3>Métricas Principais</h3>
+                <ul>
+                    <li><strong>Total de Instalações:</strong> 1.000</li>
+                    <li><strong>Tempo Médio até Cadastro:</strong> 9,1 min</li>
+                    <li><strong>Taxa de Conversão Total:</strong> 47,0%</li>
+                    <li><strong>Drop-Off Geral:</strong> 53%</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Eventos de Tela e Ações</h3>
+                <ul>
+                    <li>Visualização da tela de instalação: 100%</li>
+                    <li>Clique em "Criar Conta": 83,5%</li>
+                    <li>Cadastro concluído: 75,4%</li>
+                    <li>PIN confirmado: 47,0%</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>2. Monitoramento de Uso do Aplicativo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3>Usuários Ativos</h3>
+                <ul>
+                    <li><strong>Total Usuários Ativos:</strong> 919</li>
+                    <li><strong>Ativos (%):</strong> 91,9%</li>
+                    <li><strong>Inativos (%):</strong> 8,1%</li>
+                </ul>
+                
+                <h3>Engajamento por Plataforma</h3>
+                <ul>
+                    <li>Android: 49,66%</li>
+                    <li>iOS: 50,34%</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Distribuição por Gênero</h3>
+                <table>
+                    <thead><tr><th>Gênero</th><th>Usuários</th><th>%</th></tr></thead>
+                    <tbody>
+                        <tr><td>Feminino</td><td>184</td><td>39,15%</td></tr>
+                        <tr><td>Masculino</td><td>154</td><td>32,77%</td></tr>
+                        <tr><td>Outro</td><td>132</td><td>28,09%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3>Interesses (Segmento "Outro")</h3>
+        <ul>
+            <li>Tecnologia: 35,88%</li>
+            <li>Notícias: 22,60%</li>
+            <li>Viagens: 17,51%</li>
+            <li>Música, Filmes, Esportes, Leitura: valores complementares</li>
+        </ul>
+
+        <h3>ROI por Fonte de Mídia</h3>
+        <table>
+            <thead><tr><th>Fonte</th><th>ROI (R$)</th></tr></thead>
+            <tbody>
+                <tr><td>Google Ads</td><td>281,29</td></tr>
+                <tr><td>Facebook Ads</td><td>250,69</td></tr>
+                <tr><td>Orgânico</td><td>0,00</td></tr>
+            </tbody>
+        </table>
+
+        <h2>3. Tabela Semanal de Monitoramento (Churn)</h2>
+        <h3>Abandono por Marca em Dias da Semana</h3>
+        <div class="overflow-x-auto">
+            <table>
+                <thead><tr><th>Data</th><th>Apple</th><th>LG</th><th>Motorola</th><th>Samsung</th><th>Xiaomi</th><th>Total</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Sábado, 4 Jan 25</strong></td><td>12%</td><td>10%</td><td>15%</td><td>14%</td><td>11%</td><td><strong>12,4%</strong></td></tr>
+                    <tr><td><strong>Domingo, 5 Jan 25</strong></td><td>14%</td><td>12%</td><td>16%</td><td>15%</td><td>13%</td><td><strong>14,0%</strong></td></tr>
+                    <tr><td>Quarta, 8 Jan 25</td><td>9%</td><td>8%</td><td>11%</td><td>10%</td><td>9%</td><td>9,4%</td></tr>
+                    <tr><td><strong>Sábado, 11 Jan 25</strong></td><td>13%</td><td>11%</td><td>14%</td><td>13%</td><td>12%</td><td><strong>12,6%</strong></td></tr>
+                    <tr><td><strong>Domingo, 12 Jan 25</strong></td><td>15%</td><td>13%</td><td>17%</td><td>16%</td><td>14%</td><td><strong>15,0%</strong></td></tr>
+                    <tr><td>Segunda, 20 Jan 25</td><td>10%</td><td>9%</td><td>12%</td><td>11%</td><td>10%</td><td>10,4%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Os finais de semana apresentam maiores taxas de abandono (entre 12% e 15%), indicando que os usuários tendem a desinstalar ou parar de usar o app nesses dias. Isso sugere a necessidade de campanhas de retenção e engajamento específicas para sábados e domingos.
+        </div>
+
+        <h2>4. Dropout por Idade e Gênero</h2>
+        <p>A análise mostra o percentual de abandono segmentado por faixas etárias e gênero. Notamos que faixas de 22-23 anos e 46-47 anos apresentam maior abandono (acima de 70%).</p>
+        
+        <h3>Totais Gerais de Abandono</h3>
+        <ul>
+            <li>Feminino: 52%</li>
+            <li>Masculino: 59%</li>
+            <li>Outro: 48%</li>
+            <li><strong>Total Geral: 53%</strong></li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong>
+            <ul class="mt-2 mb-0">
+                <li>Faixas etárias entre 22 e 23 anos e 46 a 47 anos apresentam maior abandono (acima de 70%).</li>
+                <li>Usuários mais jovens (18–20 anos) têm abandono (~53–59%).</li>
+                <li>O grupo Masculino mostra abandono consistentemente mais alto (59%) em comparação com Feminino (52%) e Outro (48%).</li>
+            </ul>
+        </div>
+
+        <h2>5. Indicadores Financeiros</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <p class="text-sm font-bold text-slate-500 uppercase">Investimento</p>
+                <p class="text-xl font-extrabold text-slate-800">R$ 180.000</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <p class="text-sm font-bold text-slate-500 uppercase">CAC</p>
+                <p class="text-xl font-extrabold text-slate-800">R$ 180,00</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <p class="text-sm font-bold text-slate-500 uppercase">LTV Médio</p>
+                <p class="text-xl font-extrabold text-slate-800">R$ 180,26</p>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200">
+                <p class="text-sm font-bold text-emerald-600 uppercase">ROI Geral</p>
+                <p class="text-xl font-extrabold text-emerald-800">47,0%</p>
+            </div>
+        </div>
+
+        <h2>Conclusão Executiva</h2>
+        <ul class="text-slate-700 bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <li>Identificar pontos de abandono no funil de instalação.</li>
+            <li>Comparar desempenho entre canais e dispositivos.</li>
+            <li>Monitorar retenção e engajamento dos usuários ativos.</li>
+            <li>Avaliar eficiência dos investimentos em mídia e ROI.</li>
+            <li>Detectar padrões de churn nos finais de semana.</li>
+            <li><strong>Analisar abandono por idade e gênero</strong>, revelando grupos mais vulneráveis e auxiliando na criação de campanhas segmentadas.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -96,6 +96,44 @@
                 <!-- Projects Grid -->
                 <div class="projects-grid">
 
+                    <!-- NEW MODERN CARD: APP PERFORMANCE ANALYTICS -->
+                    <div class="card-modern reveal">
+                        <div class="card-modern-header" style="background: linear-gradient(135deg, #4f46e5, #06b6d4);">
+                            <div class="wave wave1"></div>
+                            <div class="wave wave2" style="background: rgba(255, 255, 255, 0.1);"></div>
+                            <div class="wave wave3" style="background: rgba(0, 0, 0, 0.1);"></div>
+                            <div class="glass-icon">
+                                <i class='bx bx-mobile-alt'></i>
+                            </div>
+                        </div>
+                        <div class="card-modern-body">
+                            <h3 class="card-modern-title" data-i18n="dash_app_title">📱 App Performance Analytics</h3>
+                            <div class="card-modern-tags">
+                                <span class="card-modern-tag-blue" style="color: #4f46e5; background: #e0e7ff;">Mobile</span>
+                                <span class="card-modern-tag-blue" style="color: #0891b2; background: #ecfeff;">Analytics</span>
+                            </div>
+                            <p class="card-modern-desc" data-i18n="dash_app_desc">
+                                Painel interativo para monitoramento em tempo real do aplicativo AppCampain, analisando engajamento de usuários, taxas de conversão e erros críticos.
+                            </p>
+                            <ul class="card-modern-features">
+                                <li><i class='bx bx-check-circle' style="color: #06b6d4;"></i> <span data-i18n="dash_app_feat1"><strong>Integração viva e interativa</strong> com Power BI Service.</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #06b6d4;"></i> <span data-i18n="dash_app_feat2"><strong>Suporte a tela cheia</strong> e recarregamento dinâmico.</span></li>
+                                <li><i class='bx bx-check-circle' style="color: #06b6d4;"></i> <span data-i18n="dash_app_feat3"><strong>Controle de sessão</strong> e autenticação automática (SSO).</span></li>
+                            </ul>
+                            <div class="card-modern-tech" style="margin-bottom:20px;">
+                                <span><i class='bx bxl-html5' style="color: #06b6d4;"></i> HTML5</span>
+                                <span><i class='bx bxl-css3' style="color: #06b6d4;"></i> CSS3</span>
+                                <span><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="PBI" style="width:12px; opacity:0.8;"> Power BI</span>
+                            </div>
+                            <div class="card-modern-footer">
+                                <button onclick="openModal('dash_app_title', 'dash_app_subtitle', 'app-monitoring-web.html', '', '', '#f8fafc', 'insights-app-web.html', 'web')" class="card-btn-dark" style="background: #4f46e5; border:none; cursor:pointer;">
+                                    <i class='bx bx-desktop'></i> <span data-i18n="card_btn_view">Ver Dashboard</span>
+                                </button>
+                                <a href="https://github.com/marcoscleytton/Dashboards/tree/main/App-Monitoramento" target="_blank" class="card-btn-light"><i class='bx bxl-github'></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- NEW MODERN CARD: TRADE ANALYTICS -->
                     <div class="card-modern reveal">
                         <div class="card-modern-header">
@@ -134,7 +172,7 @@
                             </div>
                             <div class="card-modern-footer">
                                 <button
-                                    onclick="openModal('dash_trade_title', 'dash_trade_subtitle', 'trade-mania-web.html', 'trademania01.png', 'trademania02.png', '#f0f2f5')"
+                                    onclick="openModal('dash_trade_title', 'dash_trade_subtitle', 'trade-mania-web.html', 'trademania01.png', 'trademania02.png', '#f0f2f5', 'insights-trade-web.html', 'web')"
                                     class="card-btn-dark" style="border:none; cursor:pointer;"><i
                                         class='bx bx-desktop'></i>
                                     <span data-i18n="card_btn_view">Ver dashboard</span></button>
@@ -484,13 +522,20 @@
             <div class="modal-body">
                 <div class="viewer-header">
                     <h2 class="viewer-title" data-i18n="dash_trade_title">📈 Analytics Overview</h2>
-                    <p class="text-slate-500 font-medium text-sm" data-i18n="dash_trade_subtitle">Enterprise Intelligence & Strategic Monitoring</p>
+                    <p class="text-slate-500 font-medium text-sm viewer-subtitle" data-i18n="dash_trade_subtitle">Enterprise Intelligence & Strategic Monitoring</p>
+                    <div class="header-actions" style="display: flex; gap: 10px; align-items: center; margin-top: 4px;">
+                        <button id="headerInsightsBtn" onclick="document.getElementById('insightsTabBtn').click()" style="display:none; background: linear-gradient(135deg, #4f46e5, #3b82f6); color: #ffffff; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 13px; border: none; cursor: pointer; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);"><i class="fas fa-lightbulb text-yellow-300"></i> Ver Insights</button>
+                        <button id="fullscreenBtn" onclick="toggleFullScreen()" style="background: #1e293b; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 13px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);"><i class="fas fa-expand"></i> Tela Cheia</button>
+                    </div>
 
                     <div class="viewer-tabs">
-                        <button class="viewer-tab-btn active" onclick="showTab(event, 'web')">
+                        <button class="viewer-tab-btn active" id="webTabBtn" onclick="showTab(event, 'web')">
                             <i class='bx bx-desktop'></i> <span data-i18n="viewer_tab_web">Dashboard Executive</span>
                         </button>
-                        <button class="viewer-tab-btn" onclick="showTab(event, 'pbi')">
+                        <button class="viewer-tab-btn" id="insightsTabBtn" onclick="showTab(event, 'insights')" style="display:none !important;">
+                            <i class='bx bx-bulb'></i> <span>Insights Executivos</span>
+                        </button>
+                        <button class="viewer-tab-btn" id="pbiMockupTabBtn" onclick="showTab(event, 'pbi')">
                             <i class='bx bxs-file-blank'></i> <span data-i18n="viewer_tab_pbi">BI Mockup Detail</span>
                         </button>
                     </div>
@@ -499,7 +544,12 @@
                 <!-- Web Dashboard View -->
                 <div id="tab-web" class="viewer-content active">
                     <iframe data-src="trade-mania-web.html" id="dashIframe" class="dash-iframe"
-                        title="Executive Dashboard Interface"></iframe>
+                        title="Executive Dashboard Interface" allowfullscreen="true" allow="fullscreen; clipboard-read; clipboard-write"></iframe>
+                </div>
+
+                <!-- Insights View -->
+                <div id="tab-insights" class="viewer-content">
+                    <iframe id="insightsIframe" class="dash-iframe" title="Insights Interface" allowfullscreen="true"></iframe>
                 </div>
 
                 <!-- Power BI View -->
@@ -522,7 +572,7 @@
         /* ---- Modal Dashboard Logic ---- */
         const modal = document.getElementById('dashboardModal');
 
-        function openModal(projectTitle, projectSubtitle, iframeSrc, pbi1Src, pbi2Src, pbiBgColor) {
+        function openModal(projectTitle, projectSubtitle, iframeSrc, pbi1Src, pbi2Src, pbiBgColor, insightsSrc = null, initialTab = 'web') {
             if (!modal) return;
 
             // Populate Modal Content
@@ -553,13 +603,43 @@
                 iframe.setAttribute('data-src', finalSrc);
             }
 
-            if (imgPbi1) {
-                imgPbi1.src = "assets/" + pbi1Src;
-                imgPbi1.onerror = function () { this.src = 'https://via.placeholder.com/1200x650?text=Imagem+' + pbi1Src + '+não+encontrada' };
+            const tabsContainer = document.querySelector('.viewer-tabs');
+
+            const insightsTabBtn = document.getElementById('insightsTabBtn');
+            const insightsIframe = document.getElementById('insightsIframe');
+            const modalSubtitle = document.querySelector('.viewer-subtitle');
+            const headerInsightsBtn = document.getElementById('headerInsightsBtn');
+            
+            if (insightsSrc) {
+                if (insightsIframe) insightsIframe.setAttribute('src', insightsSrc);
+                // We keep the tab functionally, but never show it visually as requested
+                if (tabsContainer) tabsContainer.style.display = 'flex';
+                
+                if (modalSubtitle) modalSubtitle.style.display = 'none';
+                if (headerInsightsBtn) headerInsightsBtn.style.display = 'inline-flex';
+            } else {
+                if (insightsIframe) insightsIframe.setAttribute('src', '');
+                
+                if (modalSubtitle) modalSubtitle.style.display = 'block';
+                if (headerInsightsBtn) headerInsightsBtn.style.display = 'none';
             }
-            if (imgPbi2) {
-                imgPbi2.src = "assets/" + pbi2Src;
-                imgPbi2.onerror = function () { this.src = 'https://via.placeholder.com/1200x650?text=Imagem+' + pbi2Src + '+não+encontrada' };
+
+            // Ocultar aba de Mockup se não houver imagens de mockup
+            const pbiTabBtn = document.getElementById('pbiMockupTabBtn');
+            if (pbi1Src) {
+                if (imgPbi1) {
+                    imgPbi1.src = "assets/" + pbi1Src;
+                    imgPbi1.onerror = function () { this.src = 'https://via.placeholder.com/1200x650?text=Imagem+' + pbi1Src + '+não+encontrada' };
+                }
+                if (imgPbi2) {
+                    imgPbi2.src = "assets/" + pbi2Src;
+                    imgPbi2.onerror = function () { this.src = 'https://via.placeholder.com/1200x650?text=Imagem+' + pbi2Src + '+não+encontrada' };
+                }
+                if (pbiTabBtn) pbiTabBtn.style.display = 'inline-flex';
+                if (tabsContainer) tabsContainer.style.display = 'flex';
+            } else {
+                if (pbiTabBtn) pbiTabBtn.style.display = 'none';
+                if (tabsContainer) tabsContainer.style.display = 'none';
             }
 
             // Mudar background da Modal Inteira (incluindo cabeçalho) para convergir com as imagens
@@ -571,8 +651,8 @@
             }
 
             // Reset UI tabs to start view
-            const webTabBtn = document.querySelector('.viewer-tab-btn');
-            if (webTabBtn) showTab({ currentTarget: webTabBtn }, 'web');
+            const targetBtn = initialTab === 'insights' ? document.getElementById('insightsTabBtn') : document.getElementById('webTabBtn');
+            if (targetBtn) showTab({ currentTarget: targetBtn }, initialTab);
 
             const pbiPainel1Btn = document.querySelector('.pbi-tab-btn');
             if (pbiPainel1Btn) showPbiTab({ currentTarget: pbiPainel1Btn }, 'pbi-painel1');
@@ -597,8 +677,24 @@
             });
         }
 
-        // Mobile Menu Logic is already handled above in cleaner way
-        // Removing redundant block to avoid conflicts
+        // --- Tela Cheia Logic ---
+        function toggleFullScreen() {
+            const iframe = document.getElementById('dashIframe');
+            if (!iframe) return;
+            if (!document.fullscreenElement) {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                    iframe.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
 
         function showTab(e, tabId) {
             document.querySelectorAll('.viewer-tab-btn').forEach(btn => btn.classList.remove('active'));

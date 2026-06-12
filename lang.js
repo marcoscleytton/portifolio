@@ -40,6 +40,25 @@ const translations = {
         proj_assist: "Assistente Virtual Corporativo",
 
         // Dashboards
+        dash_app_title: "📱 App Performance Analytics",
+        dash_app_subtitle: "Monitoramento de Aplicativos | AppCampain",
+        dash_app_desc: "Painel interativo para monitoramento em tempo real do aplicativo AppCampain, analisando engajamento de usuários, taxas de conversão e erros críticos.",
+        dash_app_feat1: "Integração viva e interativa com Power BI Service.",
+        dash_app_feat2: "Suporte a tela cheia e recarregamento dinâmico.",
+        dash_app_feat3: "Controle de sessão e autenticação automática (SSO).",
+
+        // Web Dashboards - App
+        app_monitor_title: "📈 Power BI Embed · Experiência com Iframe",
+        app_monitor_hero_desc: "Visualize o painel interativo da <strong>AppCampain</strong> diretamente neste site. O componente abaixo é um <code>&lt;iframe&gt;</code> que carrega um relatório real do Power BI.",
+        app_monitor_badge: "🔗 Relatório embutido via Power BI Service | autenticação automática",
+        app_monitor_how: "🧠 Como funciona o iframe?",
+        app_monitor_how_desc: "Um iframe (inline frame) incorpora conteúdo externo de outra fonte na página atual. Aqui, usamos a URL de embed do Power BI com parâmetros como <code>reportId</code>, <code>autoAuth=true</code> e <code>ctid</code>.<br>✅ Permite navegação interativa, filtros e até tela cheia. É como uma \"janela flutuante\" segura.",
+        app_monitor_reload: "🔄 Recarregar",
+        app_monitor_fullscreen: "⛶ Tela cheia",
+        app_monitor_resize_note: "💡 Dimensão original do iframe: <strong>1140px × 541.25px</strong> | Em telas menores use rolagem horizontal para ver todo o conteúdo.",
+        app_monitor_footer: "📌 O relatório requer autenticação Microsoft (conta com acesso ao workspace). O parâmetro <code>autoAuth=true</code> tenta usar credenciais atuais.",
+        app_monitor_status: "⚙️ Iframe com suporte a Fullscreen & recarregamento via JS",
+
         dash_trade_title: "📈 Trade Marketing Analytics",
         dash_trade_subtitle: "Varejo & E-commerce | Trade Mania",
         dash_trade_desc: "Painel completo de análise de PDVs com foco em disponibilidade, índice de ruptura e monitoramento de preços médios por região.",
@@ -426,6 +445,25 @@ const translations = {
         proj_assist: "Corporate Virtual Assistant",
 
         // Dashboards
+        dash_app_title: "📱 App Performance Analytics",
+        dash_app_subtitle: "App Performance Monitoring | AppCampain",
+        dash_app_desc: "Interactive dashboard for real-time monitoring of the AppCampain application, analyzing user engagement, conversion rates, and critical errors.",
+        dash_app_feat1: "Live and interactive integration with Power BI Service.",
+        dash_app_feat2: "Interactive support for full screen and dynamic reloading.",
+        dash_app_feat3: "Session control and automatic single sign-on (SSO).",
+
+        // Web Dashboards - App
+        app_monitor_title: "📈 Power BI Embed · Iframe Experience",
+        app_monitor_hero_desc: "Visualize the interactive panel of <strong>AppCampain</strong> directly on this site. The component below is an <code>&lt;iframe&gt;</code> loading a real Power BI report.",
+        app_monitor_badge: "🔗 Embedded report via Power BI Service | auto authentication",
+        app_monitor_how: "🧠 How does the iframe work?",
+        app_monitor_how_desc: "An iframe (inline frame) embeds external content from another source into the current page. Here, we use the Power BI embed URL with parameters like <code>reportId</code>, <code>autoAuth=true</code> and <code>ctid</code>.<br>✅ Allows interactive navigation, filters, and even full screen. It is like a secure \"floating window\".",
+        app_monitor_reload: "🔄 Reload",
+        app_monitor_fullscreen: "⛶ Full screen",
+        app_monitor_resize_note: "💡 Original iframe dimension: <strong>1140px × 541.25px</strong> | On smaller screens use horizontal scroll to see the full content.",
+        app_monitor_footer: "📌 The report requires Microsoft authentication (account with workspace access). The <code>autoAuth=true</code> parameter tries to use current credentials.",
+        app_monitor_status: "⚙️ Iframe with Fullscreen & reload support via JS",
+
         dash_trade_title: "📈 Trade Marketing Analytics",
         dash_trade_subtitle: "Retail & E-commerce | Trade Mania",
         dash_trade_desc: "Complete POS analysis dashboard focusing on availability, out-of-stock rates, and average price monitoring by region.",
@@ -815,6 +853,25 @@ const translations = {
         proj_assist: "Asistente Virtual Corporativo",
 
         // Dashboards
+        dash_app_title: "📱 App Performance Analytics",
+        dash_app_subtitle: "Monitoreo de Aplicación | AppCampain",
+        dash_app_desc: "Panel interactivo para el monitoreo en tiempo real de la aplicación AppCampain, analizando la interacción de usuarios, tasas de conversión y errores críticos.",
+        dash_app_feat1: "Integración viva e interactiva con Power BI Service.",
+        dash_app_feat2: "Soporte interactivo para pantalla completa y recarga dinámica.",
+        dash_app_feat3: "Control de sesión y autenticación automática (SSO).",
+
+        // Web Dashboards - App
+        app_monitor_title: "📈 Power BI Embed · Experiencia con Iframe",
+        app_monitor_hero_desc: "Visualice el panel interactivo de <strong>AppCampain</strong> directamente en este sitio. El componente a continuación es un <code>&lt;iframe&gt;</code> que carga un informe real de Power BI.",
+        app_monitor_badge: "🔗 Informe integrado a través de Power BI Service | autenticación automática",
+        app_monitor_how: "🧠 ¿Cómo funciona el iframe?",
+        app_monitor_how_desc: "Un iframe (inline frame) incorpora contenido externo de otra fonte en la página actual. Aquí, utilizamos la URL de integración de Power BI con parámetros como <code>reportId</code>, <code>autoAuth=true</code> y <code>ctid</code>.<br>✅ Permite navegación interactiva, filtros e incluso pantalla completa. Es como una \"ventana flotante\" segura.",
+        app_monitor_reload: "🔄 Recargar",
+        app_monitor_fullscreen: "⛶ Pantalla completa",
+        app_monitor_resize_note: "💡 Dimensión original del iframe: <strong>1140px × 541.25px</strong> | En pantallas más pequeñas, use el desplazamiento horizontal para ver todo el contenido.",
+        app_monitor_footer: "📌 El informe requiere autenticación de Microsoft (cuenta con acceso al espacio de trabajo). El parámetro <code>autoAuth=true</code> intenta usar credenciales actuales.",
+        app_monitor_status: "⚙️ Iframe con soporte de pantalla completa y recarga a través de JS",
+
         dash_trade_title: "📈 Trade Marketing Analytics",
         dash_trade_subtitle: "Venta al por menor y E-commerce | Trade Mania",
         dash_trade_desc: "Panel completo de análisis de PDV con enfoque en disponibilidad, índice de ruptura e monitoreo de precios promedio por región.",

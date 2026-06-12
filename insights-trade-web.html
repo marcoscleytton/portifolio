@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Marketing Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; padding: 2rem; }
+        .insight-card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 2rem; }
+        h1 { font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        p { margin-bottom: 1rem; line-height: 1.6; }
+        ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: 600; color: #475569; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin: 1.5rem 0; }
+        .highlight-box strong { color: #1d4ed8; }
+        .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; background-color: #e0e7ff; color: #4338ca; margin-bottom: 1rem; }
+        .btn-floating-dashboard { position: fixed; top: 15px; left: 15px; z-index: 50; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease; cursor: pointer; }
+        .btn-floating-dashboard:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4); }
+    </style>
+</head>
+<body>
+    <!-- Botão Flutuante que aciona a aba Web do elemento pai (Modal) -->
+    <button class="btn-floating-dashboard" onclick="if(window.parent && window.parent.document.getElementById('webTabBtn')) { window.parent.document.getElementById('webTabBtn').click(); }">
+        <i class="fas fa-arrow-left"></i> Voltar para o Dashboard
+    </button>
+
+    <div class="max-w-4xl mx-auto insight-card">
+        <span class="badge"><i class="fas fa-store mr-2"></i>Executive Insights</span>
+        <h1>Painel de Disponibilidade</h1>
+        <p class="text-slate-600 text-lg">
+            Este painel apresenta indicadores de <strong>disponibilidade de produtos nos PDVs</strong>, rupturas e preços médios coletados. Abaixo estão os principais insights extraídos dos dados.
+        </p>
+
+        <h2>1. Disponibilidade e Ruptura</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3>Métricas de Ruptura</h3>
+                <ul>
+                    <li><strong>Disponibilidade geral:</strong> 43,6%</li>
+                    <li><strong>Ruptura média:</strong> 0,56%</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Métricas de Visitas</h3>
+                <ul>
+                    <li><strong>Visitas realizadas:</strong> 86</li>
+                    <li><strong>PDVs visitados:</strong> 48</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Apesar da alta taxa de visitas, a disponibilidade está abaixo de 50%, indicando oportunidade de melhoria no abastecimento.
+        </div>
+
+        <h2>2. Evolução de Produtos Indisponíveis</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-4 mb-4">
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
+                <p class="text-xs font-bold text-slate-500 uppercase">Junho</p>
+                <p class="text-xl font-extrabold text-slate-800">125</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
+                <p class="text-xs font-bold text-slate-500 uppercase">Julho</p>
+                <p class="text-xl font-extrabold text-slate-800">129</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
+                <p class="text-xs font-bold text-slate-500 uppercase">Agosto</p>
+                <p class="text-xl font-extrabold text-slate-800">114</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
+                <p class="text-xs font-bold text-slate-500 uppercase">Setembro</p>
+                <p class="text-xl font-extrabold text-slate-800">100</p>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 text-center">
+                <p class="text-xs font-bold text-emerald-600 uppercase">Outubro</p>
+                <p class="text-xl font-extrabold text-emerald-800">96</p>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Tendência de queda nas rupturas ao longo dos meses, sugerindo maior controle de estoque.
+        </div>
+
+        <h2>3. Performance por Promotor</h2>
+        <ul>
+            <li><strong>Maior ruptura:</strong> Maria Julia Melo (1,00%)</li>
+            <li><strong>Outros destaques:</strong> Ryan Cardoso (0,92%), Alícia Aragão (0,87%)</li>
+        </ul>
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Alguns promotores apresentam índices de ruptura elevados, indicando necessidade de treinamento ou revisão de processos.
+        </div>
+
+        <h2>4. Categorias de Produtos Indisponíveis</h2>
+        <div class="overflow-x-auto">
+            <table>
+                <thead><tr><th>Categoria</th><th>Unidades Indisponíveis</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Chocolate 60%</strong></td><td>1.053</td></tr>
+                    <tr><td><strong>Barra</strong></td><td>788</td></tr>
+                    <tr><td>Wafer</td><td>370</td></tr>
+                    <tr><td>Bala</td><td>67</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Chocolates e barras concentram maior volume de indisponibilidade, sendo críticos para gestão de estoque.
+        </div>
+
+        <h2>5. Análise de Preços Médios</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3>Visão Geral</h3>
+                <ul>
+                    <li><strong>Média geral:</strong> R$ 6,34</li>
+                    <li><strong>Maior preço:</strong> R$ 24,79</li>
+                    <li><strong>Menor preço:</strong> R$ 1,55</li>
+                </ul>
+                <h3>Por Estado (UFs)</h3>
+                <ul>
+                    <li>RJ: R$ 6,60 (34,6%)</li>
+                    <li>MG: R$ 6,35 (33,3%)</li>
+                    <li>SP: R$ 6,11 (32,1%)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>PDVs com Maiores Preços</h3>
+                <table>
+                    <thead><tr><th>PDV</th><th>Preço Médio</th></tr></thead>
+                    <tbody>
+                        <tr><td>Supermercado 26</td><td>R$ 10,50</td></tr>
+                        <tr><td>Supermercado 24</td><td>R$ 10,10</td></tr>
+                        <tr><td>Supermercado 48</td><td>R$ 8,40</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <strong><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Insight:</strong> Variação de preços significativa entre estados e PDVs pode impactar competitividade e percepção do consumidor. O fato de alguns supermercados praticarem preços bem acima da média geral sugere a necessidade de análise de posicionamento e margem.
+        </div>
+
+        <h2>Conclusão Executiva</h2>
+        <ul class="text-slate-700 bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <li>A disponibilidade baixa (43,6%) é o principal ponto de atenção.</li>
+            <li>As rupturas vêm caindo, mas ainda estão concentradas em categorias críticas como chocolates e barras.</li>
+            <li>Diferenças de preço entre estados e PDVs indicam possíveis oportunidades de ajuste na estratégia comercial.</li>
+        </ul>
+
+        <h3 class="mt-8 flex items-center gap-2 text-indigo-600"><i class="fas fa-rocket"></i> Próximos Passos</h3>
+        <ul class="text-slate-700 bg-indigo-50 p-6 rounded-xl border border-indigo-200">
+            <li><strong>1.</strong> Aumentar a disponibilidade para acima de 70%, mantendo foco especial em categorias críticas (Chocolate 60% e Barras).</li>
+            <li><strong>2.</strong> Oferecer treinamentos direcionados aos promotores que apresentam maior índice de ruptura.</li>
+            <li><strong>3.</strong> Revisar a política de preços para tentar reduzir ou justificar a grande variação observada entre os estados e PDVs específicos.</li>
+        </ul>
+    </div>
+</body>
+</html>
