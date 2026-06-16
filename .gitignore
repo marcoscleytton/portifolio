@@ -34,3 +34,8 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos Markdown
+INSIGHTS_TRADE.md
+INSIGHTS_DADOS_SAUDE.md
+insights-app.md
