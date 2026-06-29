@@ -8,10 +8,10 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-93GZ8WCLKT"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-93GZ8WCLKT');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-93GZ8WCLKT');
     </script>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <!-- Prism CSS for Python Code Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         :root {
             --primary-glow: rgba(255, 87, 0, 0.15);
@@ -54,7 +56,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 radial-gradient(circle at 10% 10%, rgba(255, 87, 0, 0.12) 0%, transparent 50%),
                 radial-gradient(circle at 90% 10%, rgba(255, 50, 0, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 50% 90%, rgba(255, 80, 0, 0.1) 0%, transparent 50%),
@@ -64,9 +66,17 @@
         }
 
         @keyframes auroraMove {
-            0% { transform: scale(1) translate(0, 0) rotate(0deg); }
-            50% { transform: scale(1.1) translate(2%, 2%) rotate(2deg); }
-            100% { transform: scale(1) translate(-2%, -1%) rotate(-2deg); }
+            0% {
+                transform: scale(1) translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.1) translate(2%, 2%) rotate(2deg);
+            }
+
+            100% {
+                transform: scale(1) translate(-2%, -1%) rotate(-2deg);
+            }
         }
 
         /* Cyber Grid Overlay */
@@ -76,7 +86,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(255, 87, 0, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 87, 0, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -93,20 +103,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                rgba(255, 87, 0, 0.02) 2px,
-                transparent 4px
-            );
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    rgba(255, 87, 0, 0.02) 2px,
+                    transparent 4px);
             background-size: 100% 4px;
             animation: streamMove 20s infinite linear;
             pointer-events: none;
         }
 
         @keyframes streamMove {
-            from { background-position: 0 0; }
-            to { background-position: 0 100%; }
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 100%;
+            }
         }
 
         .scanner-line {
@@ -121,8 +134,13 @@
         }
 
         @keyframes scan {
-            0% { top: -20%; }
-            100% { top: 120%; }
+            0% {
+                top: -20%;
+            }
+
+            100% {
+                top: 120%;
+            }
         }
 
         /* --- UI Elements --- */
@@ -260,7 +278,10 @@
         }
 
         /* Dropdown Fix for Detail Page */
-        .dropdown-wrapper { position: relative; }
+        .dropdown-wrapper {
+            position: relative;
+        }
+
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -277,25 +298,263 @@
             transition: all 0.3s ease;
             z-index: 1001;
         }
+
         .dropdown-wrapper:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
+
         .dropdown-menu li a {
             display: block;
             padding: 0.75rem 1.5rem;
             color: rgba(255, 255, 255, 0.7);
             transition: all 0.2s ease;
         }
+
         .dropdown-menu li a:hover {
             background: rgba(255, 87, 0, 0.1);
             color: var(--accent);
             padding-left: 1.75rem;
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Jupyter Notebook Viewer Styles --- */
+        .notebook-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .notebook-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .notebook-cell-markdown {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 0.5rem 0 0.5rem 50px;
+        }
+
+        .notebook-cell-markdown h1 {
+            color: white;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.25rem;
+        }
+
+        .notebook-cell-markdown h2 {
+            color: white;
+            font-weight: 600;
+            margin-top: 0.85rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.15rem;
+        }
+
+        .notebook-cell-markdown h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 550;
+            margin-top: 0.75rem;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+
+        .notebook-cell-code {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .notebook-code-row {
+            display: flex;
+            width: 100%;
+            gap: 0.75rem;
+        }
+
+        .notebook-prompt {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: rgba(255, 87, 0, 0.5);
+            min-width: 50px;
+            text-align: right;
+            padding-top: 0.75rem;
+            user-select: none;
+        }
+
+        .notebook-code-input {
+            flex-grow: 1;
+            position: relative;
+            max-width: calc(100% - 60px);
+        }
+
+        .notebook-code-input pre[class*="language-"] {
+            margin: 0 !important;
+            background: #0b0c10 !important;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0.85rem 1rem !important;
+            font-size: 0.85rem !important;
+            overflow-x: auto;
+        }
+
+        .notebook-code-input code {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+
+        .notebook-outputs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-left: 62px;
+            margin-top: 0.25rem;
+            width: 100%;
+        }
+
+        .notebook-output-label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: -0.25rem;
+            user-select: none;
+        }
+
+        .notebook-output-stream {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid rgba(255, 87, 0, 0.3);
+            border-radius: 0 8px 8px 0;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .notebook-output-execute {
+            background: rgba(255, 255, 255, 0.01);
+            border-left: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0 8px 8px 0;
+            padding: 0.5rem 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+        }
+
+        .notebook-output-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .notebook-output-image:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 87, 0, 0.4);
+        }
+
+        /* DataFrame styling */
+        .notebook-outputs-container table.dataframe {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            display: block;
+            overflow-x: auto;
+        }
+
+        .notebook-outputs-container table.dataframe th {
+            background-color: rgba(255, 87, 0, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0.4rem 0.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: right;
+        }
+
+        .notebook-outputs-container table.dataframe td {
+            padding: 0.4rem 0.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: right;
+        }
+
+        .notebook-outputs-container table.dataframe tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .notebook-outputs-container table.dataframe tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .notebook-outputs-container table.dataframe tr th {
+            vertical-align: top;
+        }
+
+        .notebook-copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .notebook-copy-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 87, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 87, 0, 0.4);
+        }
     </style>
 </head>
 
@@ -310,7 +569,8 @@
     </div>
 
     <!-- Close Button -->
-    <a href="machine-learning.html" class="close-btn" title="Voltar" onclick="window.location.href='machine-learning.html'; return false;">
+    <a href="machine-learning.html" class="close-btn" title="Voltar"
+        onclick="window.location.href='machine-learning.html'; return false;">
         <i class='bx bx-x'></i>
     </a>
 
@@ -340,7 +600,7 @@
     </nav>
 
     <main class="container mx-auto px-6 pt-40 pb-20">
-        
+
         <!-- Header Area -->
         <div class="max-w-5xl mb-24">
             <div class="reveal">
@@ -349,8 +609,10 @@
                     <span data-i18n="proj_fraud_ml_results">84% de Detecção • AUC 0.97</span>
                 </span>
                 <h1 class="hero-title" data-i18n="proj_fraud_ml_title">💳 Detecção de Fraudes</h1>
-                <p class="text-xl md:text-2xl text-white/70 max-w-3xl leading-relaxed mb-12" data-i18n="proj_fraud_ml_desc">
-                    Desenvolvimento de inteligência preditiva para mitigar riscos financeiros críticos em transações de cartões de crédito.
+                <p class="text-xl md:text-2xl text-white/70 max-w-3xl leading-relaxed mb-12"
+                    data-i18n="proj_fraud_ml_desc">
+                    Desenvolvimento de inteligência preditiva para mitigar riscos financeiros críticos em transações de
+                    cartões de crédito.
                 </p>
             </div>
 
@@ -374,44 +636,56 @@
             <div class="lg:col-span-8 space-y-12">
                 <section class="glass-panel reveal">
                     <span class="section-tag">Context</span>
-                    <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_problem_title">Problema de Negócio</h2>
+                    <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_problem_title">Problema de
+                        Negócio</h2>
                     <p class="text-white/60 leading-relaxed" data-i18n="proj_fraud_ml_problem_text">
-                        Fraudes em cartões representam um risco crítico. O desafio é classificar transações em um cenário altamente desbalanceado.
+                        Fraudes em cartões representam um risco crítico. O desafio é classificar transações em um
+                        cenário altamente desbalanceado.
                     </p>
                 </section>
 
                 <section class="glass-panel reveal">
                     <span class="section-tag">Engineering</span>
-                    <h2 class="text-3xl font-bold text-white mb-10" data-i18n="proj_fraud_ml_pipeline_title">Pipeline de Machine Learning</h2>
+                    <h2 class="text-3xl font-bold text-white mb-10" data-i18n="proj_fraud_ml_pipeline_title">Pipeline de
+                        Machine Learning</h2>
                     <div class="space-y-10">
                         <div class="flex gap-6">
-                            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0"><i class='bx bx-data text-2xl'></i></div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
+                                <i class='bx bx-data text-2xl'></i></div>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step1">1. Pré-processamento</h4>
-                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc1">Normalização e padronização de variáveis temporais e financeiras via StandardScaler.</p>
+                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step1">
+                                    1. Pré-processamento</h4>
+                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc1">Normalização e
+                                    padronização de variáveis temporais e financeiras via StandardScaler.</p>
                             </div>
                         </div>
                         <div class="flex gap-6">
-                            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0"><i class='bx bx-git-compare text-2xl'></i></div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
+                                <i class='bx bx-git-compare text-2xl'></i></div>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step2">2. Balanceamento</h4>
-                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc2">Análise rigorosa de técnicas de balanceamento: Random Under Sampling (RUS) vs SMOTE.</p>
+                                <h4 class="text-xl font-bold text-white mb-2" data-i18n="proj_fraud_ml_pipeline_step2">
+                                    2. Balanceamento</h4>
+                                <p class="text-white/50" data-i18n="proj_fraud_ml_pipeline_desc2">Análise rigorosa de
+                                    técnicas de balanceamento: Random Under Sampling (RUS) vs SMOTE.</p>
                             </div>
                         </div>
-                    </div>
                 </section>
             </div>
 
             <div class="lg:col-span-4 space-y-8">
                 <section class="glass-panel reveal">
-                    <h3 class="text-xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_dataset_title">📊 Dataset</h3>
+                    <h3 class="text-xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_dataset_title">📊 Dataset
+                    </h3>
                     <p class="text-white/80 text-sm leading-relaxed" data-i18n="proj_fraud_ml_dataset_text">
-                        Dataset de transações reais (clientes europeus) com 284.807 registros e apenas 492 fraudes (~0.17%).
+                        Dataset de transações reais (clientes europeus) com 284.807 registros e apenas 492 fraudes
+                        (~0.17%).
                     </p>
                 </section>
-                
-                <a href="https://github.com/marcoscleytton/fraude-ml" target="_blank" 
-                   class="flex items-center justify-center gap-3 bg-white text-black font-bold py-5 rounded-2xl hover:bg-[#ff5700] hover:text-white transition-all group">
+
+                <a href="https://github.com/marcoscleytton/fraude-ml" target="_blank"
+                    class="flex items-center justify-center gap-3 bg-white text-black font-bold py-5 rounded-2xl hover:bg-[#ff5700] hover:text-white transition-all group">
                     <i class='bx bxl-github text-2xl'></i>
                     <span data-i18n="proj_fraud_ml_github">Ver no GitHub</span>
                     <i class='bx bx-right-arrow-alt group-hover:translate-x-1 transition-transform'></i>
@@ -423,18 +697,46 @@
                         <i class='bx bx-bulb'></i>
                         <span data-i18n="proj_fraud_ml_insight_bulb">Business Insights</span>
                     </button>
-                    
+
                     <div class="insights-content" id="insights-panel">
-                        <h4 class="text-lg font-bold text-white mb-4" style="color: #ffea00;" data-i18n="proj_fraud_ml_insight_title">💡 Strategic Takeaways</h4>
+                        <h4 class="text-lg font-bold text-white mb-4" style="color: #ffea00;"
+                            data-i18n="proj_fraud_ml_insight_title">💡 Strategic Takeaways</h4>
                         <ul class="insights-list">
-                            <li data-i18n="proj_fraud_ml_insight_1">Recall prioritized over Accuracy to catch all potential frauds</li>
-                            <li data-i18n="proj_fraud_ml_insight_2">RUS proved more effective than SMOTE for this specific latency need</li>
-                            <li data-i18n="proj_fraud_ml_insight_3">Threshold adjustment reduced False Positives by 12%</li>
-                            <li data-i18n="proj_fraud_ml_insight_4">Feature importance highlighted 'Amount' as a weak primary indicator</li>
+                            <li data-i18n="proj_fraud_ml_insight_1">Recall prioritized over Accuracy to catch all
+                                potential frauds</li>
+                            <li data-i18n="proj_fraud_ml_insight_2">RUS proved more effective than SMOTE for this
+                                specific latency need</li>
+                            <li data-i18n="proj_fraud_ml_insight_3">Threshold adjustment reduced False Positives by 12%
+                            </li>
+                            <li data-i18n="proj_fraud_ml_insight_4">Feature importance highlighted 'Amount' as a weak
+                                primary indicator</li>
                         </ul>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Analysis Notebook (Full Width) -->
+        <div class="mt-12 reveal">
+            <section class="glass-panel">
+                <span class="section-tag">Analysis Notebook</span>
+                <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_fraud_ml_notebook_title">Notebook de
+                    Análise Comparativa</h2>
+                <p class="text-white/60 leading-relaxed mb-8" data-i18n="proj_fraud_ml_notebook_desc">
+                    Abaixo está o Jupyter Notebook completo com as análises, códigos e gráficos do projeto de detecção
+                    de fraudes.
+                </p>
+
+                <!-- Notebook Viewer Container -->
+                <div id="notebook-viewer"
+                    class="bg-[#050508]/60 border border-white/5 rounded-2xl p-4 md:p-6 max-h-[850px] overflow-y-auto custom-scrollbar">
+                    <div class="flex flex-col justify-center items-center py-20 text-white/50" id="notebook-loading">
+                        <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-orange-500 mb-4">
+                        </div>
+                        <span>Carregando Jupyter Notebook...</span>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <script>
@@ -443,7 +745,7 @@
                 const panel = document.getElementById('insights-panel');
                 btn.classList.toggle('active');
                 panel.classList.toggle('show');
-                
+
                 // Sparkle effect
                 if (btn.classList.contains('active')) {
                     btn.style.transform = 'scale(0.95)';
@@ -455,25 +757,32 @@
         <!-- Portfolio Explorer -->
         <section class="explorer-section reveal">
             <span class="section-tag text-center w-full" data-i18n="explorer_title_tag">Continue Explorando</span>
-            <h2 class="text-3xl font-bold text-white text-center mb-12" data-i18n="explorer_title_main">Outros Projetos de Machine Learning</h2>
+            <h2 class="text-3xl font-bold text-white text-center mb-12" data-i18n="explorer_title_main">Outros Projetos
+                de Machine Learning</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Project 1: Employee Attrition -->
                 <a href="ml-employee-attrition.html" class="mini-card">
                     <i class='bx bx-user-minus'></i>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_attrition_ml_title">👥 Employee Attrition</h3>
-                    <p class="text-xs text-white/40" data-i18n="proj_attrition_ml_subtitle">Machine Learning em People Analytics</p>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_attrition_ml_title">👥 Employee
+                        Attrition</h3>
+                    <p class="text-xs text-white/40" data-i18n="proj_attrition_ml_subtitle">Machine Learning em People
+                        Analytics</p>
                 </a>
                 <!-- Project 2: Credit Risk -->
                 <a href="ml-risco-credito.html" class="mini-card">
                     <i class='bx bx-shield-plus'></i>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de Crédito</h3>
-                    <p class="text-xs text-white/40" data-i18n="proj_credit_risk_ml_subtitle">Machine Learning em Score de Crédito</p>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_credit_risk_ml_title">🛡️ Risco de
+                        Crédito</h3>
+                    <p class="text-xs text-white/40" data-i18n="proj_credit_risk_ml_subtitle">Machine Learning em Score
+                        de Crédito</p>
                 </a>
                 <!-- Project 3: Dashboard Redirect -->
                 <a href="dashboard.html" class="mini-card">
                     <i class='bx bx-grid-alt'></i>
-                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="explorer_dash_title">Business Dashboards</h3>
-                    <p class="text-xs text-white/40" data-i18n="explorer_dash_desc">Visualização estratégica de dados e KPIs de negócio.</p>
+                    <h3 class="text-lg font-bold text-white mb-2" data-i18n="explorer_dash_title">Business Dashboards
+                    </h3>
+                    <p class="text-xs text-white/40" data-i18n="explorer_dash_desc">Visualização estratégica de dados e
+                        KPIs de negócio.</p>
                 </a>
             </div>
         </section>
@@ -482,10 +791,14 @@
     <!-- Footer -->
     <footer class="footer py-12 border-t border-white/5">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-white/20 text-xs tracking-widest" data-i18n="footer_rights">© 2024 MARCOS C. LISBOA • DATA SCIENCE & ML EXECUTIVE</p>
+            <p class="text-white/20 text-xs tracking-widest" data-i18n="footer_rights">© 2024 MARCOS C. LISBOA • DATA
+                SCIENCE & ML EXECUTIVE</p>
         </div>
     </footer>
 
+    <!-- Prism JS for Code Syntax Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script src="lang.js"></script>
     <script>
         const revealObserver = new IntersectionObserver((entries) => {
@@ -494,6 +807,202 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.getElementById('notebook-viewer');
+            const loading = document.getElementById('notebook-loading');
+
+            // Custom Simple Markdown Parser
+            function parseMarkdown(text) {
+                // Escape HTML first to prevent code blocks layout breakage
+                let html = text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+                // Headers (from # down to ###)
+                html = html.replace(/^# (.*?)$/gm, '<h1 class="text-xl font-bold text-white mt-4 mb-2 border-b border-white/5 pb-2">$1</h1>');
+                html = html.replace(/^## (.*?)$/gm, '<h2 class="text-lg font-semibold text-white mt-3 mb-1.5">$1</h2>');
+                html = html.replace(/^### (.*?)$/gm, '<h3 class="text-base font-medium text-white/90 mt-2 mb-1">$1</h3>');
+
+                // Bold
+                html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-orange-500">$1</strong>');
+                html = html.replace(/__(.*?)__/g, '<strong class="font-bold text-orange-500">$1</strong>');
+
+                // Inline code
+                html = html.replace(/`(.*?)`/g, '<code class="bg-white/10 text-orange-400 px-1.5 py-0.5 rounded font-mono text-xs">$1</code>');
+
+                // Unordered lists
+                html = html.replace(/^\s*[-*] (.*?)$/gm, '<li class="list-disc list-inside text-white/60 ml-4 my-1">$1</li>');
+
+                // Links
+                html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-orange-500 hover:underline">$1</a>');
+
+                // Line breaks
+                html = html.replace(/\n/g, '<br>');
+
+                return html;
+            }
+
+            function getSourceText(source) {
+                if (Array.isArray(source)) return source.join("");
+                return source || "";
+            }
+
+            // Copy Code Functionality
+            window.copyCode = function (btn) {
+                const pre = btn.nextElementSibling;
+                const code = pre.querySelector('code');
+                navigator.clipboard.writeText(code.innerText).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "<i class='bx bx-check'></i> Copiado!";
+                    btn.style.background = "#ff5700";
+                    btn.style.color = "white";
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar código: ', err);
+                });
+            };
+
+            fetch('assets/detecao-fraude.ipynb')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Falha ao carregar o notebook');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (loading) loading.remove();
+
+                    const container = document.createElement('div');
+                    container.className = 'notebook-container';
+
+                    const cells = data.cells || [];
+                    cells.forEach(cell => {
+                        const cellDiv = document.createElement('div');
+                        cellDiv.className = 'notebook-cell';
+
+                        if (cell.cell_type === 'markdown') {
+                            const mdText = getSourceText(cell.source);
+                            const parsedHtml = parseMarkdown(mdText);
+                            cellDiv.className += ' notebook-cell-markdown';
+                            cellDiv.innerHTML = parsedHtml;
+                        }
+                        else if (cell.cell_type === 'code') {
+                            cellDiv.className += ' notebook-cell-code';
+
+                            const codeText = getSourceText(cell.source);
+                            const execCount = cell.execution_count !== null ? cell.execution_count : ' ';
+
+                            // Code block row
+                            const codeRow = document.createElement('div');
+                            codeRow.className = 'notebook-code-row';
+
+                            const prompt = document.createElement('div');
+                            prompt.className = 'notebook-prompt';
+                            prompt.innerText = `In [${execCount}]:`;
+
+                            const inputDiv = document.createElement('div');
+                            inputDiv.className = 'notebook-code-input';
+
+                            // Copy button
+                            const copyBtn = document.createElement('button');
+                            copyBtn.className = 'notebook-copy-btn';
+                            copyBtn.innerHTML = "<i class='bx bx-copy'></i>";
+                            copyBtn.onclick = function () { copyCode(this); };
+
+                            // Syntax-highlighted pre
+                            const pre = document.createElement('pre');
+                            pre.className = 'language-python';
+
+                            const code = document.createElement('code');
+                            code.className = 'language-python';
+                            code.textContent = codeText;
+
+                            pre.appendChild(code);
+                            inputDiv.appendChild(copyBtn);
+                            inputDiv.appendChild(pre);
+
+                            codeRow.appendChild(prompt);
+                            codeRow.appendChild(inputDiv);
+                            cellDiv.appendChild(codeRow);
+
+                            // Render outputs if any
+                            if (cell.outputs && cell.outputs.length > 0) {
+                                const outputsContainer = document.createElement('div');
+                                outputsContainer.className = 'notebook-outputs-container';
+
+                                cell.outputs.forEach(output => {
+                                    if (output.output_type === 'stream') {
+                                        const text = getSourceText(output.text);
+
+                                        const label = document.createElement('div');
+                                        label.className = 'notebook-output-label';
+                                        label.innerText = 'stdout';
+
+                                        const preOut = document.createElement('pre');
+                                        preOut.className = 'notebook-output-stream';
+                                        preOut.textContent = text;
+
+                                        outputsContainer.appendChild(label);
+                                        outputsContainer.appendChild(preOut);
+                                    }
+                                    else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
+                                        const dataMime = output.data || {};
+
+                                        if (dataMime['image/png']) {
+                                            const base64Img = getSourceText(dataMime['image/png']).replace(/\s/g, "");
+                                            const img = document.createElement('img');
+                                            img.className = 'notebook-output-image';
+                                            img.src = `data:image/png;base64,${base64Img}`;
+                                            img.alt = 'Plot do Notebook';
+                                            outputsContainer.appendChild(img);
+                                        }
+                                        else if (dataMime['text/html']) {
+                                            const htmlTable = getSourceText(dataMime['text/html']);
+                                            const tableDiv = document.createElement('div');
+                                            tableDiv.className = 'overflow-x-auto my-2';
+                                            tableDiv.innerHTML = htmlTable;
+                                            outputsContainer.appendChild(tableDiv);
+                                        }
+                                        else if (dataMime['text/plain']) {
+                                            const plainText = getSourceText(dataMime['text/plain']);
+                                            const preOut = document.createElement('pre');
+                                            preOut.className = 'notebook-output-execute';
+                                            preOut.textContent = plainText;
+                                            outputsContainer.appendChild(preOut);
+                                        }
+                                    }
+                                });
+                                cellDiv.appendChild(outputsContainer);
+                            }
+                        }
+
+                        container.appendChild(cellDiv);
+                    });
+
+                    viewer.appendChild(container);
+
+                    // Trigger Prism highlighting
+                    if (window.Prism) {
+                        Prism.highlightAllUnder(container);
+                    }
+                })
+                .catch(err => {
+                    console.error('Erro ao renderizar o notebook: ', err);
+                    if (loading) {
+                        loading.innerHTML = `
+                            <i class='bx bx-error text-red-500 text-3xl mb-2'></i>
+                            <span class="text-red-500">Erro ao carregar o notebook. Por favor, tente novamente mais tarde.</span>
+                        `;
+                    }
+                });
+        });
     </script>
 </body>
 

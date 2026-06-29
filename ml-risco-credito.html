@@ -23,6 +23,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <!-- Prism CSS for Python Code Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         :root {
             --primary-glow: rgba(0, 150, 255, 0.15);
@@ -280,6 +282,114 @@
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Python Notebook Viewer Styles --- */
+        .notebook-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .notebook-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .notebook-cell-markdown {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 0.5rem 0 0.5rem 50px;
+        }
+
+        .notebook-cell-markdown strong {
+            color: var(--accent);
+        }
+
+        .notebook-cell-code {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .notebook-code-row {
+            display: flex;
+            width: 100%;
+            gap: 0.75rem;
+        }
+
+        .notebook-prompt {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: rgba(0, 150, 255, 0.55);
+            min-width: 50px;
+            text-align: right;
+            padding-top: 0.75rem;
+            user-select: none;
+        }
+
+        .notebook-code-input {
+            flex-grow: 1;
+            position: relative;
+            max-width: calc(100% - 60px);
+        }
+
+        .notebook-code-input pre[class*="language-"] {
+            margin: 0 !important;
+            background: #0b0c10 !important;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 0.85rem 1rem !important;
+            font-size: 0.85rem !important;
+            overflow-x: auto;
+        }
+
+        .notebook-code-input code {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+
+        .notebook-copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .notebook-copy-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 150, 255, 0.22);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 150, 255, 0.45);
+        }
     </style>
 </head>
 
@@ -441,6 +551,25 @@
             </div>
         </div>
 
+        <!-- Credit Risk Analysis Notebook (Full Width) -->
+        <div class="mt-12 reveal">
+            <section class="glass-panel">
+                <span class="section-tag">Analysis Notebook</span>
+                <h2 class="text-3xl font-bold text-white mb-6" data-i18n="proj_credit_risk_ml_notebook_title">Notebook de Análise de Risco</h2>
+                <p class="text-white/60 leading-relaxed mb-8" data-i18n="proj_credit_risk_ml_notebook_desc">
+                    Abaixo está o script Python exportado do notebook, organizado em células para acompanhar a análise exploratória, o tratamento dos dados e a preparação do modelo de risco de crédito.
+                </p>
+
+                <div id="credit-notebook-viewer"
+                    class="bg-[#050508]/60 border border-white/5 rounded-2xl p-4 md:p-6 max-h-[850px] overflow-y-auto custom-scrollbar">
+                    <div class="flex flex-col justify-center items-center py-20 text-white/50" id="credit-notebook-loading">
+                        <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+                        <span>Carregando análise Python...</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <script>
             // Insights Toggle Animation
             function toggleInsights(btn) {
@@ -490,6 +619,9 @@
         </div>
     </footer>
 
+    <!-- Prism JS for Code Syntax Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script src="lang.js"></script>
     <script>
         const revealObserver = new IntersectionObserver((entries) => {
@@ -498,6 +630,143 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.getElementById('credit-notebook-viewer');
+            const loading = document.getElementById('credit-notebook-loading');
+
+            function splitPythonCells(source) {
+                return source
+                    .split(/^#\s*%%%?.*$/gm)
+                    .map(cell => cell.trim())
+                    .filter(Boolean);
+            }
+
+            function escapeHtml(text) {
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+            }
+
+            function extractNarrative(cellText) {
+                const tripleQuoteMatch = cellText.match(/^(['"]{3})([\s\S]*?)\1$/);
+                if (tripleQuoteMatch) {
+                    return tripleQuoteMatch[2].trim();
+                }
+
+                const commentLines = cellText
+                    .split('\n')
+                    .filter(line => line.trim().startsWith('#'))
+                    .map(line => line.replace(/^\s*#\s?/, '').trim())
+                    .filter(Boolean);
+
+                if (commentLines.length && commentLines.length <= 3) {
+                    return commentLines.join(' ');
+                }
+
+                return '';
+            }
+
+            window.copyCreditCode = function (btn) {
+                const code = btn.nextElementSibling.querySelector('code');
+                navigator.clipboard.writeText(code.innerText).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "<i class='bx bx-check'></i> Copiado!";
+                    btn.style.background = "#0096ff";
+                    btn.style.color = "white";
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar código: ', err);
+                });
+            };
+
+            fetch('assets/Modelo-de-Risco-de-Crédito.py')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Falha ao carregar o script Python');
+                    }
+                    return response.text();
+                })
+                .then(source => {
+                    if (loading) loading.remove();
+
+                    const container = document.createElement('div');
+                    container.className = 'notebook-container';
+
+                    splitPythonCells(source).forEach((cellText, index) => {
+                        const narrative = extractNarrative(cellText);
+
+                        if (narrative && /^(['"]{3})/.test(cellText.trim())) {
+                            const mdCell = document.createElement('div');
+                            mdCell.className = 'notebook-cell notebook-cell-markdown';
+                            mdCell.innerHTML = `<strong>Insight:</strong> ${escapeHtml(narrative)}`;
+                            container.appendChild(mdCell);
+                            return;
+                        }
+
+                        if (narrative) {
+                            const mdCell = document.createElement('div');
+                            mdCell.className = 'notebook-cell notebook-cell-markdown';
+                            mdCell.innerHTML = escapeHtml(narrative);
+                            container.appendChild(mdCell);
+                        }
+
+                        const cellDiv = document.createElement('div');
+                        cellDiv.className = 'notebook-cell notebook-cell-code';
+
+                        const codeRow = document.createElement('div');
+                        codeRow.className = 'notebook-code-row';
+
+                        const prompt = document.createElement('div');
+                        prompt.className = 'notebook-prompt';
+                        prompt.innerText = `In [${index + 1}]:`;
+
+                        const inputDiv = document.createElement('div');
+                        inputDiv.className = 'notebook-code-input';
+
+                        const copyBtn = document.createElement('button');
+                        copyBtn.className = 'notebook-copy-btn';
+                        copyBtn.innerHTML = "<i class='bx bx-copy'></i>";
+                        copyBtn.onclick = function () { copyCreditCode(this); };
+
+                        const pre = document.createElement('pre');
+                        pre.className = 'language-python';
+
+                        const code = document.createElement('code');
+                        code.className = 'language-python';
+                        code.textContent = cellText;
+
+                        pre.appendChild(code);
+                        inputDiv.appendChild(copyBtn);
+                        inputDiv.appendChild(pre);
+                        codeRow.appendChild(prompt);
+                        codeRow.appendChild(inputDiv);
+                        cellDiv.appendChild(codeRow);
+                        container.appendChild(cellDiv);
+                    });
+
+                    viewer.appendChild(container);
+
+                    if (window.Prism) {
+                        Prism.highlightAllUnder(container);
+                    }
+                })
+                .catch(err => {
+                    console.error('Erro ao renderizar a análise Python: ', err);
+                    if (loading) {
+                        loading.innerHTML = `
+                            <i class='bx bx-error text-red-500 text-3xl mb-2'></i>
+                            <span class="text-red-500">Erro ao carregar a análise Python. Verifique o caminho do arquivo em assets.</span>
+                        `;
+                    }
+                });
+        });
     </script>
 </body>
 
